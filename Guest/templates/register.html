@@ -1,8 +1,10 @@
+{% extends 'Gbase.html'%}
 <!doctype html>
 <html lang="en">
 
 <head>
     <!-- Required meta tags -->
+  
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
@@ -156,7 +158,7 @@ span.psw {
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/home">Something</a>
+                    <a class="nav-link" href="/home">Search</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/register">Register</a>
@@ -168,14 +170,15 @@ span.psw {
                     <a class="nav-link" href="/contact">Contact Us</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" method="get" action="/shop/search">
+            <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-primary btn-md">Login</button>
+           <!--  <form class="form-inline my-2 my-lg-0" method="get" action="/shop/search">
                 <input class="form-control mr-sm-2" type="search" placeholder="Email" aria-label="Search" name="search" id="search"> 
                 <input class="form-control mr-sm-2" type="search" placeholder="Password" aria-label="Search" name="search" id="search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
                <!--  <button type="button" class="btn btn-secondary mx-2" id="popcart" data-container="body" data-html="true" data-toggle="popover" data-placement="bottom" data-content="what the fuck going on.">
                     Cart(<span id='crt'>0</span>)
                 </button> -->
-            </form>
+            </form> -->
             <!-- <button class="btn btn-primary" onclick="clearCart();"> Clear Cart </button> -->
         </div>
     </nav>
@@ -285,20 +288,13 @@ span.psw {
 				
 				<tr class="inp">
 					<td>
-						<button type="button" class="btn btn-primary btn-block">Login</button>
+						<button type="button" class="btn btn-primary btn-block">Register</button>
 					</td>
 					<td>
 						<button style="float: right;" type="reset" class="btn btn-primary btn-md">Reset</button>
 					</td>
 				</tr>
 			
-				
-				<tr>
-					<td colspan="2">
-						<p style="float: right;"> Already have an account.. <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-primary btn-md">click here</button>
-
-					</td>
-				</tr>
 			</table>
 			</center>	
 			<br>
@@ -310,7 +306,6 @@ span.psw {
   <form class="modal-content animate" action="/action_page.php" method="post">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="user.png" alt="Avatar" class="avatar" height=200px width=200px>
     </div>
 
     <div class="container">
@@ -320,14 +315,14 @@ span.psw {
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
         
-      <button type="submit">Login</button>
+     <button type="button" class="btn btn-primary btn-block">Login</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+     
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
   </form>

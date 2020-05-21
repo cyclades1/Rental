@@ -1,73 +1,154 @@
-<!doctype html>
-<html lang="en">
+{% extends 'Gbase.html'%}
+{% load static %}
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        {% block css %}  {% endblock %}
-    </style>
-    <title> {% block title %} {% endblock %} </title>
-</head>
-
-<body style="background-color: rgba(0,0,0,.075);">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/"> Rental </a>
+    {%block nav%}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a style="margin-bottom: 5px" href="/"> <img src="{% static 'logo.png' %}" style="height: 40px; width: 120px;"> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        </button> 
+ 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 10px; margin-left: 80px;">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</span></a>
+               <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/home">Something <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Register </a>
+                    <a class="nav-link" href="/home">Explore <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/about">About us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact Us</a>
+                    <a class="nav-link" href="/contact">Contact us</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" method="get" action="/shop/search">
-                <input class="form-control mr-sm-2" type="search" placeholder="Email" aria-label="Search" name="search" id="search"> 
-                <input class="form-control mr-sm-2" type="search" placeholder="Password" aria-label="Search" name="search" id="search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-               <!--  <button type="button" class="btn btn-secondary mx-2" id="popcart" data-container="body" data-html="true" data-toggle="popover" data-placement="bottom" data-content="what the fuck going on.">
-                    Cart(<span id='crt'>0</span>)
-                </button> -->
-            </form>
-           <!--  <button class="btn btn-primary" onclick="clearCart();"> Clear Cart </button> -->
+
+           
+         <button style="color: white" onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-success my-2 my-sm-0"><strong>Login</strong></button>
+         <a href="/register"><button style="margin-left: 50px; margin-right: 50px; color: white; background-color: green" class="btn btn-outline-success my-2 my-sm-0"><strong>Sign Up</strong></button>
+      </a>
         </div>
     </nav>
+    {%endblock%}
     
     {% block body %} 
-    Something
-    {% endblock %}
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    {% block js%}
-    <script>
-    function clearCart() {
-        cart = JSON.parse(localStorage.getItem('cart'));
-        for (var item in cart) {
-            document.getElementById('div' + item).innerHTML = '<button id="' + item + '" + class="btn btn-primary cart">Add to Cart</button>';
-        }
-        localStorage.clear();
-        cart = {};
-        updateCart(cart);
-    }
-    </script>
-    {% endblock %}
-</body>
+    
+<!-- Sidebar/menu -->
 
-</html>
+<!-- Overlay effect when opening sidebar on small screens -->
+<div>
+<div style="margin-left: 10%; margin-right: 10%; margin-top: 20px">
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main">
+
+  <!-- Header -->
+  <header id="portfolio">
+        <div class="w3-container">
+    <h1><b>Search</b></h1>
+     <div class="row searchFilter" >
+     <div class="col-sm-12" >
+      <div class="input-group" >
+       <input id="table_filter" type="text" class="form-control" aria-label="Text input with segmented button dropdown" >
+       <div class="input-group-btn" >
+        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="label-icon" >Category</span> <span class="caret" >&nbsp;</span></button>
+        <div class="dropdown-menu dropdown-menu-right" >
+           <ul class="category_filters" >
+            <li >
+             <input class="cat_type category-input" data-label="All" id="all" value="" name="radios" type="radio" ><label for="all" >All</label>
+            </li>
+            <li >
+             <input type="radio" name="radios" id="Design" value="Design" ><label class="category-label" for="Design" >Design</label>
+            </li>
+            <li >
+             <input type="radio" name="radios" id="Marketing" value="Marketing" ><label class="category-label" for="Marketing" >Marketing</label>
+            </li>
+            <li >
+             <input type="radio" name="radios" id="Programming" value="Programming" ><label class="category-label" for="Programming" >Programming</label>
+            </li>
+            <li >
+             <input type="radio" name="radios" id="Sales" value="Sales" ><label class="category-label" for="Sales" >Sales</label>
+            </li>
+            <li >
+             <input type="radio" name="radios" id="Support" value="Support" ><label class="category-label" for="Support" >Support</label>
+            </li>
+           </ul>
+        </div>
+        <button id="searchBtn" type="button" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
+       </div>
+      </div>
+     </div>
+  </div>
+    <div class="w3-section w3-bottombar w3-padding-16">
+      <span class="w3-margin-right">Filter:</span> 
+      <button class="w3-button w3-black">ALL</button>
+      <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Type</button>
+      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-dollar w3-margin-right"></i>Price</button>
+      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Location</button>
+    </div>
+    </div>
+  </header>
+
+ 
+
+  
+  <!-- First Photo Grid-->
+  <div class="w3-row-padding">
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="{% static '6.jfif'%}" alt="Norway" style="width:100%; height: 250px;" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b><h3>₹10,000</h3> </b></p>
+        <p>1 Bds - 1 Ba - 500 ft2</p>
+        <p>1BHK FLAT NEAR SAKET METRO STATION</p>
+      </div>
+    </div>
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="{% static '7.jfif'%}" alt="Norway" style="width:100%; height: 250px;" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b><h3>₹12,000</h3> </b></p>
+        <p>1 Bds - 1 Ba - 600 ft2</p>
+        <p>1BHK FLAT NEAR Palace Rd</p>
+      </div>
+    </div>
+    <div class="w3-third w3-container">
+      <img src="{% static '8.jfif'%}" alt="Norway" style="width:100%; height: 250px;" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b><h3>₹9,000</h3> </b></p>
+        <p>1 Bds - 1 Ba - 500 ft2</p>
+        <p>1BHK FLAT NEAR Peepal chauraha</p>
+      </div>
+    </div>
+  </div>
+  
+ 
+
+  <!-- Pagination -->
+  <div class="w3-center w3-padding-32">
+    <div class="w3-bar">
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
+      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
+    </div>
+  </div>
+
+  <!-- Images of Me -->
+
+
+  
+  <!-- Contact Section -->
+  
+
+  <!-- Footer -->
+  
+
+<!-- End page content -->
+</div>
+</div>
+
+    {% endblock %}
+    

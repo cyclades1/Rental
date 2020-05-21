@@ -1,8 +1,9 @@
-<!doctype html>
-<html lang="en">
+{% extends 'Gbase.html'%}
+{% load static %}
 
-<head>
-    <!-- Required meta tags -->
+
+</style>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
@@ -14,43 +15,76 @@
 </head>
 
 <body style="background-color: rgba(0,0,0,.075);">
+    {%block nav%}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/"> Rental </a>
+        <a style="margin-bottom: 5px" href="/"> <img src="{% static 'logo.png' %}" style="height: 40px; width: 120px;"> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        </button> 
+ 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 10px; margin-left: 80px;">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Home</span></a>
+                    <a class="nav-link" href="/">Home </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/home">Something</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Register            </a>
+                    <a class="nav-link" href="/home">Explore</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/about">About us <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact Us</a>
+                    <a class="nav-link" href="/contact">Contact us</a>
                 </li>
             </ul>
-             <form class="form-inline my-2 my-lg-0" method="get" action="/shop/search">
-                <input class="form-control mr-sm-2" type="search" placeholder="Email" aria-label="Search" name="search" id="search"> 
-                <input class="form-control mr-sm-2" type="search" placeholder="Password" aria-label="Search" name="search" id="search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-               <!--  <button type="button" class="btn btn-secondary mx-2" id="popcart" data-container="body" data-html="true" data-toggle="popover" data-placement="bottom" data-content="what the fuck going on.">
-                    Cart(<span id='crt'>0</span>)
-                </button> -->
-            </form>
-           <!--  <button class="btn btn-primary" onclick="clearCart();"> Clear Cart </button> -->
+             <button style="color: white" onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-success my-2 my-sm-0"><strong>Login</strong></button>
+         <a href="/register"><button style="margin-left: 50px; margin-right: 50px; color: white; background-color: green" class="btn btn-outline-success my-2 my-sm-0"><strong>Sign Up</strong></button>
+      </a>
         </div>
     </nav>
-    
+    {%endblock%}
     {% block body %} 
-    About
+    
+<div class="jumbotron text-center">
+  <h1>About Us</h1>
+  <p>Some text about who we are and what we do.</p>
+  
+</div>
+
+
+
+<div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
+  
+  <center><h2>Our Services</h2></center>
+  
+  <br>
+  <div style="float: left; width:50%;">
+        
+    <img src="{% static 'roomvala.jpg'%}" style="height: 400px; width: 600px;"> 
+  </div>
+    <div style="float: right; width: 45%; padding: 2%; margin: 2%; font-family: sans-serif; font-size: 150%;">
+              <p>Our work is to provide houses and Rooms to people, who are new to area and need a place to stay.We also contact owners and people in area, who are searching for roommate or paying guests.</p>
+      <br>
+    </div>
+  
+</div>
+<div class="w3-container" style="width: 100;margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
+     
+      <div style=" float: right; width:50%;">
+        
+          <img src="{% static 'hand.jpg'%}" style="height: 400px; width: 600px;"> 
+      </div>
+      <div style="float: left; width: 45%; padding: 2%; margin: 2%; font-family: sans-serif; font-size: 150%;">
+          <p>You can choose rooms from thousands of certified and rated rooms. Our aim is to provide safe and comfortable home.Register as owner or roommate and find a person you want to share the room with.</p>
+          <br>
+      </div>
+     
+</div>
+
+
+
+
+
     {% endblock %}
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -68,6 +102,3 @@
     }
     </script>
     {% endblock %}
-</body>
-
-</html>

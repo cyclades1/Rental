@@ -16,6 +16,8 @@ Including another URLconf
 from django.urls import include, path
 from django.contrib import admin
 from . import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.auth import login
 
 admin.autodiscover()
 urlpatterns = [
@@ -27,3 +29,5 @@ urlpatterns = [
 	path('admin/',admin.site.urls),
     path('user/',include('user.urls'))
 ]
+
+urlpatterns+= staticfiles_urlpatterns()

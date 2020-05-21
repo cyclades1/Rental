@@ -1,8 +1,18 @@
+{% extends 'Gbase.html'%}
+{% load static %}
 <!doctype html>
 <html lang="en">
 
 <head>
     <!-- Required meta tags -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
@@ -13,43 +23,76 @@
     <title> {% block title %} {% endblock %} </title>
 </head>
 
-<body style="background-color: rgba(0,0,0,.075);">
+<body>
+    {%block nav%}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/"> Rental </a>
+        <a style="margin-bottom: 5px" href="/"> <img src="{% static 'logo.png' %}" style="height: 40px; width: 120px;"> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        </button> 
+ 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 10px; margin-left: 80px;">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/home">Something</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
+                    <a class="nav-link" href="/home">Explore</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/about">About us</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/contact">Contact Us <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/contact">Contact us <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
-             <form class="form-inline my-2 my-lg-0" method="get" action="/shop/search">
-                <input class="form-control mr-sm-2" type="search" placeholder="Email" aria-label="Search" name="search" id="search"> 
-                <input class="form-control mr-sm-2" type="search" placeholder="Password" aria-label="Search" name="search" id="search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-               <!--  <button type="button" class="btn btn-secondary mx-2" id="popcart" data-container="body" data-html="true" data-toggle="popover" data-placement="bottom" data-content="what the fuck going on.">
-                    Cart(<span id='crt'>0</span>)
-                </button> -->
-            </form>
-            <!-- <button class="btn btn-primary" onclick="clearCart();"> Clear Cart </button> -->
+
+           
+         <button style="color: white" onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-success my-2 my-sm-0"><strong>Login</strong></button>
+         <a href="/register"><button style="margin-left: 50px; margin-right: 50px; color: white; background-color: green" class="btn btn-outline-success my-2 my-sm-0"><strong>Sign Up</strong></button>
+        </a>
         </div>
     </nav>
+    {%endblock%}
     {% block body %} 
-Contact
+    <div class="w3-container w3-padding-large w3-grey" style="margin-right: 10%; margin-left: 10%; margin-bottom: 2%; margin-top: 2%;">
+    <h4 id="contact"><b>Reach out to us</b></h4>
+    <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px">
+      <div class="w3-third w3-dark-grey">
+        <p><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></p>
+        <p>rentalforpeople@gmail.com</p>
+      </div>
+      <div class="w3-third w3-teal">
+        <p><i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i></p>
+        <p>Lucknow, India</p>
+      </div>
+      <div class="w3-third w3-dark-grey">
+        <p><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></p>
+        <p>+91 9876543210</p>
+      </div>
+    </div>
+    <hr class="w3-opacity">
+    <form action="/action_page.php" target="_blank">
+      <div class="w3-section">
+        <label>Name</label>
+        <input class="w3-input w3-border" type="text" name="Name" required>
+      </div>
+      <div class="w3-section">
+        <label>Email</label>
+        <input class="w3-input w3-border" type="text" name="Email" required>
+      </div>
+      <div class="w3-section">
+        <label>Message</label>
+        <input class="w3-input w3-border" type="text" name="Message" required>
+      </div>
+      <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Send Message</button>
+    </form>
+    <div class="w3-panel w3-large" style="float: right;">
+        <p style="font-size: xx-small;">All rights are reserved to http://rentalforpeople.wordpress.com/<br>
+        Contact Abhishek Dubey at dubeyabhishek933@gmail.com for further details.</p>
+     </div>
+  </div>
+
     {% endblock %}
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
