@@ -11,3 +11,8 @@ It also provide you a range of houses based on your preference as cost, location
 
 It is made using django framework of python.
 
+![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/main.PNG)
+
+![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/search.PNG)
+
+![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/about.PNG)
