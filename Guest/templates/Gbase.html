@@ -183,7 +183,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 10px; margin-left: 80px;">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/home">Explore</a>
@@ -198,7 +198,7 @@
 
            
          <button style="color: white" onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-success my-2 my-sm-0"><strong>Login</strong></button>
-         <a href="/register"><button style="margin-left: 50px; margin-right: 50px; color: white; background-color: green" class="btn btn-outline-success my-2 my-sm-0"><strong>Sign Up</strong></button>
+         <button onclick="document.getElementById('id02').style.display='block'" style="margin-left: 50px; margin-right: 50px; color: white; background-color: green" class="btn btn-outline-success my-2 my-sm-0"><strong>Sign Up</strong></button>
      	</a>
         </div>
     </nav>
@@ -229,8 +229,36 @@
 	    </div>
 	  </form>
 	</div>
+	<div id="id02" class="modal">
+	  
+	  <form class="modal-content animate" action="/action_page.php" method="post">
+	    <div class="imgcontainer">
+	      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+	    </div>
+
+	    <div class="container">
+	     {%
+	     	from user.models import User
+				admin.site.register(User)
+	     %}
+	    </div>
+
+	    <div class="container" style="background-color:#f1f1f1">
+	     
+	      <span class="psw">Forgot <a href="#">password?</a></span>
+	    </div>
+	  </form>
+	</div>
 
 	<script>
+	var modal = document.getElementById('id02');
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
 	// Get the modal
 	var modal = document.getElementById('id01');
 

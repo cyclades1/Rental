@@ -21,7 +21,7 @@ from django.contrib.auth import login
 
 admin.autodiscover()
 urlpatterns = [
-    path('',views.index),
+    path('index/',views.index),
 	path('contact/', views.contact),
     path('home/',views.home),
     path('about/',views.about),

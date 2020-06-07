@@ -1,1 +1,11 @@
 {%extends 'base.html'%}
+{%load static%}
+{% if user_list %}
+    <ul>
+    {% for user in user_list %}
+        <li style="color: black;">{{ question.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
