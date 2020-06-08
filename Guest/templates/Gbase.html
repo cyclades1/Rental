@@ -217,10 +217,11 @@
 	      <label for="psw"><b>Password</b></label>
 	      <input type="password" placeholder="Enter Password" name="psw" required>
 	        
-	     <button type="button" class="btn btn-primary btn-block">Login</button>
 	      <label>
 	        <input type="checkbox" checked="checked" name="remember"> Remember me
 	      </label>
+	     <button type="button" class="btn btn-primary btn-block">Login</button>
+	      
 	    </div>
 
 	    <div class="container" style="background-color:#f1f1f1">
@@ -231,23 +232,26 @@
 	</div>
 	<div id="id02" class="modal">
 	  
-	  <form class="modal-content animate" action="/action_page.php" method="post">
-	    <div class="imgcontainer">
-	      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-	    </div>
+	  <form class="modal-content animate" action="add" method="post">
 
-	    <div class="container">
-	     {%
-	     	from user.models import User
-				admin.site.register(User)
-	     %}
-	    </div>
-
-	    <div class="container" style="background-color:#f1f1f1">
-	     
-	      <span class="psw">Forgot <a href="#">password?</a></span>
-	    </div>
-	  </form>
+      <div class="container">
+        {% csrf_token %}
+      <label for="name"><b>Name</b></label>
+        <input type="text" placeholder="Enter Username" name="name" required>
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Username" name="email" required>
+        <label for="location"><b>Location</b></label>
+        <input type="text" placeholder="Enter Username" name="location" required>
+      <label for="Phone"><b>Phone Number</b></label>
+        <input type="text" placeholder="Enter Username" name="phone" required>
+        <label for="pass"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="pass" required>
+        <label for="cpass"><b>Confirm Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+        
+        <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+      </div>
+    </form>
 	</div>
 
 	<script>

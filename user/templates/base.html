@@ -4,18 +4,150 @@
 <html>
 <head>
 	{% block head %}
+	   <link rel="icon" href="{% static 'logo.png' %}" type="image/jpg">
 		<title>
+			Rental
 			{%block title%} {%endblock%}
 		</title>
-		{%block style%}
+		
 
 			<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	  		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 	 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
+	    
+        <style>
+        	.inp
+        {
+        	height: 36px;
+        	width: 480px;
+        	line-height: 55px;
+        }
+        .name
+        {
+        	line-height: 55px;
+        }
+			body {font-family: Arial, Helvetica, sans-serif;}
 
-			<style>
+			/* Full-width input fields */
+			input[type=text], input[type=password] {
+			  width: 100%;
+			  padding: 12px 20px;
+			  margin: 8px 0;
+			  display: inline-block;
+			  border: 1px solid #ccc;
+			  box-sizing: border-box;
+			}
+
+			/* Set a style for all buttons */
+			button {
+			  color: white;
+			  padding: 14px 20px;
+			  margin: 8px 0;
+			  border: none;
+			  cursor: pointer;
+			}
+
+			button:hover {
+			  opacity: 0.8;
+			}
+
+			/* Extra styles for the cancel button */
+			.cancelbtn {
+			  width: auto;
+			  padding: 10px 18px;
+			  background-color: #f44336;
+			}
+
+			/* Center the image and position the close button */
+			.imgcontainer {
+			  text-align: center;
+			  margin: 24px 0 12px 0;
+			  position: relative;
+			}
+
+			img.avatar {
+			 
+			  border-radius: 50%;
+			}
+
+			.container {
+			  padding: 16px;
+			}
+
+			span.psw {
+			  float: right;
+			  padding-top: 16px;
+			}
+
+			/* The Modal (background) */
+			.modal {
+			  display: none; /* Hidden by default */
+			  position: fixed; /* Stay in place */
+			  z-index: 1; /* Sit on top */
+			  left: 0;
+			  top: 0;
+			  width: 100%; /* Full width */
+			  height: 100%; /* Full height */
+			  overflow: auto; /* Enable scroll if needed */
+			  background-color: rgb(0,0,0); /* Fallback color */
+			  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+			  padding-top: 60px;
+			}
+
+			/* Modal Content/Box */
+			.modal-content {
+			  background-color: #fefefe;
+			  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+			  border: 1px solid #888;
+			  width: 80%; /* Could be more or less, depending on screen size */
+			}
+
+			/* The Close Button (x) */
+			.close {
+			  position: absolute;
+			  right: 25px;
+			  top: 0;
+			  color: #000;
+			  font-size: 35px;
+			  font-weight: bold;
+			}
+
+			.close:hover,
+			.close:focus {
+			  color: red;
+			  cursor: pointer;
+			}
+
+			/* Add Zoom Animation */
+			.animate {
+			  -webkit-animation: animatezoom 0.6s;
+			  animation: animatezoom 0.6s
+			}
+
+			@-webkit-keyframes animatezoom {
+			  from {-webkit-transform: scale(0)} 
+			  to {-webkit-transform: scale(1)}
+			}
+			  
+			@keyframes animatezoom {
+			  from {transform: scale(0)} 
+			  to {transform: scale(1)}
+			}
+
+			/* Change styles for span and cancel button on extra small screens */
+			@media screen and (max-width: 300px) {
+			  span.psw {
+			     display: block;
+			     float: none;
+			  }
+			  .cancelbtn {
+			     width: 100%;
+			  }
+			}
+
+	
 			  .fakeimg {
 			    height: 200px;
 			    background: #aaa;
@@ -26,14 +158,15 @@
 		    <!-- Bootstrap CSS -->
 		    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+		{%block style%}
 		{%endblock%}
 
-		{%block script%}
+
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+	 	{%block script%}
 		{%endblock%}
 
 	{% endblock %}
@@ -50,35 +183,178 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 10px; margin-left: 80px;">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/home">Explore</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="/about">About us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact Us</a>
+                    <a class="nav-link" href="/contact">Contact us</a>
                 </li>
             </ul>
 
-           <!--  <form class="form-inline my-2 my-lg-0" method="get" action="/shop/search">
-                <input class="form-control mr-sm-2" type="search" placeholder="Email" aria-label="Search" name="search" id="search"> 
-                <input class="form-control mr-sm-2" type="search" placeholder="Password" aria-label="Search" name="search" id="search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-            </form> -->
-          
+           
+         <button  class="btn btn-outline-success my-2 my-sm-0"><strong>Profile</strong></button>
+         <button style="margin-left: 50px; margin-right: 50px; color: white; background-color: red" class="btn btn-outline-success my-2 my-sm-0"><strong>Logout</strong></button>
+     	</a>
         </div>
     </nav>
-	{%endblock%}
+    {%endblock%}
+	<div id="id01" class="modal">
+	  
+	  <form class="modal-content animate" action="/action_page.php" method="post">
+	    <div class="imgcontainer">
+	      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+	    </div>
+
+	    <div class="container">
+	      <label for="uname"><b>Username</b></label>
+	      <input type="text" placeholder="Enter Username" name="uname" required>
+
+	      <label for="psw"><b>Password</b></label>
+	      <input type="password" placeholder="Enter Password" name="psw" required>
+	        
+	      <label>
+	        <input type="checkbox" checked="checked" name="remember"> Remember me
+	      </label>
+	     <button type="button" class="btn btn-primary btn-block">Login</button>
+	      
+	    </div>
+
+	    <div class="container" style="background-color:#f1f1f1">
+	     
+	      <span class="psw">Forgot <a href="#">password?</a></span>
+	    </div>
+	  </form>
+	</div>
+	<div id="id02" class="modal">
+	  
+	  <form class="modal-content animate" action="/action_page.php" method="post">
+	    <div class="imgcontainer">
+	      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+	    </div>
+
+	    <div class="container">
+	    
+		{% block content %}
+		  <h2>Sign up</h2>
+		  <form method="post">
+		    {% csrf_token %}
+		    {% for field in form %}
+		      <p>
+		        {{ field.label_tag }}<br>
+		        {{ field }}
+		        {% if field.help_text %}
+		          <small style="color: grey">{{ field.help_text }}</small>
+		        {% endif %}
+		        {% for error in field.errors %}
+		          <p style="color: red">{{ error }}</p>
+		        {% endfor %}
+		      </p>
+		    {% endfor %}
+		    <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+		  </form>
+		{% endblock %}
+	    </div>
+
+	    <div class="container" style="background-color:#f1f1f1">
+	     
+	      <span class="psw">Forgot <a href="#">password?</a></span>
+	    </div>
+	  </form>
+	</div>
+
+	<script>
+	var modal = document.getElementById('id02');
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+	// Get the modal
+	var modal = document.getElementById('id01');
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+	</script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 
 
 	{%block body%}
 
 	{%endblock%}
+
+	  <footer class="w3-container w3-padding-32 w3-dark-grey" style="margin-right: 10%; margin-left: 10%">
+  <div class="w3-row-padding">
+    <div class="w3-third">
+     <h3>Popular locations</h3>
+      <ul class="w3-ul w3-hoverable">
+        <li class="w3-padding-16">
+          
+          <span> Mumbai</span><br>
+          <span> Delhi</span><br>
+          <span> Bagalore</span><br>
+          <span> Lucknow</span><br>
+          <span> Kolkata</span>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="w3-third">
+      <h3>Trending locations</h3>
+      <ul class="w3-ul w3-hoverable">
+        <li class="w3-padding-16">
+          
+          <span> Hyderabad</span><br>
+          <span> Bhubaneshwar</span><br>
+          <span> Chandigarh</span><br>
+          <span> Nasik</span><br>
+          <span> Pune</span>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div class="w3-third">
+      <h3>POPULAR TAGS</h3>
+      <br>
+      <p>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Delhi</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Mumbai</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">2BHK</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">3BHK</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Banglore</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Hall</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">5K</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Non AC</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Family</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">AC</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Flat</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Near me</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">House</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Room</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Clean</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Room</span>
+      </p>
+    </div>
+
+  </div>
+  </footer>
+  
+   <div class="w3-panel w3-large">
+    <center>
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </center>
+    
+  </div>
+ 
+
 
 	{%block footer%}
 

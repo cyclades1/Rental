@@ -5,6 +5,9 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
 from .forms import SignUpForm
+from django.template import loader
+from user.models import User
+
 
 
 def index(request):
@@ -20,16 +23,17 @@ def contact(request):
 	return render(request,'contact.html')
 
 def register(request):
-	if request.method == 'POST':
-		form = SignUpForm(request.POST)
-		if form.is_valid():
-			user = form.save()
-			user.refresh_from_db()  
-			user.save()
-			raw_password = form.cleaned_data.get('password1')
-			user = authenticate(username=user.username, password=raw_password)
-			login(request, user)
-			return redirect('home')
-	else:
-		form = SignUpForm()
-	return render(request, 'register.html', {'form': form})
+	return render(request, 'register.html')
+
+def add(request):
+	name = request.POST['name']
+	email = request.POST['email']
+	location = request.POST['location']
+	phone = request.POST['phone']
+	pas = request.POST['pass']
+
+	template = loader.get_template('user/index.html')
+	context = {
+		'user':name,
+	}
+	return HttpResponse(template.render(context, request))
