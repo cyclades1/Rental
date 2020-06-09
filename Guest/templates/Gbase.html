@@ -196,31 +196,33 @@
                 </li>
             </ul>
 
-           
+    {%endblock%} 
+    {%block button%}
          <button style="color: white" onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-success my-2 my-sm-0"><strong>Login</strong></button>
-         <button onclick="document.getElementById('id02').style.display='block'" style="margin-left: 50px; margin-right: 50px; color: white; background-color: green" class="btn btn-outline-success my-2 my-sm-0"><strong>Sign Up</strong></button>
-     	</a>
+         <a href="/register"><button style="margin-left: 50px; margin-right: 50px; color: white; background-color: green" class="btn btn-outline-success my-2 my-sm-0"><strong>Sign Up</strong></button></a>
+    {%endblock%}
         </div>
     </nav>
-    {%endblock%}
+    
 	<div id="id01" class="modal">
 	  
-	  <form class="modal-content animate" action="/action_page.php" method="post">
+	  <form class="modal-content animate" action="login" method="post">
+	  	{% csrf_token %}
 	    <div class="imgcontainer">
 	      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 	    </div>
 
 	    <div class="container">
-	      <label for="uname"><b>Username</b></label>
-	      <input type="text" placeholder="Enter Username" name="uname" required>
+	      <label for="uname"><b>Email</b></label>
+	      <input type="text" placeholder="Enter Username" name="email" required>
 
 	      <label for="psw"><b>Password</b></label>
-	      <input type="password" placeholder="Enter Password" name="psw" required>
+	      <input type="password" placeholder="Enter Password" name="pass" required>
 	        
 	      <label>
 	        <input type="checkbox" checked="checked" name="remember"> Remember me
 	      </label>
-	     <button type="button" class="btn btn-primary btn-block">Login</button>
+	     <button type="submit" class="btn btn-primary btn-block">Login</button>
 	      
 	    </div>
 
@@ -230,39 +232,9 @@
 	    </div>
 	  </form>
 	</div>
-	<div id="id02" class="modal">
-	  
-	  <form class="modal-content animate" action="add" method="post">
-
-      <div class="container">
-        {% csrf_token %}
-      <label for="name"><b>Name</b></label>
-        <input type="text" placeholder="Enter Username" name="name" required>
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Username" name="email" required>
-        <label for="location"><b>Location</b></label>
-        <input type="text" placeholder="Enter Username" name="location" required>
-      <label for="Phone"><b>Phone Number</b></label>
-        <input type="text" placeholder="Enter Username" name="phone" required>
-        <label for="pass"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="pass" required>
-        <label for="cpass"><b>Confirm Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-        
-        <button class="btn btn-primary btn-block" type="submit">Sign up</button>
-      </div>
-    </form>
-	</div>
-
+	
 	<script>
-	var modal = document.getElementById('id02');
 
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }
-	}
 	// Get the modal
 	var modal = document.getElementById('id01');
 

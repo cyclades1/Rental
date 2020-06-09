@@ -1,35 +1,10 @@
 {% extends 'Gbase.html'%}
 {%load static%}
- {%block nav%}
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a style="margin-bottom: 5px" href="/"> <img src="{% static 'logo.png' %}" style="height: 40px; width: 120px;"> </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button> 
- 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 10px; margin-left: 80px;">
-            <ul class="navbar-nav mr-auto">
-               <li class="nav-item">
-                    <a class="nav-link" href="/index">Home</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/home">Explore <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact us</a>
-                </li>
-            </ul>
-
-           
-         <button style="color: white" onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-success my-2 my-sm-0"><strong>Login</strong></button>
-         <a href="/register"><button style="margin-left: 50px; margin-right: 50px; color: white; background-color: green" class="btn btn-outline-success my-2 my-sm-0"><strong>Sign Up</strong></button>
-      </a>
-        </div>
-    </nav>
+{%block button%}
+         
+         <button style="color: white" onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-success my-2 my-sm-0"><strong>Login</strong></button>        
 {%endblock%}
+
 {%block body%}
 
 <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%;">

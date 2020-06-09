@@ -1,12 +1,10 @@
 {%extends 'base.html'%}
-{%load static%}
-
 {%block body%}
 
 <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
- {%for i in user%}
-<h1>hey {{i.email}}
-</h1>
+{%for i in user%}
+	<h2>hello {{i.name}}</h2>   
+	<h3>{{i.email}}</h3>
 {%endfor%}
 </div>
 {%endblock%}

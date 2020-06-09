@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import User
+from .models import User, Room , House
 from django.template import loader
 
 def index(request):
@@ -20,5 +20,5 @@ def about(request):
 def contact(request):
 	return render(request,'user/contact.html')
 
-# def hello(request):
-# 	return render(request,"polls/hello.html",{})
+def profile(request):
+	return render(request, 'user/profile.html')

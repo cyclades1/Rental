@@ -31,9 +31,24 @@ def add(request):
 	location = request.POST['location']
 	phone = request.POST['phone']
 	pas = request.POST['pass']
-
-	template = loader.get_template('user/index.html')
+	user = User(name = name , email = email , location= location, number = phone, password = pas)
+	user.save()
+	template = loader.get_template('user/profile.html')
 	context = {
-		'user':name,
+		'user':user,
 	}
 	return HttpResponse(template.render(context, request))
+
+def login(request):
+	email = request.POST['email']
+	pas = request.POST['pass']
+	user = User.objects.filter(email= email, password= pas)
+	# return render(request, 'user/index.html', {'users': user})
+	if bool(user):
+			template = loader.get_template('user/profile.html')
+			context={
+			'user':user
+			}
+			return HttpResponse(template.render(context, request))
+	else:
+		return HttpResponse("wrong email or password")
