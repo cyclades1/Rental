@@ -21,4 +21,22 @@ def contact(request):
 	return render(request,'user/contact.html')
 
 def profile(request):
-	return render(request, 'user/profile.html')
+	return HttpResponse(request);
+	# cur = request.POST.get('email')
+	# user = User.objects.filter(email= email)
+	# template = loader.get_template('user/index.html')
+	# context = {
+	# 	'user':user,
+	# }
+	# return render(request, 'user/profile.html')
+
+def post(request):
+	user = request.session['member_id']
+	return render(request, 'user/post.html', {'user':user})
+
+def logout(request):
+	try:
+		del request.session['member_id']
+	except KeyError:
+		pass
+	return render(request, 'index.html')

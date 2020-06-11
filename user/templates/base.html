@@ -196,10 +196,13 @@
                 </li>
             </ul>
 
-           
-         <button  class="btn btn-outline-success my-2 my-sm-0"><strong>Profile</strong></button>
-         <a href="/index"><button style="margin-left: 50px; margin-right: 50px; color: white; background-color: red" class="btn btn-outline-success my-2 my-sm-0"><strong>Logout</strong></button></a>
-     	</a>
+    {%endblock%}
+    {%block button%}     
+         <a href="/user/profile"><button  class="btn btn-outline-success my-2 my-sm-0"><strong>Profile</strong></button></a>
+         <form action="index">
+         <button type="submit" style="margin-left: 50px; margin-right: 50px; color: white; background-color: red" class="btn btn-outline-success my-2 my-sm-0"><strong>Logout</strong></button></a>
+    
+     	</form>
         </div>
     </nav>
     {%endblock%}

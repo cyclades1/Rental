@@ -45,6 +45,7 @@ def login(request):
 	user = User.objects.filter(email= email, password= pas)
 	# return render(request, 'user/index.html', {'users': user})
 	if bool(user):
+			request.session['member_id']=email
 			template = loader.get_template('user/profile.html')
 			context={
 			'user':user

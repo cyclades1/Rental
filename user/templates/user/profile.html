@@ -1,10 +1,330 @@
 {%extends 'base.html'%}
+{%load static%}
+{%block style%}
+<style type="text/css">
+	
+body {
+  background: #F1F3FA;
+}
+
+/* Profile container */
+.profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+    
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+}
+
+a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, td, textarea, th, ul {
+    -webkit-border-radius: 0!important;
+    -moz-border-radius: 0!important;
+    border-radius: 0!important;
+}
+.dashboard-stat, .portlet {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+.portlet {
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 0;
+    border-radius: 4px;
+}
+.portlet.bordered {
+    border-left: 2px solid #e6e9ec!important;
+}
+.portlet.light {
+    padding: 12px 20px 15px;
+    background-color: #fff;
+}
+.portlet.light.bordered {
+    border: 1px solid #e7ecf1!important;
+}
+.list-separated {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.profile-stat {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f4f7;
+}
+.profile-stat-title {
+    color: #7f90a4;
+    font-size: 25px;
+    text-align: center;
+}
+.uppercase {
+    text-transform: uppercase!important;
+}
+
+.profile-stat-text {
+    color: #5b9bd1;
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+}
+.profile-desc-title {
+    color: #7f90a4;
+    font-size: 17px;
+    font-weight: 600;
+}
+.profile-desc-text {
+    color: #7e8c9e;
+    font-size: 14px;
+}
+.margin-top-20 {
+    margin-top: 20px!important;
+}
+[class*=" fa-"]:not(.fa-stack), [class*=" glyphicon-"], [class*=" icon-"], [class^=fa-]:not(.fa-stack), [class^=glyphicon-], [class^=icon-] {
+    display: inline-block;
+    line-height: 14px;
+    -webkit-font-smoothing: antialiased;
+}
+.profile-desc-link i {
+    width: 22px;
+    font-size: 19px;
+    color: #abb6c4;
+    margin-right: 5px;
+}
+
+
+</style>
+
+{%endblock%}
+{%block nav%}
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a style="margin-bottom: 5px" href="/"> <img src="{% static 'logo.png' %}" style="height: 40px; width: 120px;"> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> 
+ 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 10px; margin-left: 80px;">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Explore</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact us</a>
+                </li>
+            </ul>
+
+    {%endblock%}
+
+ {%block button%}     
+        
+         <a href="/index"><button style="margin-left: 50px; margin-right: 50px; color: white; background-color: red" class="btn btn-outline-success my-2 my-sm-0"><strong>Logout</strong></button></a>
+     	</a>
+        </div>
+    </nav>
+    {%endblock%}
 {%block body%}
 
 <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
-{%for i in user%}
-	<h2>hello {{i.name}}</h2>   
-	<h3>{{i.email}}</h3>
-{%endfor%}
+
+       <div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+				<div class="profile-userpic">
+					<center>
+					<img src="{%static 'user.png'%}" alt="">\
+					</center>
+				</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						{{user.name}}
+					</div>
+					<div class="profile-usertitle-job">
+						Rental user
+					</div>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+					<form action="post">
+					<<button type="submit" class="btn btn-success btn-sm">Post ads</button>
+					</form>
+					
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active">
+							<a href="#">
+							<i class="glyphicon glyphicon-home"></i>
+							Overview </a>
+						</li>
+						<li>
+							<a href="#">
+							<i class="glyphicon glyphicon-user"></i>
+							Account Settings </a>
+						</li>
+						<li>
+							<a href="#">
+							<i class="glyphicon glyphicon-ok"></i>
+							Tasks </a>
+						</li>
+						<li>
+							<a href="#">
+							<i class="glyphicon glyphicon-flag"></i>
+							Help </a>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			   
+           <div class="portlet light bordered">
+                                                <!-- STAT -->
+                                                <div class="row list-separated profile-stat">
+                                                    <div class="col-md-4 col-sm-4 col-xs-6">
+                                                        <div class="uppercase profile-stat-title"> 37 </div>
+                                                        <div class="uppercase profile-stat-text">Ads Posted </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-xs-6">
+                                                        <div class="uppercase profile-stat-title"> 1 </div>
+                                                        <div class="uppercase profile-stat-text"> Report </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-xs-6">
+                                                        <div class="uppercase profile-stat-title"> 61 </div>
+                                                        <div class="uppercase profile-stat-text"> Uploads </div>
+                                                    </div>
+                                                </div>
+                                                <!-- END STAT -->
+                                                 <div>
+                                                    <h4 class="profile-desc-title">About {{user.name}}</h4>
+                                                    <span class="profile-desc-text">Authenticated user of the Rental.
+                                                    	Have permission to post ads on the site.
+                                                     </span>
+                                                    <div class="margin-top-20 profile-desc-link">
+                                                        <i class="fa fa-globe"></i>
+                                                        <a href="https://www.gmail.com">{{user.email}}</a>
+                                                    </div>
+                                                    <div class="margin-top-20 profile-desc-link">
+                                                        <i class="fa fa-phone"></i>
+                                                        <a href="#">{{user.number}}</a>
+                                                    </div>
+                                                    <div class="margin-top-20 profile-desc-link">
+                                                        <i class="fa fa-facebook"></i>
+                                                        <a href="https://www.google.com/maps/place/{{user.location}}">{{user.location}}</a>
+ </div></div></div>                   
+                                           
+        
+        
+			</div>
+		</div>
+		<div class="col-md-9">
+            <div class="profile-content">
+			   Some user related content goes here...
+            </div>
+		</div>
+	</div>
+
 </div>
 {%endblock%}
