@@ -197,98 +197,17 @@
             </ul>
 
     {%endblock%}
-    {%block button%}     
-         <a href="/user/profile"><button  class="btn btn-outline-success my-2 my-sm-0"><strong>Profile</strong></button></a>
-         <form action="index">
-         <button type="submit" style="margin-left: 50px; margin-right: 50px; color: white; background-color: red" class="btn btn-outline-success my-2 my-sm-0"><strong>Logout</strong></button></a>
-    
-     	</form>
+    {%block button%}    
+    	 <form action="/profile">
+         <button  class="btn btn-outline-success my-2 my-sm-0"><strong>Profile</strong></button>
+     	 </form>
+        <form action="/logout">
+         <button style="margin-left: 50px; margin-right: 50px; color: white; background-color: red" class="btn btn-outline-success my-2 my-sm-0"><strong>Logout</strong></button>
+         </form>
         </div>
     </nav>
     {%endblock%}
-	<div id="id01" class="modal">
-	  
-	  <form class="modal-content animate" action="/action_page.php" method="post">
-	    <div class="imgcontainer">
-	      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-	    </div>
-
-	    <div class="container">
-	      <label for="uname"><b>Username</b></label>
-	      <input type="text" placeholder="Enter Username" name="uname" required>
-
-	      <label for="psw"><b>Password</b></label>
-	      <input type="password" placeholder="Enter Password" name="psw" required>
-	        
-	      <label>
-	        <input type="checkbox" checked="checked" name="remember"> Remember me
-	      </label>
-	     <button type="button" class="btn btn-primary btn-block">Login</button>
-	      
-	    </div>
-
-	    <div class="container" style="background-color:#f1f1f1">
-	     
-	      <span class="psw">Forgot <a href="#">password?</a></span>
-	    </div>
-	  </form>
-	</div>
-	<div id="id02" class="modal">
-	  
-	  <form class="modal-content animate" action="/action_page.php" method="post">
-	    <div class="imgcontainer">
-	      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-	    </div>
-
-	    <div class="container">
-	    
-		{% block content %}
-		  <h2>Sign up</h2>
-		  <form method="post">
-		    {% csrf_token %}
-		    {% for field in form %}
-		      <p>
-		        {{ field.label_tag }}<br>
-		        {{ field }}
-		        {% if field.help_text %}
-		          <small style="color: grey">{{ field.help_text }}</small>
-		        {% endif %}
-		        {% for error in field.errors %}
-		          <p style="color: red">{{ error }}</p>
-		        {% endfor %}
-		      </p>
-		    {% endfor %}
-		    <button class="btn btn-primary btn-block" type="submit">Sign up</button>
-		  </form>
-		{% endblock %}
-	    </div>
-
-	    <div class="container" style="background-color:#f1f1f1">
-	     
-	      <span class="psw">Forgot <a href="#">password?</a></span>
-	    </div>
-	  </form>
-	</div>
-
-	<script>
-	var modal = document.getElementById('id02');
-
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }
-	}
-	// Get the modal
-	var modal = document.getElementById('id01');
-
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }
-	}
-	</script>
+	
 	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

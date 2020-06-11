@@ -215,16 +215,20 @@ a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, t
     {%endblock%}
 
  {%block button%}     
-        
-         <a href="/index"><button style="margin-left: 50px; margin-right: 50px; color: white; background-color: red" class="btn btn-outline-success my-2 my-sm-0"><strong>Logout</strong></button></a>
-     	</a>
+        <form action="/logout">
+         <button style="margin-left: 50px; margin-right: 50px; color: white; background-color: red" class="btn btn-outline-success my-2 my-sm-0"><strong>Logout</strong></button>
+         </form>
+     	
         </div>
     </nav>
     {%endblock%}
 {%block body%}
 
 <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
-
+{%if user%}
+<p>{{user.email}}
+</p>
+{%endif%}
        <div class="row profile">
 		<div class="col-md-3">
 			<div class="profile-sidebar">
@@ -246,12 +250,7 @@ a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, t
 				</div>
 				<!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS -->
-				<div class="profile-userbuttons">
-					<form action="post">
-					<<button type="submit" class="btn btn-success btn-sm">Post ads</button>
-					</form>
-					
-				</div>
+				
 				<!-- END SIDEBAR BUTTONS -->
 				<!-- SIDEBAR MENU -->
 				<div class="profile-usermenu">
@@ -282,37 +281,37 @@ a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, t
 			   
            <div class="portlet light bordered">
                                                 <!-- STAT -->
-                                                <div class="row list-separated profile-stat">
-                                                    <div class="col-md-4 col-sm-4 col-xs-6">
-                                                        <div class="uppercase profile-stat-title"> 37 </div>
-                                                        <div class="uppercase profile-stat-text">Ads Posted </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-6">
-                                                        <div class="uppercase profile-stat-title"> 1 </div>
-                                                        <div class="uppercase profile-stat-text"> Report </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-6">
-                                                        <div class="uppercase profile-stat-title"> 61 </div>
-                                                        <div class="uppercase profile-stat-text"> Uploads </div>
-                                                    </div>
-                                                </div>
-                                                <!-- END STAT -->
-                                                 <div>
-                                                    <h4 class="profile-desc-title">About {{user.name}}</h4>
-                                                    <span class="profile-desc-text">Authenticated user of the Rental.
-                                                    	Have permission to post ads on the site.
-                                                     </span>
-                                                    <div class="margin-top-20 profile-desc-link">
-                                                        <i class="fa fa-globe"></i>
-                                                        <a href="https://www.gmail.com">{{user.email}}</a>
-                                                    </div>
-                                                    <div class="margin-top-20 profile-desc-link">
-                                                        <i class="fa fa-phone"></i>
-                                                        <a href="#">{{user.number}}</a>
-                                                    </div>
-                                                    <div class="margin-top-20 profile-desc-link">
-                                                        <i class="fa fa-facebook"></i>
-                                                        <a href="https://www.google.com/maps/place/{{user.location}}">{{user.location}}</a>
+                  <div class="row list-separated profile-stat">
+                      <div class="col-md-4 col-sm-4 col-xs-6">
+                          <div class="uppercase profile-stat-title"> 37 </div>
+                          <div class="uppercase profile-stat-text">Ads Posted </div>
+                      </div>
+                      <div class="col-md-4 col-sm-4 col-xs-6">
+                          <div class="uppercase profile-stat-title"> 1 </div>
+                          <div class="uppercase profile-stat-text"> Report </div>
+                      </div>
+                      <div class="col-md-4 col-sm-4 col-xs-6">
+                          <div class="uppercase profile-stat-title"> 61 </div>
+                          <div class="uppercase profile-stat-text"> Uploads </div>
+                      </div>
+                  </div>
+                  <!-- END STAT -->
+                   <div>
+                      <h4 class="profile-desc-title">About {{user.name}}</h4>
+                      <span class="profile-desc-text">Authenticated user of the Rental.
+                      	Have permission to post ads on the site.
+                       </span>
+                      <div class="margin-top-20 profile-desc-link">
+                          <i class="fa fa-globe"></i>
+                          <a href="https://www.gmail.com">{{user.email}}</a>
+                      </div>
+                      <div class="margin-top-20 profile-desc-link">
+                          <i class="fa fa-phone"></i>
+                          <a href="#">{{user.number}}</a>
+                      </div>
+                      <div class="margin-top-20 profile-desc-link">
+                          <i class="fa fa-facebook"></i>
+                          <a href="https://www.google.com/maps/place/{{user.location}}">{{user.location}}</a>
  </div></div></div>                   
                                            
         
@@ -321,7 +320,11 @@ a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, t
 		</div>
 		<div class="col-md-9">
             <div class="profile-content">
-			   Some user related content goes here...
+			       <div class="profile-userbuttons">
+              <a href="/post"><button type="submit" class="btn btn-success btn-sm">Post ads</button>
+              </a>
+          
+        </div>
             </div>
 		</div>
 	</div>

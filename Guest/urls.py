@@ -18,18 +18,23 @@ from django.contrib import admin
 from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth import login
+from django.conf.urls import url
 
 admin.autodiscover()
 urlpatterns = [
     path('index/',views.index),
-	path('contact/', views.contact),
     path('home/',views.home),
+	path('contact/', views.contact),
     path('about/',views.about),
-    path('register/',views.register),
+    path('regpage/',views.registerpage),
+    path('logpage/', views.loginpage),
 	path('admin/',admin.site.urls),
     path('user/',include('user.urls')),
-    path('register/add', views.add, name= "add"),
-    path('/login', views.login, name='login')
+    path('register', views.register),
+    path('login', views.login),
+    path('profile/',views.profile),
+    path('post', views.post),
+    path('logout', views.logout)
 ]
 
 urlpatterns+= staticfiles_urlpatterns()

@@ -6,7 +6,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
 from .forms import SignUpForm
 from django.template import loader
-from user.models import User
+from user.models import *
 
 
 
@@ -22,18 +22,37 @@ def about(request):
 def contact(request):
 	return render(request,'contact.html')
 
-def register(request):
-	return render(request, 'register.html')
+def registerpage(request):
+	return render(request, 'register.html',{'msg':""})
 
-def add(request):
+def loginpage(request):
+	return render(request, 'login.html', {'msg':""})
+
+def register(request):
 	name = request.POST['name']
 	email = request.POST['email']
 	location = request.POST['location']
 	phone = request.POST['phone']
+	try:
+		phone = int(phone)
+	except:
+		template = loader.get_template('register.html')
+		context={
+			'msg':'expection number in phone number'
+		}
+		return HttpResponse(template.render(context, request))
 	pas = request.POST['pass']
+	already = User.objects.filter(email= email)
+	if bool(already):
+		template = loader.get_template('register.html')
+		context={
+			'msg':"email already registered"
+		}
+		return HttpResponse(template.render(context, request))
 	user = User(name = name , email = email , location= location, number = phone, password = pas)
 	user.save()
-	template = loader.get_template('user/profile.html')
+	request.session['member_id']=email
+	template = loader.get_template('profile.html')
 	context = {
 		'user':user,
 	}
@@ -43,13 +62,52 @@ def login(request):
 	email = request.POST['email']
 	pas = request.POST['pass']
 	user = User.objects.filter(email= email, password= pas)
-	# return render(request, 'user/index.html', {'users': user})
 	if bool(user):
 			request.session['member_id']=email
-			template = loader.get_template('user/profile.html')
-			context={
-			'user':user
-			}
-			return HttpResponse(template.render(context, request))
+			# template = loader.get_template('profile.html')
+			# context={
+			# 'user':user
+			# }
+			# return HttpResponse(template.render(context, request))
+			return render(request, 'profile.html')
 	else:
-		return HttpResponse("wrong email or password")
+		template = loader.get_template('login.html')
+		context={
+		'msg':"wrong email or password"
+		}
+		return HttpResponse(template.render(context, request))
+
+
+def profile(request):
+	email = request.session['member_id']
+	user = User.objects.filter(email= email)
+	if bool(user) and user!="":
+		template = loader.get_template('profile.html')
+		context = {
+			'user':user,
+		}
+		return HttpResponse(template.render(context, request))
+	else:
+		del request.session['member_id']
+		return render(request, 'index.html')
+
+def post(request):
+	email = request.session['member_id']
+	user = User.objects.filter(email= email)
+	if bool(user) and user!="":
+		template = loader.get_template('post.html')
+		context = {
+			'user':user,
+		}
+		return HttpResponse(template.render(context, request))
+	else:
+		del request.session['member_id']
+		return render(request, 'index.html')
+
+def logout(request):
+	try:
+		del request.session['member_id']
+	except KeyError:
+		pass
+	return render(request, 'index.html')
+
