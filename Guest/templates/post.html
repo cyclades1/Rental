@@ -3,7 +3,58 @@
 
 {%block body%}
 
+<script type="text/javascript">
+
+			    function PreviewImage() {
+			        var oFReader = new FileReader();
+			        oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+
+			        oFReader.onload = function (oFREvent) {
+			            document.getElementById("uploadPreview").src = oFREvent.target.result;
+			        };
+			    };
+
+			</script>
+
 <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
-	<h1>post and ad {{user}}</h1>
+	 <h2>Ad for Room..</h2>
+	  <!-- {%if msg%}
+	  <p>{{msg}}</p>
+	  {%endif%} -->
+	  <form action="/posted" method="post" runat="server">
+
+	    <div class="container">
+	        {% csrf_token %}
+		    <label for="name"><b>Location</b></label>
+	        <input type="text" placeholder="Amalbagh" name="location" required>
+	        <label for="email"><b>City</b></label>
+	        <input type="text" placeholder="Lucknow" name="city" required>
+	        <label for="location"><b>State</b></label>
+	        <input type="text" placeholder="Uttar pradesh" name="state" required>
+	        <label for="Phone"><b>Cost</b></label>
+	        <input type="text" placeholder="cost in rupee" name="phone" required>
+	        <label for="name"><b>Hall</b></label>
+	        <input type="text" placeholder="Enter Name" name="name" required>
+	        <label for="email"><b>Kitchen</b></label>
+	        <input type="text" placeholder="user@host.com" name="email" required>
+	        <label for="location"><b>Balcany</b></label>
+	        <input type="text" placeholder="Delhi" name="location" required>
+	        <label for="Phone"><b>Bedrooms</b></label>
+	        <input type="text" placeholder="Enter 10 digit Number" name="phone" required>
+	        <label for="pass"><b>AC</b></label>
+	        <input type="text" placeholder="Yes/No" name="AC">
+	        <label for= "comment"><b>Description</b></label><br>
+	        <textarea style="width: 100%" name="desc" ></textarea> <br>
+	        <label for="image"><b>Upload Picture</b></label><br>
+	        <input id="uploadImage" type="file" name="myPhoto" onchange="PreviewImage();" />
+	        <img id="uploadPreview" style="width: 100px; height: 100px;" />
+			
+	        <button class="btn btn-primary btn-block" type="submit">Post</button>
+	    </div>
+	    </form>
+	    
+
 </div>
+
+
 {%endblock%}

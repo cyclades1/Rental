@@ -225,60 +225,60 @@ a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, t
 {%block body%}
 
 <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
-{%if user%}
-<p>{{user.email}}
+
+<p>{{user}}
 </p>
-{%endif%}
-       <div class="row profile">
-		<div class="col-md-3">
-			<div class="profile-sidebar">
-				<!-- SIDEBAR USERPIC -->
-				<div class="profile-userpic">
-					<center>
-					<img src="{%static 'user.png'%}" alt="">\
-					</center>
-				</div>
-				<!-- END SIDEBAR USERPIC -->
-				<!-- SIDEBAR USER TITLE -->
-				<div class="profile-usertitle">
-					<div class="profile-usertitle-name">
-						{{user.name}}
-					</div>
-					<div class="profile-usertitle-job">
-						Rental user
-					</div>
-				</div>
-				<!-- END SIDEBAR USER TITLE -->
-				<!-- SIDEBAR BUTTONS -->
-				
-				<!-- END SIDEBAR BUTTONS -->
-				<!-- SIDEBAR MENU -->
-				<div class="profile-usermenu">
-					<ul class="nav">
-						<li class="active">
-							<a href="#">
-							<i class="glyphicon glyphicon-home"></i>
-							Overview </a>
-						</li>
-						<li>
-							<a href="#">
-							<i class="glyphicon glyphicon-user"></i>
-							Account Settings </a>
-						</li>
-						<li>
-							<a href="#">
-							<i class="glyphicon glyphicon-ok"></i>
-							Tasks </a>
-						</li>
-						<li>
-							<a href="#">
-							<i class="glyphicon glyphicon-flag"></i>
-							Help </a>
-						</li>
-					</ul>
-				</div>
-				<!-- END MENU -->
-			   
+
+ <div class="row profile">
+    <div class="col-md-3">
+      <div class="profile-sidebar">
+        <!-- SIDEBAR USERPIC -->
+        <div class="profile-userpic">
+          <center>
+          <img src="{%static 'user.png'%}" alt="">\
+          </center>
+        </div>
+        <!-- END SIDEBAR USERPIC -->
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+            {{user.name}}
+          </div>
+          <div class="profile-usertitle-job">
+            Rental user
+          </div>
+        </div>
+        <!-- END SIDEBAR USER TITLE -->
+        <!-- SIDEBAR BUTTONS -->
+        
+        <!-- END SIDEBAR BUTTONS -->
+        <!-- SIDEBAR MENU -->
+        <div class="profile-usermenu">
+          <ul class="nav">
+            <li class="active">
+              <a href="#">
+              <i class="glyphicon glyphicon-home"></i>
+              Overview </a>
+            </li>
+            <li>
+              <a href="#">
+              <i class="glyphicon glyphicon-user"></i>
+              Account Settings </a>
+            </li>
+            <li>
+              <a href="#">
+              <i class="glyphicon glyphicon-ok"></i>
+              Tasks </a>
+            </li>
+            <li>
+              <a href="#">
+              <i class="glyphicon glyphicon-flag"></i>
+              Help </a>
+            </li>
+          </ul>
+        </div>
+        <!-- END MENU -->
+         
            <div class="portlet light bordered">
                                                 <!-- STAT -->
                   <div class="row list-separated profile-stat">
@@ -299,7 +299,7 @@ a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, t
                    <div>
                       <h4 class="profile-desc-title">About {{user.name}}</h4>
                       <span class="profile-desc-text">Authenticated user of the Rental.
-                      	Have permission to post ads on the site.
+                        Have permission to post ads on the site.
                        </span>
                       <div class="margin-top-20 profile-desc-link">
                           <i class="fa fa-globe"></i>
@@ -316,18 +316,18 @@ a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, t
                                            
         
         
-			</div>
-		</div>
-		<div class="col-md-9">
+      </div>
+    </div>
+    <div class="col-md-9">
             <div class="profile-content">
-			       <div class="profile-userbuttons">
+             <div class="profile-userbuttons">
               <a href="/post"><button type="submit" class="btn btn-success btn-sm">Post ads</button>
               </a>
           
         </div>
             </div>
-		</div>
-	</div>
+    </div>
+  </div>
 
 </div>
 {%endblock%}

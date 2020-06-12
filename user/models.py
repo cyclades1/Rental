@@ -5,40 +5,49 @@ from django.dispatch import receiver
 
 # Create your models here.
 class User(models.Model):
-	name = models.CharField(max_length=25)
 	email = models.CharField(max_length = 100,primary_key=True)
+	name = models.CharField(max_length=25)
 	password = models.CharField(max_length=100)
 	location = models.CharField(max_length=50)
+	city = models.CharField(max_length=50)
+	state = models.CharField(max_length=50)
 	number = models.IntegerField()
 	def __str__(self):
 		return self.name 
 		
-# @receiver(post_save, sender=User)
-# def update_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         User.objects.create(user=instance)
-#     instance.profile.save()
 
 class Room(models.Model):
 	room_id = models.AutoField(primary_key=True)
-	name = models.CharField(max_length=25)
 	user_email = models.CharField(max_length = 100)
 	dimention = models.CharField(max_length=100)
 	location = models.CharField(max_length=50)
+	city = models.CharField(max_length=50)
+	state = models.CharField(max_length=50)
 	cost = models.IntegerField()
-	kitchen = models.CharField(max_length=3)
-	
+	bedrooms= models.IntegerField()
+	kitchen =models.CharField(max_length=3)
+	hall = models.CharField(max_length=3)
+	balcany = models.CharField(max_length=3)
+	desc = models.CharField(max_length=200)
+	AC = models.CharField(max_length=3)
+	img = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+	date = models.DateField(auto_now=True, auto_now_add=False) 
 
 class House(models.Model):
 	house_id = models.AutoField(primary_key=True)
 	user_email = models.CharField(max_length = 100)
-	dimention = models.IntegerField()
+	Area = models.IntegerField()
+	floor = models.IntegerField()
 	location = models.CharField(max_length=50)
+	city = models.CharField(max_length=50)
+	state = models.CharField(max_length=50)
 	cost = models.IntegerField()
-	floors = models.IntegerField()
 	bedrooms= models.IntegerField()
 	kitchen =models.IntegerField()
 	hall = models.CharField(max_length=3)
 	balcany = models.CharField(max_length=3)
-	comment = models.CharField(max_length=200)
+	desc = models.CharField(max_length=200)
+	AC = models.CharField(max_length=3)
+	img = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+	date = models.DateField(auto_now=True, auto_now_add=False) 
 	

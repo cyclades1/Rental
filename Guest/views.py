@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 from .forms import SignUpForm
 from django.template import loader
 from user.models import *
+from datetime import *
 
 
 
@@ -69,7 +70,7 @@ def login(request):
 			# 'user':user
 			# }
 			# return HttpResponse(template.render(context, request))
-			return render(request, 'profile.html')
+			return profile(request)
 	else:
 		template = loader.get_template('login.html')
 		context={
@@ -80,20 +81,20 @@ def login(request):
 
 def profile(request):
 	email = request.session['member_id']
-	user = User.objects.filter(email= email)
+	user = User.objects.get(email= email)
 	if bool(user) and user!="":
 		template = loader.get_template('profile.html')
 		context = {
 			'user':user,
 		}
-		return HttpResponse(template.render(context, request))
+		return HttpResponse(template.render(context,request))
 	else:
 		del request.session['member_id']
 		return render(request, 'index.html')
 
 def post(request):
 	email = request.session['member_id']
-	user = User.objects.filter(email= email)
+	user = User.objects.get(email= email)
 	if bool(user) and user!="":
 		template = loader.get_template('post.html')
 		context = {
