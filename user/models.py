@@ -13,12 +13,12 @@ class User(models.Model):
 	state = models.CharField(max_length=50)
 	number = models.IntegerField()
 	def __str__(self):
-		return self.name 
+		return self.email 
 		
 
 class Room(models.Model):
 	room_id = models.AutoField(primary_key=True)
-	user_email = models.CharField(max_length = 100)
+	user_email = models.ForeignKey(User, to_field='email',on_delete=models.CASCADE )
 	dimention = models.CharField(max_length=100)
 	location = models.CharField(max_length=50)
 	city = models.CharField(max_length=50)
@@ -30,13 +30,15 @@ class Room(models.Model):
 	balcany = models.CharField(max_length=3)
 	desc = models.CharField(max_length=200)
 	AC = models.CharField(max_length=3)
-	img = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+	img = models.ImageField(upload_to='media/', height_field=None, width_field=None, max_length=100)
 	date = models.DateField(auto_now=True, auto_now_add=False) 
+	def __str__(self):
+		return str(self.room_id)
 
 class House(models.Model):
 	house_id = models.AutoField(primary_key=True)
-	user_email = models.CharField(max_length = 100)
-	Area = models.IntegerField()
+	user_email = models.ForeignKey(User, to_field='email',on_delete=models.CASCADE)
+	area = models.IntegerField()
 	floor = models.IntegerField()
 	location = models.CharField(max_length=50)
 	city = models.CharField(max_length=50)
@@ -48,6 +50,8 @@ class House(models.Model):
 	balcany = models.CharField(max_length=3)
 	desc = models.CharField(max_length=200)
 	AC = models.CharField(max_length=3)
-	img = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+	img = models.ImageField(upload_to='media', height_field=None, width_field=None, max_length=100)
 	date = models.DateField(auto_now=True, auto_now_add=False) 
+	def __str__(self):
+		return str(self.house_id)
 	

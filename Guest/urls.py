@@ -19,6 +19,8 @@ from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth import login
 from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
 
 admin.autodiscover()
 urlpatterns = [
@@ -34,7 +36,14 @@ urlpatterns = [
     path('login', views.login),
     path('profile/',views.profile),
     path('post', views.post),
+    path('posth', views.posth),
+    path('postedr', views.postedr),
+    path('postedh', views.postedh),
     path('logout', views.logout)
 ]
 
 urlpatterns+= staticfiles_urlpatterns()
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
+# urlpatterns+= mediafiles_urlpatterns()

@@ -8,6 +8,7 @@ from .forms import SignUpForm
 from django.template import loader
 from user.models import *
 from datetime import *
+import re
 
 
 
@@ -33,16 +34,34 @@ def register(request):
 	name = request.POST['name']
 	email = request.POST['email']
 	location = request.POST['location']
+	city = request.POST['city']
+	state = request.POST['state']
 	phone = request.POST['phone']
-	try:
-		phone = int(phone)
-	except:
+	pas = request.POST['pass']
+	cpas = request.POST['cpass']
+	regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+	if(re.search(regex,email)):
+		pass
+	else:
 		template = loader.get_template('register.html')
 		context={
-			'msg':'expection number in phone number'
+			'msg':'invalid email'
 		}
 		return HttpResponse(template.render(context, request))
-	pas = request.POST['pass']
+
+	if len(str(phone)) !=  10:
+		template = loader.get_template('register.html')
+		context={
+			'msg':'invalid phone number'
+		}
+		return HttpResponse(template.render(context, request))
+	
+	if pas != cpas:
+		template = loader.get_template('register.html')
+		context={
+			'msg':'password did not matched'
+		}
+		return HttpResponse(template.render(context, request))
 	already = User.objects.filter(email= email)
 	if bool(already):
 		template = loader.get_template('register.html')
@@ -50,14 +69,11 @@ def register(request):
 			'msg':"email already registered"
 		}
 		return HttpResponse(template.render(context, request))
-	user = User(name = name , email = email , location= location, number = phone, password = pas)
+	user = User(name = name , email = email , location= location,city= city, state = state, number = phone, password = pas)
 	user.save()
 	request.session['member_id']=email
 	template = loader.get_template('profile.html')
-	context = {
-		'user':user,
-	}
-	return HttpResponse(template.render(context, request))
+	return profile(request)
 
 def login(request):
 	email = request.POST['email']
@@ -101,6 +117,74 @@ def post(request):
 			'user':user,
 		}
 		return HttpResponse(template.render(context, request))
+	else:
+		del request.session['member_id']
+		return render(request, 'index.html')
+
+
+
+def posth(request):
+	email = request.session['member_id']
+	user = User.objects.get(email= email)
+	if bool(user) and user!="":
+		template = loader.get_template('posth.html')
+		context = {
+			'user':user,
+		}
+		return HttpResponse(template.render(context, request))
+	else:
+		del request.session['member_id']
+		return render(request, 'index.html')
+
+
+def postedh(request):
+	email = request.session['member_id']
+	user = User.objects.get(email= email)
+	if bool(user) and user!="":
+		area = request.POST['area']
+		floor = request.POST['floor']
+		location = request.POST['location']
+		city = request.POST['city']
+		state = request.POST['state']
+		cost = request.POST['cost']
+		hall = request.POST['hall']
+		kitchen = request.POST['kitchen']
+		balcany = request.POST['balcany']
+		bedroom = request.POST['bedroom']
+		ac = request.POST['AC']
+		desc = request.POST['desc']
+		img = request.FILES['img']
+		house = House(user_email = email, location=location, city=city, state=state, cost = cost, hall=hall, 
+			kitchen=kitchen, balcany=balcany, bedrooms=bedroom,area=area, floor=floor, AC = ac, desc= desc, img=img)
+		house.save()
+		return render(request, 'post.html', {'msg':'submitted successfully..'})
+
+	else:
+		del request.session['member_id']
+		return render(request, 'index.html')
+
+
+def postedr(request):
+	email = request.session['member_id']
+	user = User.objects.get(email= email)
+	if bool(user) and user!="":
+		dimention = request.POST['dimention']
+		location = request.POST['location']
+		city = request.POST['city']
+		state = request.POST['state']
+		cost = request.POST['cost']
+		hall = request.POST['hall']
+		kitchen = request.POST['kitchen']
+		balcany = request.POST['balcany']
+		bedroom = request.POST['bedroom']
+		ac = request.POST['AC']
+		desc = request.POST['desc']
+		img = request.FILES['img']
+		room = Room(user_email = email, dimention=dimention, location=location, city=city, state=state, cost = cost, hall=hall, 
+			kitchen=kitchen, balcany=balcany, bedrooms=bedroom, AC = ac, desc= desc, img=img)
+		room.save()
+		return render(request, 'post.html', {'msg':'submitted successfully..'})
+
 	else:
 		del request.session['member_id']
 		return render(request, 'index.html')
