@@ -111,16 +111,6 @@ def profile(request):
 		house = House.objects.filter(user_email= user)
 		if bool(house):
 			context.update({'house':house})
-		# try:
-			
-		# except:
-		# 	pass
-		# try:
-		# 	house = House.objects.get(user_email= user)
-		# 	if bool(house):
-		# 		context.update({'house':house})
-		# except:
-		# 	pass
 		
 		return HttpResponse(template.render(context,request))
 	else:
