@@ -100,9 +100,28 @@ def profile(request):
 	user = User.objects.get(email= email)
 	if bool(user) and user!="":
 		template = loader.get_template('profile.html')
+		
 		context = {
 			'user':user,
+
 		}
+		room= Room.objects.filter(user_email= user)
+		if bool(room):
+			context.update({'room':room})
+		house = House.objects.filter(user_email= user)
+		if bool(house):
+			context.update({'house':house})
+		# try:
+			
+		# except:
+		# 	pass
+		# try:
+		# 	house = House.objects.get(user_email= user)
+		# 	if bool(house):
+		# 		context.update({'house':house})
+		# except:
+		# 	pass
+		
 		return HttpResponse(template.render(context,request))
 	else:
 		del request.session['member_id']
@@ -154,7 +173,7 @@ def postedh(request):
 		ac = request.POST['AC']
 		desc = request.POST['desc']
 		img = request.FILES['img']
-		house = House(user_email = email, location=location, city=city, state=state, cost = cost, hall=hall, 
+		house = House(user_email = user, location=location, city=city, state=state, cost = cost, hall=hall, 
 			kitchen=kitchen, balcany=balcany, bedrooms=bedroom,area=area, floor=floor, AC = ac, desc= desc, img=img)
 		house.save()
 		return render(request, 'post.html', {'msg':'submitted successfully..'})
@@ -180,7 +199,7 @@ def postedr(request):
 		ac = request.POST['AC']
 		desc = request.POST['desc']
 		img = request.FILES['img']
-		room = Room(user_email = email, dimention=dimention, location=location, city=city, state=state, cost = cost, hall=hall, 
+		room = Room(user_email = user, dimention=dimention, location=location, city=city, state=state, cost = cost, hall=hall, 
 			kitchen=kitchen, balcany=balcany, bedrooms=bedroom, AC = ac, desc= desc, img=img)
 		room.save()
 		return render(request, 'post.html', {'msg':'submitted successfully..'})

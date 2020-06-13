@@ -316,17 +316,66 @@ a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, t
     </div>
 
     <div class="col-md-9">
-            <div class="profile-content">
-             <div class="profile-userbuttons">
-              <a href="/post"><button type="submit" class="btn btn-success btn-sm">Post ad for Apartment</button>
-              </a>
+      <div class="profile-content">
+         <div class="profile-userbuttons">
+          <a href="/post"><button type="submit" class="btn btn-success btn-sm">Post ad for Apartment</button>
+          </a>
         </div>
-         <div class="profile-content">
-             <div class="profile-userbuttons">
-              <a href="/posth"><button type="submit" class="btn btn-success btn-sm">Post ad for House</button>
-              </a>
+        <div class="profile-userbuttons">
+          <a href="/posth"><button type="submit" class="btn btn-success btn-sm">Post ad for House</button></a>
         </div>
+
+        {% if room%}
+        <br>
+        <hr>
+          <br>
+          <h3 class="profile-desc-title">Apartment posted..</h3>
+        
+            {%for i in room%}
+            <div style="width: 100%; float: left;">
+            <div style="width: 50%; float: right; margin-bottom: 5px;">
+              <img src="{{ i.img.url }}" height="180px" width="270px">
+            </div>     
+              <p>{{i.room_id}}</p>
+              <p>{{i.cost}}</p>
+              <p>{{i.location}}</p>
+              <button style="background-color: red;" type="submit" class="btn btn-success btn-sm">delete the ad</button>
             </div>
+                
+          <br>
+          {%endfor%}
+        
+        {%else%}
+           <center> <h3 class="profile-desc-title">no Apartment posted..</h3></center> 
+        {%endif%}
+  
+
+           {% if house%}
+           <br>
+           <hr>
+          <br>
+          <h3 class="profile-desc-title">House posted..</h3>
+        
+            {%for i in house%}
+            <div style="width: 100%; float: left;">
+            <div style="width: 50%; float: right; margin-bottom: 5px;">
+              <img src="{{ i.img.url }}" height="180px" width="270px">
+            </div>     
+              <p>{{i.house_id}}</p>
+              <p>{{i.cost}}</p>
+              <p>{{i.location}}</p>
+              <button style="background-color: red;" type="submit" class="btn btn-success btn-sm">delete the ad</button>
+            </div>
+                
+          <br>
+          {%endfor%}
+        
+        {%else%}
+           <center> <h3 class="profile-desc-title">no House posted..</h3></center> 
+        {%endif%}
+      </div>
+    </div>
+
     </div>
   </div>
 </div>
