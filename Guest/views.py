@@ -13,16 +13,82 @@ import re
 
 
 def index(request):
-    return render(request, 'index.html')
+	template = loader.get_template('index.html')
+	try:
+		email = request.session['member_id']
+	except:
+		email =""
+	if bool(email):
+		context={'base':'base.html',}
+	else:
+		context={'base':'Gbase.html',}
+	
+	room= Room.objects.all()
+	if bool(room):
+		context.update({'room':room})
+	house = House.objects.all()
+	if bool(house):
+		context.update({'house':house})
+	return HttpResponse(template.render(context,request))
+
+
 
 def home(request):
-	return render(request,'home.html')
+	template = loader.get_template('home.html')
+	try:
+		email = request.session['member_id']
+	except:
+		email =""
+	if bool(email):
+		context={'base':'base.html',}
+	else:
+		context={'base':'Gbase.html',}
+	
+	room= Room.objects.all()
+	if bool(room):
+		context.update({'room':room})
+	house = House.objects.all()
+	if bool(house):
+		context.update({'house':house})
+	return HttpResponse(template.render(context,request))
 
 def about(request):
-	return render(request,'about.html')
+	template = loader.get_template('about.html')
+	try:
+		email = request.session['member_id']
+	except:
+		email =""
+	if bool(email):
+		context={'base':'base.html',}
+	else:
+		context={'base':'Gbase.html',}
+	
+	room= Room.objects.all()
+	if bool(room):
+		context.update({'room':room})
+	house = House.objects.all()
+	if bool(house):
+		context.update({'house':house})
+	return HttpResponse(template.render(context,request))
 
 def contact(request):
-	return render(request,'contact.html')
+	template = loader.get_template('contact.html')
+	try:
+		email = request.session['member_id']
+	except:
+		email =""
+	if bool(email):
+		context={'base':'base.html',}
+	else:
+		context={'base':'Gbase.html',}
+	
+	room= Room.objects.all()
+	if bool(room):
+		context.update({'room':room})
+	house = House.objects.all()
+	if bool(house):
+		context.update({'house':house})
+	return HttpResponse(template.render(context,request))
 
 def registerpage(request):
 	return render(request, 'register.html',{'msg':""})
@@ -203,5 +269,5 @@ def logout(request):
 		del request.session['member_id']
 	except KeyError:
 		pass
-	return render(request, 'index.html')
+	return index(request)
 
