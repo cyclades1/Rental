@@ -111,11 +111,15 @@ def descr(request):
 		id = request.GET['id']
 		try:
 			room =Room.objects.get(room_id=id)
-			context.update({'room':room})
+			context.update({'val':room})
+			context.update({'type':'Apartment'})
+			user = User.objects.get(email = room.user_email)
 		except:
 			house =House.objects.get(house_id=id)
-			context.update({'house':house})
-		
+			context.update({'val':house})
+			context.update({'type':'House'})
+			user = User.objects.get(email = house.user_email)
+	context.update({'user':user})
 	return HttpResponse(template.render(context,request))
 
 
@@ -301,7 +305,7 @@ def logout(request):
 	return index(request)
 
 def deleter(request):
-	if request.methode =="GET":
+	if request.method =="GET":
 		id = request.GET['id']
 		instance = Room.objects.get(room_id=id)
 		instance.delete()

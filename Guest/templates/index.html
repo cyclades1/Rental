@@ -16,12 +16,7 @@
     <h5 class="my-4"> Apartment - Recommended for You.</h5>
     <div class="w3-row-padding">
         <div class="col carousel slide my-3" data-ride="carousel">
-            <ul class="carousel-indicators">
-                <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
-                {% for i in room.1 %}
-                <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
-                {% endfor %}
-            </ul>
+         
             <div class="carousel-inner no-padding">
                 <div class="carousel-item active">
                     {% for i in room.0%}
@@ -48,12 +43,7 @@
                 </div>
             </div>
         </div>
-      
-        <a class="carousel-control-prev" href="#demo{{forloop.counter}}" data-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
-            <span class="carousel-control-next-icon"></span>
+     
         </a>
     </div>
     {% endif %}
@@ -63,12 +53,7 @@
     <h5 class="my-4"> Houses - Recommended for You.</h5>
     <div class="w3-row-padding">
         <div class="col carousel slide my-3" data-ride="carousel">
-            <ul class="carousel-indicators">
-                <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
-                {% for i in house.1 %}
-                <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
-                {% endfor %}
-            </ul>
+        
             <div class="carousel-inner no-padding">
                 <div class="carousel-item active">
                     {% for i in house.0%}
@@ -96,12 +81,7 @@
             </div>
         </div>
       
-        <a class="carousel-control-prev" href="#demo{{forloop.counter}}" data-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </a>
+      
     </div>
     {% endif %}
 
