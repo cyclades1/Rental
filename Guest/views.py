@@ -9,6 +9,7 @@ from django.template import loader
 from user.models import *
 from datetime import *
 import re
+import os
 
 
 
@@ -89,6 +90,19 @@ def contact(request):
 	if bool(house):
 		context.update({'house':house})
 	return HttpResponse(template.render(context,request))
+
+def desc(request):
+	template = loader.get_template('desc.html')
+	try:
+		email = request.session['member_id']
+	except:
+		email =""
+	if bool(email):
+		context={'base':'base.html',}
+	else:
+		context={'base':'Gbase.html',}
+	return HttpResponse(template.render(context,request))
+
 
 def registerpage(request):
 	return render(request, 'register.html',{'msg':""})
@@ -218,16 +232,16 @@ def postedh(request):
 	if bool(user) and user!="":
 		area = request.POST['area']
 		floor = request.POST['floor']
-		location = request.POST['location']
-		city = request.POST['city']
-		state = request.POST['state']
+		location = request.POST['location'].lower()
+		city = request.POST['city'].lower()
+		state = request.POST['state'].lower()
 		cost = request.POST['cost']
-		hall = request.POST['hall']
-		kitchen = request.POST['kitchen']
-		balcany = request.POST['balcany']
+		hall = request.POST['hall'].lower()
+		kitchen = request.POST['kitchen'].lower()
+		balcany = request.POST['balcany'].lower()
 		bedroom = request.POST['bedroom']
-		ac = request.POST['AC']
-		desc = request.POST['desc']
+		ac = request.POST['AC'].lower()
+		desc = request.POST['desc'].upper()
 		img = request.FILES['img']
 		house = House(user_email = user, location=location, city=city, state=state, cost = cost, hall=hall, 
 			kitchen=kitchen, balcany=balcany, bedrooms=bedroom,area=area, floor=floor, AC = ac, desc= desc, img=img)
@@ -244,16 +258,16 @@ def postedr(request):
 	user = User.objects.get(email= email)
 	if bool(user) and user!="":
 		dimention = request.POST['dimention']
-		location = request.POST['location']
-		city = request.POST['city']
-		state = request.POST['state']
+		location = request.POST['location'].lower()
+		city = request.POST['city'].lower()
+		state = request.POST['state'].lower()
 		cost = request.POST['cost']
-		hall = request.POST['hall']
-		kitchen = request.POST['kitchen']
-		balcany = request.POST['balcany']
+		hall = request.POST['hall'].lower()
+		kitchen = request.POST['kitchen'].lower()
+		balcany = request.POST['balcany'].lower()
 		bedroom = request.POST['bedroom']
-		ac = request.POST['AC']
-		desc = request.POST['desc']
+		ac = request.POST['AC'].lower()
+		desc = request.POST['desc'].upper()
 		img = request.FILES['img']
 		room = Room(user_email = user, dimention=dimention, location=location, city=city, state=state, cost = cost, hall=hall, 
 			kitchen=kitchen, balcany=balcany, bedrooms=bedroom, AC = ac, desc= desc, img=img)

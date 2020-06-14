@@ -30,7 +30,7 @@ class Room(models.Model):
 	balcany = models.CharField(max_length=3)
 	desc = models.CharField(max_length=200)
 	AC = models.CharField(max_length=3)
-	img = models.ImageField(upload_to='media/', height_field=None, width_field=None, max_length=100)
+	img = models.ImageField(upload_to='room_id/', height_field=None, width_field=None, max_length=100)
 	date = models.DateField(auto_now=True, auto_now_add=False) 
 	def __str__(self):
 		return str(self.room_id)
@@ -50,7 +50,7 @@ class House(models.Model):
 	balcany = models.CharField(max_length=3)
 	desc = models.CharField(max_length=200)
 	AC = models.CharField(max_length=3)
-	img = models.ImageField(upload_to='media', height_field=None, width_field=None, max_length=100)
+	img = models.ImageField(upload_to='house_id/', height_field=None, width_field=None, max_length=100)
 	date = models.DateField(auto_now=True, auto_now_add=False) 
 	def __str__(self):
 		return str(self.house_id)
