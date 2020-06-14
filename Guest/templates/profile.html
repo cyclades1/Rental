@@ -307,7 +307,7 @@ a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, t
                     <a href="#">{{user.number}}</a>
                 </div>
                 <div class="margin-top-20 profile-desc-link">
-                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-map-pin w3-margin-right"></i>
                     <a href="https://www.google.com/maps/place/{{user.location}}">{{user.location}}</a>
                 </div>
               </div>
@@ -339,7 +339,9 @@ a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, t
               <p>{{i.room_id}}</p>
               <p>{{i.cost}}</p>
               <p>{{i.location}}</p>
-              <button style="background-color: red;" type="submit" class="btn btn-success btn-sm">delete the ad</button>
+              <form action="/deleter">
+              <button name="id" value="{{i.room_id}}" style="background-color: red;" type="submit" class="btn btn-success btn-sm">delete the ad</button>
+              </form>
             </div>
                 
           <br>
@@ -364,8 +366,9 @@ a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, t
               <p>{{i.house_id}}</p>
               <p>{{i.cost}}</p>
               <p>{{i.location}}</p>
-              <button style="background-color: red;" type="submit" class="btn btn-success btn-sm">delete the ad</button>
-            </div>
+               <form action="/deleteh">
+              <button name="id" value="{{i.house_id}}" style="background-color: red;" type="submit" class="btn btn-success btn-sm">delete the ad</button>
+              </form>
                 
           <br>
           {%endfor%}

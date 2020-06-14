@@ -5,92 +5,106 @@
 
 
 <div>
-
 <div class="jumbotron text-center" style="margin-bottom:0;" >
   <h1>Rental</h1>
   <p>Live in your dream house</p> 
 </div>
 
 <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
+
+  {% if room %}
+    <h5 class="my-4"> Apartment - Recommended for You.</h5>
+    <div class="w3-row-padding">
+        <div class="col carousel slide my-3" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
+                {% for i in room.1 %}
+                <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
+                {% endfor %}
+            </ul>
+            <div class="carousel-inner no-padding">
+                <div class="carousel-item active">
+                    {% for i in room.0%}
+                    <div class="w3-third w3-container w3-margin-bottom">
+                        <div class="card" style=" background-color: #e9ecef;">
+
+                            <img src='{{i.img.url}}' class="w3-hover-opacity" style="height: 250px; width: 100%" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><span id="pricepr{{i.id}}"> <p><b><h3>₹{{i.cost}}</h3> </b></p></span> </h5>
+                                <p class="card-text">{{i.desc|slice:"0:20"}}...</p>
+                                <p>{{i.location}}, {{i.city}}, {{i.state}}</p>
+                                <form action="/descr"  style="margin-bottom: 5px;">
+                                    <button name="id" value="{{i.room_id}}" style="background-color: grey"> Quick view</button>
+                                </form>
+                            </div>
+                        </div>
+                      </div>
+                    {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and forloop.counter < room.2 %}
+
+                </div>
+                <div class="carousel-item">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
       
-    <h2 style="margin-top: 3%; margin-left: 1%; ">Apartments</h2>
+        <a class="carousel-control-prev" href="#demo{{forloop.counter}}" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    {% endif %}
+    
 
+    {% if house %}
+    <h5 class="my-4"> Houses - Recommended for You.</h5>
     <div class="w3-row-padding">
-    <div class="w3-third w3-container w3-margin-bottom">
-      <img src="{% static 'home.jpg'%}" alt="Norway" style="width:100%; height: 250px;" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b><h3>₹12,000</h3> </b></p>
-        <p>1 Bds - 1 Ba - 600 ft2</p>
-        <p>1BHK FLAT NEAR Alibagh</p>
-      </div>
-    </div>
-    <div class="w3-third w3-container w3-margin-bottom">
-      <img src="{% static '1.jfif'%}" alt="Norway" style="width:100%; height: 250px;" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b><h3>₹11,500</h3> </b></p>
-        <p>1 Bds - 1 Ba - 650 ft2</p>
-        <p>1BHK FLAT NEAR Metro station</p>
-      </div>
-    </div>
-    <div class="w3-third w3-container">
-      <img src="{% static '2.jfif'%}" alt="Norway" style="width:100%; height: 250px;" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-       <p><b><h3>₹10,500</h3> </b></p>
-        <p>1 Bds - 1 Ba - 500 ft2</p>
-        <p>1BHK FLAT NEAR Bliss Cottage</p>
-      </div>
-    </div>
-  </div>
+        <div class="col carousel slide my-3" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
+                {% for i in house.1 %}
+                <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
+                {% endfor %}
+            </ul>
+            <div class="carousel-inner no-padding">
+                <div class="carousel-item active">
+                    {% for i in house.0%}
+                    <div class="w3-third w3-container w3-margin-bottom">
+                        <div class="card" style=" background-color: #e9ecef;">
 
-  <div class="w3-center w3-padding-32">
-    <div class="w3-bar">
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
-      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
-    </div>
-  </div>
-  
-  <h2 style="margin-top: 3%; margin-left: 1%;"> Top Rated</h2>
+                            <img src='{{i.img.url}}' class="w3-hover-opacity" style="height: 250px; width: 100%" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><span id="pricepr{{i.id}}"> <p><b><h3>₹{{i.cost}}</h3> </b></p></span> </h5>
+                                <p class="card-text">{{i.desc|slice:"0:20"}}...</p>
+                                <p>{{i.location}}, {{i.city}}, {{i.state}}</p>
+                                <form action="/descr"  style="margin-bottom: 5px;">
+                                    <button name="id" value="{{i.house_id}}" style="background-color: grey"> Quick view</button>
+                                </form>
+                            </div>
+                        </div>
+                      </div>
+                    {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and forloop.counter < house.2 %}
 
-    <div class="w3-row-padding">
-    <div class="w3-third w3-container w3-margin-bottom">
-      <img src="{% static '3.jfif'%}" alt="Norway" style="width:100%; height: 250px;" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b><h3>₹12,000</h3> </b></p>
-        <p>1 Bds - 1 Ba - 600 ft2</p>
-        <p>1BHK FLAT NEAR Dargah</p>
-      </div>
+                </div>
+                <div class="carousel-item">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+      
+        <a class="carousel-control-prev" href="#demo{{forloop.counter}}" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
     </div>
-    <div class="w3-third w3-container w3-margin-bottom">
-      <img src="{% static '5.jfif'%}" alt="Norway" style="width:100%; height: 250px;" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-       <p><b><h3>₹10,000</h3> </b></p>
-        <p>1 Bds - 1 Ba - 400 ft2</p>
-        <p>1BHK FLAT NEAR Vashir ganj</p>
-      </div>
-    </div>
-    <div class="w3-third w3-container">
-      <img src="{% static '4.jfif'%}" alt="Norway" style="width:100%; height: 250px;" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b><h3>₹9,500</h3> </b></p>
-        <p>1 Bds - 1 Ba - 550 ft2</p>
-        <p>1BHK FLAT NEAR Dilkash bagh</p>
-      </div>
-    </div>
-  </div>
-    <div class="w3-center w3-padding-32">
-    <div class="w3-bar">
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
-      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
-    </div>
-  </div>
+    {% endif %}
+
     
 </div>
 

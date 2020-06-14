@@ -26,10 +26,16 @@ def index(request):
 	
 	room= Room.objects.all()
 	if bool(room):
-		context.update({'room':room})
+		n = len(room)
+		nslide = n//3+ (n%3 >0)
+		rooms = [room, range(1, nslide), n]
+		context.update({'room':rooms})
 	house = House.objects.all()
 	if bool(house):
-		context.update({'house':house})
+		n = len(house)
+		nslide = n//3+ (n%3 >0)
+		houses = [house, range(1, nslide), n]
+		context.update({'house':houses})
 	return HttpResponse(template.render(context,request))
 
 
@@ -91,7 +97,7 @@ def contact(request):
 		context.update({'house':house})
 	return HttpResponse(template.render(context,request))
 
-def desc(request):
+def descr(request):
 	template = loader.get_template('desc.html')
 	try:
 		email = request.session['member_id']
@@ -101,6 +107,15 @@ def desc(request):
 		context={'base':'base.html',}
 	else:
 		context={'base':'Gbase.html',}
+	if request.method == "GET":
+		id = request.GET['id']
+		try:
+			room =Room.objects.get(room_id=id)
+			context.update({'room':room})
+		except:
+			house =House.objects.get(house_id=id)
+			context.update({'house':house})
+		
 	return HttpResponse(template.render(context,request))
 
 
@@ -284,4 +299,19 @@ def logout(request):
 	except KeyError:
 		pass
 	return index(request)
+
+def deleter(request):
+	if request.methode =="GET":
+		id = request.GET['id']
+		instance = Room.objects.get(room_id=id)
+		instance.delete()
+	return profile(request)
+
+
+def deleteh(request):
+	if request.method == "GET":
+		id = request.GET['id']
+		instance =House.objects.get(house_id=id)
+		instance.delete()
+	return profile(request)
 
