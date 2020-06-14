@@ -54,4 +54,13 @@ class House(models.Model):
 	date = models.DateField(auto_now=True, auto_now_add=False) 
 	def __str__(self):
 		return str(self.house_id)
+
+class Contact(models.Model):
+	contact_id = models.AutoField(primary_key=True)
+	subject = models.CharField(max_length=100)
+	email = models.CharField(max_length=100)
+	body = models.CharField(max_length= 500)
+	def __str__(self):
+		return str(self.contact_id)
+
 	

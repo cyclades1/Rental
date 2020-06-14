@@ -42,7 +42,8 @@ urlpatterns = [
     path('logout', views.logout),
     path('descr',views.descr),
     path('deleter', views.deleter),
-    path('deleteh', views.deleteh)
+    path('deleteh', views.deleteh),
+    path('search', views.search)
 ]
 
 urlpatterns+= staticfiles_urlpatterns()

@@ -50,14 +50,37 @@ def home(request):
 		context={'base':'base.html',}
 	else:
 		context={'base':'Gbase.html',}
-	
-	room= Room.objects.all()
-	if bool(room):
-		context.update({'room':room})
-	house = House.objects.all()
-	if bool(house):
-		context.update({'house':house})
+	context.update({'result':""})
+	context.update({'msg':"Search your query"})
 	return HttpResponse(template.render(context,request))
+
+def  search(request):
+	template = loader.get_template('home.html')
+	try:
+		email = request.session['member_id']
+	except:
+		email =""
+	if bool(email):
+		context={'base':'base.html',}
+	else:
+		context={'base':'Gbase.html',}
+	if request.method == 'GET':
+		type = request.GET['type']
+		if bool(type):
+		 	q = request.GET['q']
+		 	if type=="House":
+		 		results= House.objects.filter(location=q)
+		 	else:
+		 		results = Room.objects.filter(location= q)
+		 	result= [results, len(results)]
+		 	context.update({'result':result})
+		else:
+			context.update({'msg':'undefined search type'})
+	
+		
+	return HttpResponse(template.render(context,request))
+
+	
 
 def about(request):
 	template = loader.get_template('about.html')
@@ -89,13 +112,24 @@ def contact(request):
 	else:
 		context={'base':'Gbase.html',}
 	
-	room= Room.objects.all()
-	if bool(room):
-		context.update({'room':room})
-	house = House.objects.all()
-	if bool(house):
-		context.update({'house':house})
-	return HttpResponse(template.render(context,request))
+	if request.method == 'POST':
+		subject = request.POST['subject']
+		email = request.POST['email']
+		body = request.POST['body']
+		regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+		if(re.search(regex,email)):
+			pass
+		else:
+			template = loader.get_template('register.html')
+			context.update({'msg':'invalid email'})
+			return HttpResponse(template.render(context, request))
+		contact = Contact(subject= subject, email= email, body = body)
+		contact.save()
+		context.update({'msg':'msg send to admin'})
+		return HttpResponse(template.render(context,request))
+	else:
+		context.update({'msg':''})
+		return HttpResponse(template.render(context,request))
 
 def descr(request):
 	template = loader.get_template('desc.html')
@@ -204,13 +238,16 @@ def profile(request):
 			'user':user,
 
 		}
+		report = Contact.objects.filter(email= user.email)
+		context.update({'reportno':len(report)})
 		room= Room.objects.filter(user_email= user)
 		if bool(room):
 			context.update({'room':room})
+		context.update({'roomno':len(room)})
 		house = House.objects.filter(user_email= user)
 		if bool(house):
 			context.update({'house':house})
-		
+		context.update({'houseno':len(house)})
 		return HttpResponse(template.render(context,request))
 	else:
 		del request.session['member_id']
