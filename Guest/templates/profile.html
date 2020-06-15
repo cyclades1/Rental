@@ -342,6 +342,9 @@ a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, t
               <form action="/deleter">
               <button name="id" value="{{i.room_id}}" style="background-color: red;" type="submit" class="btn btn-success btn-sm">delete the ad</button>
               </form>
+               <form action="/descr"  style="margin-bottom: 5px;">
+                    <button name="id" value="{{i.room_id}}" style="background-color: grey"class="btn btn-success btn-sm"> Quick view</button>
+                </form>
             </div>
                 
           <br>
@@ -366,9 +369,13 @@ a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, t
               <p>{{i.house_id}}</p>
               <p>{{i.cost}}</p>
               <p>{{i.location}}</p>
-               <form action="/deleteh">
+
+               <form action="/deleteh" >
               <button name="id" value="{{i.house_id}}" style="background-color: red;" type="submit" class="btn btn-success btn-sm">delete the ad</button>
               </form>
+               <form action="/descr"  style="margin-bottom: 5px;">
+                    <button name="id" value="{{i.house_id}}" style="background-color: grey"class="btn btn-success btn-sm"> Quick view</button>
+                </form>
                 
           <br>
           {%endfor%}
