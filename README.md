@@ -1,5 +1,4 @@
 # Rental
-My final year project.
 
 Rental is a web application, where people, who have shifted to new location, can get their dream house to live on rent in cheap and easy way. 
 
