@@ -11,8 +11,27 @@ It also provide you a range of houses based on your preference as cost, location
 
 It is made using django framework of python.
 
+# How to install:
+
+1.You need to have python installed in the system.
+
+2.Need django installed in system.
+  if it is not use *pip install django* to install
+  
+3.Download repository in zip file or clone it using git (git clone https://github.com/cyclades1/Rental.git)
+
+4.Run system on localhost by the running the manage.py python file. (python manage.py runserver)
+
+# Screenshots
+
 ![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/main.PNG)
 
 ![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/search.PNG)
 
 ![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/about.PNG)
+
+![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/search.PNG)
+
+![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/profile.PNG)
+
+![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/desc.PNG)
