@@ -30,7 +30,7 @@ It is made using django framework of python.
 
 ![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/about.PNG)
 
-![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/search.PNG)
+![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/contact.PNG)
 
 ![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/profile.PNG)
 
