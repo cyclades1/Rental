@@ -66,17 +66,23 @@ def  search(request):
 	else:
 		context={'base':'Gbase.html',}
 	if request.method == 'GET':
-		type = request.GET['type']
-		if bool(type):
+		typ = request.GET['type']
+		if bool(typ):
 		 	q = request.GET['q']
-		 	if type=="House":
+		 	if typ=="House" and ( bool( House.objects.filter(location=q)) or bool( House.objects.filter(city=q))):
 		 		results= House.objects.filter(location=q)
-		 	else:
+		 		results= results | House.objects.filter(city=q)
+		 	elif typ!="House" and ( bool( Room.objects.filter(location= q)) or bool( House.objects.filter(city=q))):
 		 		results = Room.objects.filter(location= q)
+		 		results= results | Room.objects.filter(city=q)
+		 	else:
+		 		context.update({'msg':'No result found for matching query'})
+		 		return HttpResponse(template.render(context,request))
 		 	result= [results, len(results)]
 		 	context.update({'result':result})
+		 	context.update({'type':typ})
 		else:
-			context.update({'msg':'undefined search type'})
+			context.update({'msg':'Undefined search type'})
 	
 		
 	return HttpResponse(template.render(context,request))

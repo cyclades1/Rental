@@ -326,9 +326,15 @@
                               <h5 class="card-title"><span id="pricepr{{i.id}}"> <p><b><h3>₹{{i.cost}}</h3> </b></p></span> </h5>
                               <p class="card-text">{{i.desc|slice:"0:20"}}...</p>
                               <p>{{i.location}}, {{i.city}}, {{i.state}}</p>
-                              <form action="/descr"  style="margin-bottom: 5px;">
-                                  <button name="id" value="{{i.room_id}}" style="background-color: grey"> Quick view</button>
-                              </form>
+                              {%if type == 'House' %}
+                                <form action="/descr"  style="margin-bottom: 5px;">
+                                  <button name="id" value="{{i.house_id}}" style="background-color: grey"> Quick view</button>
+                                </form>
+                              {%else%}
+                                <form action="/descr"  style="margin-bottom: 5px;">
+                                    <button name="id" value="{{i.room_id}}" style="background-color: grey"> Quick view</button>
+                                </form>
+                              {%endif%}
                           </div>
                       </div>
                     </div>
