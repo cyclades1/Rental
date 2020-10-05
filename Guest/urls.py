@@ -24,7 +24,7 @@ from django.conf.urls.static import static
 
 admin.autodiscover()
 urlpatterns = [
-    path('',views.no),
+    path('',views.index),
     path('index/',views.index),
     path('home/',views.home),
 	path('contact/', views.contact),

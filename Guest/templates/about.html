@@ -1,100 +1,79 @@
 {% extends base%}
 {% load static %}
-
-
 </style>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        {% block css %}  {% endblock %}
-    </style>
-    <title> {% block title %} {% endblock %} </title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+    {% block css %}  {% endblock %}
+</style>
+<title> {% block title %} {% endblock %} </title>
 </head>
-
 <body style="background-color: rgba(0,0,0,.075);">
     {%block nav%}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a style="margin-bottom: 5px" href="/"> <img src="{% static 'logo.png' %}" style="height: 40px; width: 120px;"> </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button> 
- 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 10px; margin-left: 80px;">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/index">Home </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/home">Explore</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/about">About us <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact us</a>
-                </li>
-            </ul>
-      {%endblock%}
-        
+    <a style="margin-bottom: 5px" href="/"> <img src="{% static 'assets/logo.png' %}" style="height: 40px; width: 120px;"> </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button> 
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 10px; margin-left: 80px;">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/index">Home </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/home">Explore</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/about">About us <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact us</a>
+        </li>
+    </ul>
+    {%endblock%}
     {% block body %} 
-    
-<div class="jumbotron text-center">
-  <h1>About Us</h1>
-  <p>Some text about who we are and what we do.</p>
-  
-</div>
-
-
-
-<div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
-  
-  <center><h2>Our Services</h2></center>
-  
-  <br>
-  <div style="float: left; width:50%;">
-        
-    <img src="{% static 'roomvala.jpg'%}" style="height: 400px; width: 600px;"> 
-  </div>
-    <div style="float: right; width: 45%; padding: 2%; margin: 2%; font-family: sans-serif; font-size: 150%;">
-              <p>Our work is to provide houses and Rooms to people, who are new to area and need a place to stay.We also contact owners and people in area, who are searching for roommate or paying guests.</p>
-      <br>
+    <div class="jumbotron text-center">
+        <h1>About Us</h1>
+        <p>Some text about who we are and what we do.</p>
     </div>
-  
-</div>
-<div class="w3-container" style="width: 100;margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
-     
-      <div style=" float: right; width:50%;">
-        
-          <img src="{% static 'hand.jpg'%}" style="height: 400px; width: 600px;"> 
-      </div>
-      <div style="float: left; width: 45%; padding: 2%; margin: 2%; font-family: sans-serif; font-size: 150%;">
-          <p>You can choose rooms from thousands of certified and rated rooms. Our aim is to provide safe and comfortable home.Register as owner or roommate and find a person you want to share the room with.</p>
-          <br>
-      </div>
-     
-</div>
-
-
-
-
-
+    <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
+        <center>
+            <h2>Our Services</h2>
+        </center>
+        <br>
+        <div style="float: left; width:50%;">
+            <img src="{% static 'assets/roomvala.jpg'%}" style="height: 400px; width: 600px;"> 
+        </div>
+        <div style="float: right; width: 45%; padding: 2%; margin: 2%; font-family: sans-serif; font-size: 150%;">
+            <p>Our work is to provide houses and Rooms to people, who are new to area and need a place to stay.We also contact owners and people in area, who are searching for roommate or paying guests.</p>
+            <br>
+        </div>
+    </div>
+    <div class="w3-container" style="width: 100;margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
+        <div style=" float: right; width:50%;">
+            <img src="{% static 'assets/hand.jpg'%}" style="height: 400px; width: 600px;"> 
+        </div>
+        <div style="float: left; width: 45%; padding: 2%; margin: 2%; font-family: sans-serif; font-size: 150%;">
+            <p>You can choose rooms from thousands of certified and rated rooms. Our aim is to provide safe and comfortable home.Register as owner or roommate and find a person you want to share the room with.</p>
+            <br>
+        </div>
+    </div>
     {% endblock %}
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     {% block js%}
     <script>
-    function clearCart() {
-        cart = JSON.parse(localStorage.getItem('cart'));
-        for (var item in cart) {
-            document.getElementById('div' + item).innerHTML = '<button id="' + item + '" + class="btn btn-primary cart">Add to Cart</button>';
+        function clearCart() {
+            cart = JSON.parse(localStorage.getItem('cart'));
+            for (var item in cart) {
+                document.getElementById('div' + item).innerHTML = '<button id="' + item + '" + class="btn btn-primary cart">Add to Cart</button>';
+            }
+            localStorage.clear();
+            cart = {};
+            updateCart(cart);
         }
-        localStorage.clear();
-        cart = {};
-        updateCart(cart);
-    }
     </script>
     {% endblock %}

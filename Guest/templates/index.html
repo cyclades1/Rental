@@ -1,31 +1,30 @@
-{% extends base%}
+{% extends base %}
 {% load static %}
-
 {%block body%}
-
-
 <div>
 <div class="jumbotron text-center" style="margin-bottom:0;" >
-  <h1>Rental</h1>
-  <p>Live in your dream house</p> 
+    <h1>Rental</h1>
+    <p>Live in your dream house</p>
 </div>
-
 <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
-
-  {% if room %}
+    {% if room %}
     <h5 class="my-4"> Apartment - Recommended for You.</h5>
     <div class="w3-row-padding">
         <div class="col carousel slide my-3" data-ride="carousel">
-         
             <div class="carousel-inner no-padding">
                 <div class="carousel-item active">
                     {% for i in room.0%}
                     <div class="w3-third w3-container w3-margin-bottom">
                         <div class="card" style=" background-color: #e9ecef;">
-
                             <img src='{{i.img.url}}' class="w3-hover-opacity" style="height: 250px; width: 100%" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title"><span id="pricepr{{i.id}}"> <p><b><h3>₹{{i.cost}}</h3> </b></p></span> </h5>
+                                <h5 class="card-title">
+                                    <span id="pricepr{{i.id}}">
+                                        <p>
+                                            <b>
+                                        <h3>₹{{i.cost}}</h3> </b></p>
+                                    </span>
+                                </h5>
                                 <p class="card-text">{{i.desc|slice:"0:20"}}...</p>
                                 <p>{{i.location}}, {{i.city}}, {{i.state}}</p>
                                 <form action="/descr"  style="margin-bottom: 5px;">
@@ -33,9 +32,8 @@
                                 </form>
                             </div>
                         </div>
-                      </div>
+                    </div>
                     {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and forloop.counter < room.2 %}
-
                 </div>
                 <div class="carousel-item">
                     {% endif %}
@@ -43,26 +41,27 @@
                 </div>
             </div>
         </div>
-     
         </a>
     </div>
     {% endif %}
-    
-
     {% if house %}
     <h5 class="my-4"> Houses - Recommended for You.</h5>
     <div class="w3-row-padding">
         <div class="col carousel slide my-3" data-ride="carousel">
-        
             <div class="carousel-inner no-padding">
                 <div class="carousel-item active">
                     {% for i in house.0%}
                     <div class="w3-third w3-container w3-margin-bottom">
                         <div class="card" style=" background-color: #e9ecef;">
-
                             <img src='{{i.img.url}}' class="w3-hover-opacity" style="height: 250px; width: 100%" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title"><span id="pricepr{{i.id}}"> <p><b><h3>₹{{i.cost}}</h3> </b></p></span> </h5>
+                                <h5 class="card-title">
+                                    <span id="pricepr{{i.id}}">
+                                        <p>
+                                            <b>
+                                        <h3>₹{{i.cost}}</h3> </b></p>
+                                    </span>
+                                </h5>
                                 <p class="card-text">{{i.desc|slice:"0:20"}}...</p>
                                 <p>{{i.location}}, {{i.city}}, {{i.state}}</p>
                                 <form action="/descr"  style="margin-bottom: 5px;">
@@ -70,9 +69,8 @@
                                 </form>
                             </div>
                         </div>
-                      </div>
+                    </div>
                     {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and forloop.counter < house.2 %}
-
                 </div>
                 <div class="carousel-item">
                     {% endif %}
@@ -80,16 +78,7 @@
                 </div>
             </div>
         </div>
-      
-      
     </div>
     {% endif %}
-
-    
 </div>
-
-
-
-
-    {% endblock %}
-  
+{% endblock %}

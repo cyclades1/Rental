@@ -2,392 +2,351 @@
 {%load static%}
 {%block style%}
 <style type="text/css">
-	
-body {
-  background: #F1F3FA;
-}
-
-/* Profile container */
-.profile {
-  margin: 20px 0;
-}
-
-/* Profile sidebar */
-.profile-sidebar {
-  padding: 20px 0 10px 0;
-  background: #fff;
-}
-
-.profile-userpic img {
-  float: none;
-  margin: 0 auto;
-  width: 50%;
-  height: 50%;
-  -webkit-border-radius: 50% !important;
-  -moz-border-radius: 50% !important;
-  border-radius: 50% !important;
-}
-
-.profile-usertitle {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.profile-usertitle-name {
-  color: #5a7391;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 7px;
-}
-
-.profile-usertitle-job {
-  text-transform: uppercase;
-  color: #5b9bd1;
-  font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-
-.profile-userbuttons {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.profile-userbuttons .btn {
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 6px 15px;
-  margin-right: 5px;
-}
-
-.profile-userbuttons .btn:last-child {
-  margin-right: 0px;
-}
-    
-.profile-usermenu {
-  margin-top: 30px;
-}
-
-.profile-usermenu ul li {
-  border-bottom: 1px solid #f0f4f7;
-}
-
-.profile-usermenu ul li:last-child {
-  border-bottom: none;
-}
-
-.profile-usermenu ul li a {
-  color: #93a3b5;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.profile-usermenu ul li a i {
-  margin-right: 8px;
-  font-size: 14px;
-}
-
-.profile-usermenu ul li a:hover {
-  background-color: #fafcfd;
-  color: #5b9bd1;
-}
-
-.profile-usermenu ul li.active {
-  border-bottom: none;
-}
-
-.profile-usermenu ul li.active a {
-  color: #5b9bd1;
-  background-color: #f6f9fb;
-  border-left: 2px solid #5b9bd1;
-  margin-left: -2px;
-}
-
-/* Profile Content */
-.profile-content {
-  padding: 20px;
-  background: #fff;
-  min-height: 460px;
-}
-
-a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, td, textarea, th, ul {
+    body {
+    background: #F1F3FA;
+    }
+    /* Profile container */
+    .profile {
+    margin: 20px 0;
+    }
+    /* Profile sidebar */
+    .profile-sidebar {
+    padding: 20px 0 10px 0;
+    background: #fff;
+    }
+    .profile-userpic img {
+    float: none;
+    margin: 0 auto;
+    width: 50%;
+    height: 50%;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+    }
+    .profile-usertitle {
+    text-align: center;
+    margin-top: 20px;
+    }
+    .profile-usertitle-name {
+    color: #5a7391;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 7px;
+    }
+    .profile-usertitle-job {
+    text-transform: uppercase;
+    color: #5b9bd1;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    }
+    .profile-userbuttons {
+    text-align: center;
+    margin-top: 10px;
+    }
+    .profile-userbuttons .btn {
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 15px;
+    margin-right: 5px;
+    }
+    .profile-userbuttons .btn:last-child {
+    margin-right: 0px;
+    }
+    .profile-usermenu {
+    margin-top: 30px;
+    }
+    .profile-usermenu ul li {
+    border-bottom: 1px solid #f0f4f7;
+    }
+    .profile-usermenu ul li:last-child {
+    border-bottom: none;
+    }
+    .profile-usermenu ul li a {
+    color: #93a3b5;
+    font-size: 14px;
+    font-weight: 400;
+    }
+    .profile-usermenu ul li a i {
+    margin-right: 8px;
+    font-size: 14px;
+    }
+    .profile-usermenu ul li a:hover {
+    background-color: #fafcfd;
+    color: #5b9bd1;
+    }
+    .profile-usermenu ul li.active {
+    border-bottom: none;
+    }
+    .profile-usermenu ul li.active a {
+    color: #5b9bd1;
+    background-color: #f6f9fb;
+    border-left: 2px solid #5b9bd1;
+    margin-left: -2px;
+    }
+    /* Profile Content */
+    .profile-content {
+    padding: 20px;
+    background: #fff;
+    min-height: 460px;
+    }
+    a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, td, textarea, th, ul {
     -webkit-border-radius: 0!important;
     -moz-border-radius: 0!important;
     border-radius: 0!important;
-}
-.dashboard-stat, .portlet {
+    }
+    .dashboard-stat, .portlet {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
-}
-.portlet {
+    }
+    .portlet {
     margin-top: 0;
     margin-bottom: 25px;
     padding: 0;
     border-radius: 4px;
-}
-.portlet.bordered {
+    }
+    .portlet.bordered {
     border-left: 2px solid #e6e9ec!important;
-}
-.portlet.light {
+    }
+    .portlet.light {
     padding: 12px 20px 15px;
     background-color: #fff;
-}
-.portlet.light.bordered {
+    }
+    .portlet.light.bordered {
     border: 1px solid #e7ecf1!important;
-}
-.list-separated {
+    }
+    .list-separated {
     margin-top: 10px;
     margin-bottom: 15px;
-}
-.profile-stat {
+    }
+    .profile-stat {
     padding-bottom: 20px;
     border-bottom: 1px solid #f0f4f7;
-}
-.profile-stat-title {
+    }
+    .profile-stat-title {
     color: #7f90a4;
     font-size: 25px;
     text-align: center;
-}
-.uppercase {
+    }
+    .uppercase {
     text-transform: uppercase!important;
-}
-
-.profile-stat-text {
+    }
+    .profile-stat-text {
     color: #5b9bd1;
     font-size: 10px;
     font-weight: 600;
     text-align: center;
-}
-.profile-desc-title {
+    }
+    .profile-desc-title {
     color: #7f90a4;
     font-size: 17px;
     font-weight: 600;
-}
-.profile-desc-text {
+    }
+    .profile-desc-text {
     color: #7e8c9e;
     font-size: 14px;
-}
-.margin-top-20 {
+    }
+    .margin-top-20 {
     margin-top: 20px!important;
-}
-[class*=" fa-"]:not(.fa-stack), [class*=" glyphicon-"], [class*=" icon-"], [class^=fa-]:not(.fa-stack), [class^=glyphicon-], [class^=icon-] {
+    }
+    [class*=" fa-"]:not(.fa-stack), [class*=" glyphicon-"], [class*=" icon-"], [class^=fa-]:not(.fa-stack), [class^=glyphicon-], [class^=icon-] {
     display: inline-block;
     line-height: 14px;
     -webkit-font-smoothing: antialiased;
-}
-.profile-desc-link i {
+    }
+    .profile-desc-link i {
     width: 22px;
     font-size: 19px;
     color: #abb6c4;
     margin-right: 5px;
-}
-
-
+    }
 </style>
-
 {%endblock%}
 {%block nav%}
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a style="margin-bottom: 5px" href="/"> <img src="{% static 'logo.png' %}" style="height: 40px; width: 120px;"> </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button> 
- 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 10px; margin-left: 80px;">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/index">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/home">Explore</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact us</a>
-                </li>
-            </ul>
-
-    {%endblock%}
-
- {%block button%}     
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a style="margin-bottom: 5px" href="/"> <img src="{% static 'assets/logo.png' %}" style="height: 40px; width: 120px;"> </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button> 
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 10px; margin-left: 80px;">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/home">Explore</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact us</a>
+            </li>
+        </ul>
+        {%endblock%}
+        {%block button%}     
         <form action="/logout">
-         <button style="margin-left: 50px; margin-right: 50px; color: white; background-color: red" class="btn btn-outline-success my-2 my-sm-0"><strong>Logout</strong></button>
-         </form>
-     	
-        </div>
-    </nav>
-    {%endblock%}
+            <button style="margin-left: 50px; margin-right: 50px; color: white; background-color: red" class="btn btn-outline-success my-2 my-sm-0"><strong>Logout</strong></button>
+        </form>
+    </div>
+</nav>
+{%endblock%}
 {%block body%}
-
 <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
-
-
- <div class="row profile">
-    <div class="col-md-3">
-      <div class="profile-sidebar">
-        <!-- SIDEBAR USERPIC -->
-        <div class="profile-userpic">
-          <center>
-          <img src="{%static 'user.png'%}" alt="">\
-          </center>
-        </div>
-        <!-- END SIDEBAR USERPIC -->
-        <!-- SIDEBAR USER TITLE -->
-        <div class="profile-usertitle">
-          <div class="profile-usertitle-name">
-            {{user.name}}
-          </div>
-          <div class="profile-usertitle-job">
-            Rental user
-          </div>
-        </div>
-        <!-- END SIDEBAR USER TITLE -->
-        <!-- SIDEBAR BUTTONS -->
-        
-        <!-- END SIDEBAR BUTTONS -->
-        <!-- SIDEBAR MENU -->
-        <div class="profile-usermenu">
-          <ul class="nav">
-            <li class="active">
-              <a href="#">
-              <i class="glyphicon glyphicon-home"></i>
-              Overview </a>
-            </li>
-            <li>
-              <a href="#">
-              <i class="glyphicon glyphicon-user"></i>
-              Account Settings </a>
-            </li>
-            <li>
-              <a href="#">
-              <i class="glyphicon glyphicon-ok"></i>
-              Tasks </a>
-            </li>
-            <li>
-              <a href="#">
-              <i class="glyphicon glyphicon-flag"></i>
-              Help </a>
-            </li>
-          </ul>
-        </div>
-        <!-- END MENU -->
-         
-         <div class="portlet light bordered">                                   
-            <div class="row list-separated profile-stat">
-                <div class="col-md-4 col-sm-4 col-xs-6">
-                    <div class="uppercase profile-stat-title"> {{roomno}} </div>
-                    <div class="uppercase profile-stat-text">Room posted </div>
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                    <center>
+                        <img src="{%static 'assets/user.png'%}" alt="">\
+                    </center>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-6">
-                    <div class="uppercase profile-stat-title"> {{houseno}} </div>
-                    <div class="uppercase profile-stat-text"> House posted </div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        {{user.name}}
+                    </div>
+                    <div class="profile-usertitle-job">
+                        Rental user
+                    </div>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-6">
-                    <div class="uppercase profile-stat-title"> {{reportno}} </div>
-                    <div class="uppercase profile-stat-text"> Reports </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR BUTTONS -->
+                <!-- END SIDEBAR BUTTONS -->
+                <!-- SIDEBAR MENU -->
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="#">
+                            <i class="glyphicon glyphicon-home"></i>
+                            Overview </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <i class="glyphicon glyphicon-user"></i>
+                            Account Settings </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <i class="glyphicon glyphicon-ok"></i>
+                            Tasks </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <i class="glyphicon glyphicon-flag"></i>
+                            Help </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+                <div class="portlet light bordered">
+                    <div class="row list-separated profile-stat">
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title"> {{roomno}} </div>
+                            <div class="uppercase profile-stat-text">Room posted </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title"> {{houseno}} </div>
+                            <div class="uppercase profile-stat-text"> House posted </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title"> {{reportno}} </div>
+                            <div class="uppercase profile-stat-text"> Reports </div>
+                        </div>
+                    </div>
+                    <!-- END STAT -->
+                    <div>
+                        <h4 class="profile-desc-title">About {{user.name}}</h4>
+                        <span class="profile-desc-text">Authenticated user of the Rental.
+                        Have permission to post ads on the site.
+                        </span>
+                        <div class="margin-top-20 profile-desc-link">
+                            <i class="fa fa-globe"></i>
+                            <a href="https://www.gmail.com">{{user.email}}</a>
+                        </div>
+                        <div class="margin-top-20 profile-desc-link">
+                            <i class="fa fa-phone"></i>
+                            <a href="#">{{user.number}}</a>
+                        </div>
+                        <div class="margin-top-20 profile-desc-link">
+                            <i class="fa fa-map-pin w3-margin-right"></i>
+                            <a href="https://www.google.com/maps/place/{{user.location}}">{{user.location}}</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- END STAT -->
-             <div>
-                <h4 class="profile-desc-title">About {{user.name}}</h4>
-                <span class="profile-desc-text">Authenticated user of the Rental.
-                  Have permission to post ads on the site.
-                 </span>
-                <div class="margin-top-20 profile-desc-link">
-                    <i class="fa fa-globe"></i>
-                    <a href="https://www.gmail.com">{{user.email}}</a>
-                </div>
-                <div class="margin-top-20 profile-desc-link">
-                    <i class="fa fa-phone"></i>
-                    <a href="#">{{user.number}}</a>
-                </div>
-                <div class="margin-top-20 profile-desc-link">
-                    <i class="fa fa-map-pin w3-margin-right"></i>
-                    <a href="https://www.google.com/maps/place/{{user.location}}">{{user.location}}</a>
-                </div>
-              </div>
-        </div>                   
-      </div>
-    </div>
-
-    <div class="col-md-9">
-      <div class="profile-content">
-         <div class="profile-userbuttons">
-          <a href="/post"><button type="submit" class="btn btn-success btn-sm">Post ad for Apartment</button>
-          </a>
         </div>
-        <div class="profile-userbuttons">
-          <a href="/posth"><button type="submit" class="btn btn-success btn-sm">Post ad for House</button></a>
-        </div>
-
-        {% if room%}
-        <br>
-        <hr>
-          <br>
-          <h3 class="profile-desc-title">Apartment posted..</h3>
-        
-            {%for i in room%}
-            <div style="width: 100%; float: left;">
-            <div style="width: 50%; float: right; margin-bottom: 5px;">
-              <img src="{{ i.img.url }}" height="180px" width="270px">
-            </div>     
-              <p>{{i.room_id}}</p>
-              <p>{{i.cost}}</p>
-              <p>{{i.location}}</p>
-              <form action="/deleter">
-              <button name="id" value="{{i.room_id}}" style="background-color: red;" type="submit" class="btn btn-success btn-sm">delete the ad</button>
-              </form>
-               <form action="/descr"  style="margin-bottom: 5px;">
-                    <button name="id" value="{{i.room_id}}" style="background-color: grey"class="btn btn-success btn-sm"> Quick view</button>
-                </form>
+        <div class="col-md-9">
+            <div class="profile-content">
+                <div class="profile-userbuttons">
+                    <a href="/post"><button type="submit" class="btn btn-success btn-sm">Post ad for Apartment</button>
+                    </a>
+                </div>
+                <div class="profile-userbuttons">
+                    <a href="/posth"><button type="submit" class="btn btn-success btn-sm">Post ad for House</button></a>
+                </div>
+                {% if room%}
+                <br>
+                <hr>
+                <br>
+                <h3 class="profile-desc-title">Apartment posted..</h3>
+                {%for i in room%}
+                <div style="width: 100%; float: left;">
+                    <div style="width: 50%; float: right; margin-bottom: 5px;">
+                        <img src="{{ i.img.url }}" height="180px" width="270px">
+                    </div>
+                    <p>{{i.room_id}}</p>
+                    <p>{{i.cost}}</p>
+                    <p>{{i.location}}</p>
+                    <form action="/deleter">
+                        <button name="id" value="{{i.room_id}}" style="background-color: red;" type="submit" class="btn btn-success btn-sm">delete the ad</button>
+                    </form>
+                    <form action="/descr"  style="margin-bottom: 5px;">
+                        <button name="id" value="{{i.room_id}}" style="background-color: grey"class="btn btn-success btn-sm"> Quick view</button>
+                    </form>
+                </div>
+                <br>
+                {%endfor%}
+                {%else%}
+                <center>
+                    <h3 class="profile-desc-title">no Apartment posted..</h3>
+                </center>
+                {%endif%}
+                {% if house%}
+                <br>
+                <hr>
+                <br>
+                <h3 class="profile-desc-title">House posted..</h3>
+                {%for i in house%}
+                <div style="width: 100%; float: left;">
+                    <div style="width: 50%; float: right; margin-bottom: 5px;">
+                        <img src="{{ i.img.url }}" height="180px" width="270px">
+                    </div>
+                    <p>{{i.house_id}}</p>
+                    <p>{{i.cost}}</p>
+                    <p>{{i.location}}</p>
+                    <form action="/deleteh" >
+                        <button name="id" value="{{i.house_id}}" style="background-color: red;" type="submit" class="btn btn-success btn-sm">delete the ad</button>
+                    </form>
+                    <form action="/descr"  style="margin-bottom: 5px;">
+                        <button name="id" value="{{i.house_id}}" style="background-color: grey"class="btn btn-success btn-sm"> Quick view</button>
+                    </form>
+                    <br>
+                    {%endfor%}
+                    {%else%}
+                    <center>
+                        <h3 class="profile-desc-title">no House posted..</h3>
+                    </center>
+                    {%endif%}
+                </div>
             </div>
-                
-          <br>
-          {%endfor%}
-        
-        {%else%}
-           <center> <h3 class="profile-desc-title">no Apartment posted..</h3></center> 
-        {%endif%}
-  
-
-           {% if house%}
-           <br>
-           <hr>
-          <br>
-          <h3 class="profile-desc-title">House posted..</h3>
-        
-            {%for i in house%}
-            <div style="width: 100%; float: left;">
-            <div style="width: 50%; float: right; margin-bottom: 5px;">
-              <img src="{{ i.img.url }}" height="180px" width="270px">
-            </div>     
-              <p>{{i.house_id}}</p>
-              <p>{{i.cost}}</p>
-              <p>{{i.location}}</p>
-
-               <form action="/deleteh" >
-              <button name="id" value="{{i.house_id}}" style="background-color: red;" type="submit" class="btn btn-success btn-sm">delete the ad</button>
-              </form>
-               <form action="/descr"  style="margin-bottom: 5px;">
-                    <button name="id" value="{{i.house_id}}" style="background-color: grey"class="btn btn-success btn-sm"> Quick view</button>
-                </form>
-                
-          <br>
-          {%endfor%}
-        
-        {%else%}
-           <center> <h3 class="profile-desc-title">no House posted..</h3></center> 
-        {%endif%}
-      </div>
+        </div>
     </div>
-
-    </div>
-  </div>
 </div>
 </div>
 {%endblock%}
