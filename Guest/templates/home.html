@@ -1,396 +1,351 @@
-{% extends base%}
+{% extends base %}
 {% load static %}
-
 {%block style%}
-
 <style type="text/css">
-  
-.twelve { width: 100%; }
-.eleven { width: 91.53%; }
-.ten { width: 83.06%; }
-.nine { width: 74.6%; }
-.eight { width: 66.13%; }
-.seven { width: 57.66%; }
-.six { width: 49.2%; }
-.five { width: 40.73%; }
-.four { width: 32.26%; }
-.three { width: 23.8%; }
-.two { width: 15.33%; }
-.one { width: 6.866%; }
-
-/* COLUMNS */
-
-.col {
-  display: block;
-  float:left;
-  margin: 1% 0 1% 1.6%;
-}
-
-.col:first-of-type {
-  margin-left: 0;
-}
-
-.container{
-  width: 100%;
-  max-width: 940px;
-  margin: 0 auto;
-  position: relative;
-  text-align: center;
-  color: #fff;
-}
-
-/* PENGUIN */
-
-.penguin{
-  margin: 60px auto;
-}
-
-.head{
-  position: relative;
-  width: 180px;
-  height: 135px;
-  margin: 0 auto;
-}
-
-.head:before{
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 15px;
-  width: 150px;
-  height: 75px;
-  background-color: #2c3e50;
-  border-radius: 60px 60px 0px 0px;
-}
-
-.head:after{
-  content: "";
-  position: absolute;
-  bottom: 5px;
-  left: 0px;
-  width: 180px;
-  height: 60px;
-  background-color: #2c3e50;
-  border-radius: 50px 60px;
-}
-
-.head-inner{
-  position: relative;
-  width: 150px;
-  height: 115px;
-  margin: 0 auto;
-}
-
-.head-inner:before{
-  content: "";
-  position: absolute;
-  top: 22px;
-  left: 10px;
-  width: 130px;
-  height: 60px;
-  background-color: #fff;
-  border-radius: 60px 60px 0px 0px;
-  z-index: 200;
-}
-
-.head-inner:after{
-  content: "";
-  position: absolute;
-  bottom: -15px;
-  left: 0;
-  width: 150px;
-  height: 60px;
-  background-color: #fff;
-  border-radius: 50px 60px;
-  z-index: 100;
-}
-
-.eye-wrap{
-  margin: 0 auto;
-  position: relative;
-  width: 150px;
-  height: 60px;
-}
-
-.eye{
-  width: 25px;
-  height: 35px;
-  border: 2px solid #2c3e50;
-  border-top-width: 5px;
-  border-radius: 100%;
-  position: absolute;
-  top: 45px;
-  left: 40px;
-  z-index: 500;
-}
-
-.eye:before{
-  content: "";
-  width: 15px;
-  height: 18px;
-  border-radius: 100%;
-  background-color: #3498db;
-  bottom: 0;
-  right: 4px;
-  z-index: 600;
-  position: absolute;
-}
-
-.eye:after{
-  content: "";
-  width: 10px;
-  height: 12px;
-  border-radius: 100%;
-  background-color: #222;
-  bottom: 0;
-  right: 7px;
-  z-index: 600;
-  position: absolute;
-}
-
-.eye:last-of-type{
-  right: 40px;
-  left: auto;
-}
-
-.mouth{
-  margin: 35px auto;
-  z-index: 900;
-  width: 0px;
-  height: 0px;
-  border-top: 15px solid #e67e22;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  position: relative;
-}
-
-.body{
-  margin: -40px auto;
-  width: 200px;
-  height: 250px;
-  background-color: #2c3e50;
-  border-radius: 100%;
-  position: relative;
-}
-
-.body:after{
-  content: "";
-  width: 180px;
-  height: 230px;
-  background-color: #fff;
-  border-radius: 100%;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  border: 2px solid #2c3e50;
-  border-left-width: 10px;
-  border-right-width: 10px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.arm{
-  width: 30px;
-  height: 100px;
-  background-color: #2c3e50;
-  position: absolute;
-  left: -10px;
-  top: 50px;
-  border-radius: 20px 20px 50px 10px;
-  -webkit-transform: rotate(35deg);
-  -ms-transform: rotate(35deg);
-  -o-transform: rotate(35deg);
-  transform: rotate(35deg);
-  -webkit-transform-origin: center center;
-  -moz-transform-origin: center center;
-  -ms-transform-origin: center center;
-  -o-transform-origin: center center;
-  transform-origin: center center;
-}
-
-.arm:nth-child(1){
-  right: -10px;
-  left: auto;
-  border-radius: 20px 20px 10px 50px;
-  -webkit-transform: rotate(-35deg);
-  -ms-transform: rotate(-35deg);
-  -o-transform: rotate(-35deg);
-  transform: rotate(-35deg);
-}
-
-.foot{
-  position: absolute;
-  width: 38px;
-  height: 45px;
-  background-color: #e67e22;
-  bottom: -12px;
-  left: 55px;
-  z-index: 1000;
-  border-radius: 30px;
-}
-
-.foot:nth-child(1){
-  right: 55px;
-  left: auto;
-}
-
+    .twelve { width: 100%; }
+    .eleven { width: 91.53%; }
+    .ten { width: 83.06%; }
+    .nine { width: 74.6%; }
+    .eight { width: 66.13%; }
+    .seven { width: 57.66%; }
+    .six { width: 49.2%; }
+    .five { width: 40.73%; }
+    .four { width: 32.26%; }
+    .three { width: 23.8%; }
+    .two { width: 15.33%; }
+    .one { width: 6.866%; }
+    /* COLUMNS */
+    .col {
+    display: block;
+    float:left;
+    margin: 1% 0 1% 1.6%;
+    }
+    .col:first-of-type {
+    margin-left: 0;
+    }
+    .container{
+    width: 100%;
+    max-width: 940px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    color: #fff;
+    }
+    /* PENGUIN */
+    .penguin{
+    margin: 60px auto;
+    }
+    .head{
+    position: relative;
+    width: 180px;
+    height: 135px;
+    margin: 0 auto;
+    }
+    .head:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 15px;
+    width: 150px;
+    height: 75px;
+    background-color: #2c3e50;
+    border-radius: 60px 60px 0px 0px;
+    }
+    .head:after{
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+    width: 180px;
+    height: 60px;
+    background-color: #2c3e50;
+    border-radius: 50px 60px;
+    }
+    .head-inner{
+    position: relative;
+    width: 150px;
+    height: 115px;
+    margin: 0 auto;
+    }
+    .head-inner:before{
+    content: "";
+    position: absolute;
+    top: 22px;
+    left: 10px;
+    width: 130px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 60px 60px 0px 0px;
+    z-index: 200;
+    }
+    .head-inner:after{
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 150px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 50px 60px;
+    z-index: 100;
+    }
+    .eye-wrap{
+    margin: 0 auto;
+    position: relative;
+    width: 150px;
+    height: 60px;
+    }
+    .eye{
+    width: 25px;
+    height: 35px;
+    border: 2px solid #2c3e50;
+    border-top-width: 5px;
+    border-radius: 100%;
+    position: absolute;
+    top: 45px;
+    left: 40px;
+    z-index: 500;
+    }
+    .eye:before{
+    content: "";
+    width: 15px;
+    height: 18px;
+    border-radius: 100%;
+    background-color: #3498db;
+    bottom: 0;
+    right: 4px;
+    z-index: 600;
+    position: absolute;
+    }
+    .eye:after{
+    content: "";
+    width: 10px;
+    height: 12px;
+    border-radius: 100%;
+    background-color: #222;
+    bottom: 0;
+    right: 7px;
+    z-index: 600;
+    position: absolute;
+    }
+    .eye:last-of-type{
+    right: 40px;
+    left: auto;
+    }
+    .mouth{
+    margin: 35px auto;
+    z-index: 900;
+    width: 0px;
+    height: 0px;
+    border-top: 15px solid #e67e22;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    position: relative;
+    }
+    .body{
+    margin: -40px auto;
+    width: 200px;
+    height: 250px;
+    background-color: #2c3e50;
+    border-radius: 100%;
+    position: relative;
+    }
+    .body:after{
+    content: "";
+    width: 180px;
+    height: 230px;
+    background-color: #fff;
+    border-radius: 100%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: 2px solid #2c3e50;
+    border-left-width: 10px;
+    border-right-width: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    }
+    .arm{
+    width: 30px;
+    height: 100px;
+    background-color: #2c3e50;
+    position: absolute;
+    left: -10px;
+    top: 50px;
+    border-radius: 20px 20px 50px 10px;
+    -webkit-transform: rotate(35deg);
+    -ms-transform: rotate(35deg);
+    -o-transform: rotate(35deg);
+    transform: rotate(35deg);
+    -webkit-transform-origin: center center;
+    -moz-transform-origin: center center;
+    -ms-transform-origin: center center;
+    -o-transform-origin: center center;
+    transform-origin: center center;
+    }
+    .arm:nth-child(1){
+    right: -10px;
+    left: auto;
+    border-radius: 20px 20px 10px 50px;
+    -webkit-transform: rotate(-35deg);
+    -ms-transform: rotate(-35deg);
+    -o-transform: rotate(-35deg);
+    transform: rotate(-35deg);
+    }
+    .foot{
+    position: absolute;
+    width: 38px;
+    height: 45px;
+    background-color: #e67e22;
+    bottom: -12px;
+    left: 55px;
+    z-index: 1000;
+    border-radius: 30px;
+    }
+    .foot:nth-child(1){
+    right: 55px;
+    left: auto;
+    }
 </style>
-
 {%endblock%}
-
-
-    {%block nav%}
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a style="margin-bottom: 5px" href="/"> <img src="{% static 'logo.png' %}" style="height: 40px; width: 120px;"> </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button> 
- 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 10px; margin-left: 80px;">
-            <ul class="navbar-nav mr-auto">
-               <li class="nav-item">
-                    <a class="nav-link" href="/index">Home</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/home">Explore <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact us</a>
-                </li>
-            </ul>
-
-       {%endblock%}
-         
-   
-    
-    {% block body %} 
-    
+{%block nav%}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<a style="margin-bottom: 5px" href="/"> <img src="{% static 'assets/logo.png' %}" style="height: 40px; width: 120px;"> </a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button> 
+<div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 10px; margin-left: 80px;">
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+        <a class="nav-link" href="/index">Home</a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="/home">Explore <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/about">About us</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/contact">Contact us</a>
+    </li>
+</ul>
+{%endblock%}
+{% block body %} 
 <!-- Sidebar/menu -->
-
 <!-- Overlay effect when opening sidebar on small screens -->
 <div>
-<div style="margin-left: 10%; margin-right: 10%; margin-top: 20px">
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-<!-- !PAGE CONTENT! -->
-<div class="w3-main">
-
-  <!-- Header -->
-  <header id="portfolio">
-        <div class="w3-container">
-    <h1><b>Search</b></h1>
-     <div class="row searchFilter" >
-     <div class="col-sm-12" >
-        <form class="input-group" action="/search">
-         <input name="q" type="text" class="form-control" aria-label="Text input with segmented button dropdown" >
-          <select style="background-color: grey; color: white;" class="btn btn-secondary btn-search" name="type">
-            <option><center></center></option>
-            <option> <center>House</center> </option>
-            <option><center> Apartment</center> </option>
-          </select>
-          <button id="searchBtn" type="submit" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
-        </form>
-     
-      </div>
-     </div>
-  </div>
-    <div class="w3-section w3-bottombar w3-padding-16">
-      <span class="w3-margin-right">Filter:</span> 
-      <button class="w3-button w3-black">ALL</button>
-      <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Type</button>
-      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-dollar w3-margin-right"></i>Price</button>
-      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Location</button>
-    </div>
-    </div>
-  </header>
-
- 
-
-{% if result %}
-  <h5 class="my-4"> Your search result</h5>
-  <div class="w3-row-padding">
-      <div class="col carousel slide my-3" data-ride="carousel">
-       
-          <div class="carousel-inner no-padding">
-              <div class="carousel-item active">
-                  {% for i in result.0%}
-                  <div class="w3-third w3-container w3-margin-bottom">
-                      <div class="card" style=" background-color: #e9ecef;">
-
-                          <img src='{{i.img.url}}' class="w3-hover-opacity" style="height: 250px; width: 100%" alt="...">
-                          <div class="card-body">
-                              <h5 class="card-title"><span id="pricepr{{i.id}}"> <p><b><h3>₹{{i.cost}}</h3> </b></p></span> </h5>
-                              <p class="card-text">{{i.desc|slice:"0:20"}}...</p>
-                              <p>{{i.location}}, {{i.city}}, {{i.state}}</p>
-                              {%if type == 'House' %}
-                                <form action="/descr"  style="margin-bottom: 5px;">
-                                  <button name="id" value="{{i.house_id}}" style="background-color: grey"> Quick view</button>
-                                </form>
-                              {%else%}
-                                <form action="/descr"  style="margin-bottom: 5px;">
-                                    <button name="id" value="{{i.room_id}}" style="background-color: grey"> Quick view</button>
-                                </form>
-                              {%endif%}
-                          </div>
-                      </div>
+    <div style="margin-left: 10%; margin-right: 10%; margin-top: 20px">
+        <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main">
+            <!-- Header -->
+            <header id="portfolio">
+                <div class="w3-container">
+                    <h1><b>Search</b></h1>
+                    <div class="row searchFilter" >
+                        <div class="col-sm-12" >
+                            <form class="input-group" action="/search">
+                                <input name="q" type="text" class="form-control" aria-label="Text input with segmented button dropdown" >
+                                <select style="background-color: grey; color: white;" class="btn btn-secondary btn-search" name="type">
+                                    <option>
+                                        <center></center>
+                                    </option>
+                                    <option>
+                                        <center>House</center>
+                                    </option>
+                                    <option>
+                                        <center> Apartment</center>
+                                    </option>
+                                </select>
+                                <button id="searchBtn" type="submit" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
+                            </form>
+                        </div>
                     </div>
-                  {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and forloop.counter < result.1 %}
-
-              </div>
-              <div class="carousel-item">
-                  {% endif %}
-                  {% endfor %}
-              </div>
-          </div>
-      </div>
-   
-      </a>
-  </div>
-
- {%else%}
-    {%if msg%}
-   <center><h1><b>{{msg}}</b></h1></center>
-   {%endif%}
-    <div class="penguin">
-      <div class="head">
-        <div class="head-inner">
-          <div class="eye-wrap">
-            <div class="eye"></div>
-            <div class="eye"></div>
-          </div>
-          <div class="mouth"></div>
+                </div>
+                <div class="w3-section w3-bottombar w3-padding-16">
+                    <span class="w3-margin-right">Filter:</span> 
+                    <button class="w3-button w3-black">ALL</button>
+                    <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Type</button>
+                    <button class="w3-button w3-white w3-hide-small"><i class="fa fa-dollar w3-margin-right"></i>Price</button>
+                    <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Location</button>
+                </div>
         </div>
-      </div>
-      <div class="body">
-        <div class="arm-wrap">
-          <div class="arm"></div>
-          <div class="arm"></div>
+        </header>
+        {% if result %}
+        <h5 class="my-4"> Your search result</h5>
+        <div class="w3-row-padding">
+            <div class="col carousel slide my-3" data-ride="carousel">
+                <div class="carousel-inner no-padding">
+                    <div class="carousel-item active">
+                        {% for i in result.0%}
+                        <div class="w3-third w3-container w3-margin-bottom">
+                            <div class="card" style=" background-color: #e9ecef;">
+                                <img src='{{i.img.url}}' class="w3-hover-opacity" style="height: 250px; width: 100%" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <span id="pricepr{{i.id}}">
+                                            <p>
+                                                <b>
+                                            <h3>₹{{i.cost}}</h3> </b></p>
+                                        </span>
+                                    </h5>
+                                    <p class="card-text">{{i.desc|slice:"0:20"}}...</p>
+                                    <p>{{i.location}}, {{i.city}}, {{i.state}}</p>
+                                    {%if type == 'House' %}
+                                    <form action="/descr"  style="margin-bottom: 5px;">
+                                        <button name="id" value="{{i.house_id}}" style="background-color: grey"> Quick view</button>
+                                    </form>
+                                    {%else%}
+                                    <form action="/descr"  style="margin-bottom: 5px;">
+                                        <button name="id" value="{{i.room_id}}" style="background-color: grey"> Quick view</button>
+                                    </form>
+                                    {%endif%}
+                                </div>
+                            </div>
+                        </div>
+                        {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and forloop.counter < result.1 %}
+                    </div>
+                    <div class="carousel-item">
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            </a>
         </div>
-        <div class="foot-wrap">
-          <div class="foot"></div>
-          <div class="foot"></div>
+        {%else%}
+        {%if msg%}
+        <center>
+            <h1><b>{{msg}}</b></h1>
+        </center>
+        {%endif%}
+        <div class="penguin">
+            <div class="head">
+                <div class="head-inner">
+                    <div class="eye-wrap">
+                        <div class="eye"></div>
+                        <div class="eye"></div>
+                    </div>
+                    <div class="mouth"></div>
+                </div>
+            </div>
+            <div class="body">
+                <div class="arm-wrap">
+                    <div class="arm"></div>
+                    <div class="arm"></div>
+                </div>
+                <div class="foot-wrap">
+                    <div class="foot"></div>
+                    <div class="foot"></div>
+                </div>
+            </div>
         </div>
-      </div>
+        {%endif%}
+        <!-- Images of Me -->
+        <!-- Contact Section -->
+        <!-- Footer -->
+        <!-- End page content -->
     </div>
-  {%endif%}
-
-  <!-- Images of Me -->
-
-
-  
-  <!-- Contact Section -->
-  
-
-  <!-- Footer -->
-  
-
-<!-- End page content -->
 </div>
-</div>
-
-    {% endblock %}
-    
+{% endblock %}

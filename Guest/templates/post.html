@@ -1,69 +1,58 @@
 {%extends 'base.html'%}
 {%load static%}
-
 {%block body%}
-
 <script type="text/javascript">
-
-			    function PreviewImage() 
-			    {
-			        var oFReader = new FileReader();
-			        oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
-
-			        oFReader.onload = function (oFREvent) 
-			        {
-			            document.getElementById("uploadPreview").src = oFREvent.target.result;
-			        };
-			    };
-
-			</script>
-
+    function PreviewImage() 
+    {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+    
+        oFReader.onload = function (oFREvent) 
+        {
+            document.getElementById("uploadPreview").src = oFREvent.target.result;
+        };
+    };
+    
+</script>
 <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
-	 <h2 style="text-align: center;"><b>Post ad for Apartment</b></h2>
-	 {%if msg%}
-	  <p>{{msg}}</p>
-	 {%endif%}
-	 <a href="/posth"><button style="float: right;" type="submit" class="btn btn-success btn-sm">Post ad for House</button></a>
-	 <br>
-	  <div id = "id1">
-	  	<form action="/postedr" method="post" enctype="multipart/form-data">
-	        <div class="container">
-		        {% csrf_token %}
-		       
-			    <label for="name"><b>Location</b></label>
-		        <input type="text" placeholder="Amalbagh" name="location" required>
-		        <label for="email"><b>City</b></label>
-		        <input type="text" placeholder="Lucknow" name="city" required>
-		        <label for="location"><b>State</b></label>
-		        <input type="text" placeholder="Uttar pradesh" name="state" required>
-		        <label for="name"><b>Dimention</b></label>
-		        <input type="text" placeholder="ex - 10 x 12 ft" name="dimention" required>
-		        <label for="Phone"><b>Cost</b></label>
-		        <input style="width: 100%; height: 50px;margin-bottom: 10px;" type="number" placeholder="cost in rupee" name="cost" required>
-		        <label for="name"><b>Hall</b></label>
-		        <input type="text" placeholder="Yes/No" name="hall" required>
-		        <label for="email"><b>Kitchen</b></label>
-		        <input type="text" placeholder="Yes/No" name="kitchen" required>
-		        <label for="location"><b>Balcany</b></label>
-		        <input type="text" placeholder="Yes/No" name="balcany" required>
-		        <label for="Phone"><b>Bedrooms</b></label>
-		        <input style="width: 100%; height: 50px;margin-bottom: 10px;" type="number"  placeholder="enter number of bedroom" name="bedroom" required>
-		        <label for="pass"><b>AC</b></label>
-		        <input type="text" placeholder="Yes/No" name="AC">
-		        <label for= "comment"><b>Description</b></label><br>
-		        <textarea style="width: 100%" name="desc" ></textarea> <br>
-		        <label for="image"><b>Upload Picture</b></label><br>
-		        <input id="uploadImage" type="file" name="img" onchange="PreviewImage();" />
-		        <img name="img" id="uploadPreview" style="width: 100px; height: 100px;" />
-				
-		        <button class="btn btn-primary btn-block" type="submit">Post</button>
-	    	</div>
-	    </form>
-	  </div>
-	  
-	    
-
+    <h2 style="text-align: center;"><b>Post ad for Apartment</b></h2>
+    {%if msg%}
+    <p>{{msg}}</p>
+    {%endif%}
+    <a href="/posth"><button style="float: right;" type="submit" class="btn btn-success btn-sm">Post ad for House</button></a>
+    <br>
+    <div id = "id1">
+        <form action="/postedr" method="post" enctype="multipart/form-data">
+            <div class="container">
+                {% csrf_token %}
+                <label for="name"><b>Location</b></label>
+                <input type="text" placeholder="Amalbagh" name="location" required>
+                <label for="email"><b>City</b></label>
+                <input type="text" placeholder="Lucknow" name="city" required>
+                <label for="location"><b>State</b></label>
+                <input type="text" placeholder="Uttar pradesh" name="state" required>
+                <label for="name"><b>Dimention</b></label>
+                <input type="text" placeholder="ex - 10 x 12 ft" name="dimention" required>
+                <label for="Phone"><b>Cost</b></label>
+                <input style="width: 100%; height: 50px;margin-bottom: 10px;" type="number" placeholder="cost in rupee" name="cost" required>
+                <label for="name"><b>Hall</b></label>
+                <input type="text" placeholder="Yes/No" name="hall" required>
+                <label for="email"><b>Kitchen</b></label>
+                <input type="text" placeholder="Yes/No" name="kitchen" required>
+                <label for="location"><b>Balcany</b></label>
+                <input type="text" placeholder="Yes/No" name="balcany" required>
+                <label for="Phone"><b>Bedrooms</b></label>
+                <input style="width: 100%; height: 50px;margin-bottom: 10px;" type="number"  placeholder="enter number of bedroom" name="bedroom" required>
+                <label for="pass"><b>AC</b></label>
+                <input type="text" placeholder="Yes/No" name="AC">
+                <label for= "comment"><b>Description</b></label><br>
+                <textarea style="width: 100%" name="desc" ></textarea> <br>
+                <label for="image"><b>Upload Picture</b></label><br>
+                <input id="uploadImage" type="file" name="img" onchange="PreviewImage();" />
+                <img name="img" id="uploadPreview" style="width: 100px; height: 100px;" />
+                <button class="btn btn-primary btn-block" type="submit">Post</button>
+            </div>
+        </form>
+    </div>
 </div>
-
-
 {%endblock%}

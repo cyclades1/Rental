@@ -2,115 +2,104 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        {% block css %}  {% endblock %}
-    </style>
-    <title> {% block title %} {% endblock %} </title>
-</head>
-
-<body>
-    {%block nav%}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a style="margin-bottom: 5px" href="/"> <img src="{% static 'logo.png' %}" style="height: 40px; width: 120px;"> </a>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            {% block css %}  {% endblock %}
+        </style>
+        <title> {% block title %} {% endblock %} </title>
+    </head>
+    <body>
+        {%block nav%}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a style="margin-bottom: 5px" href="/"> <img src="{% static 'assets/logo.png' %}" style="height: 40px; width: 120px;"> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
         </button> 
- 
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 10px; margin-left: 80px;">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/index">Home </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/home">Explore</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About us</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/contact">Contact us <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-
-    {%endblock%}
-    
-    
-    {% block body %} 
-    <div class="w3-container w3-padding-large w3-grey" style="margin-right: 10%; margin-left: 10%; margin-bottom: 2%; margin-top: 2%;">
-    <h4 id="contact"><b>Reach out to us</b></h4>
-
-      {%if msg%}
-      <p>{{msg}}</p>
-      {%endif%}
-    <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px">
-      <div class="w3-third w3-dark-grey">
-        <p><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></p>
-        <p>rentalforpeople@gmail.com</p>
-      </div>
-      <div class="w3-third w3-teal">
-        <p><i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i></p>
-        <p>Lucknow, India</p>
-      </div>
-      <div class="w3-third w3-dark-grey">
-        <p><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></p>
-        <p>+91 9876543210</p>
-      </div>
-    </div>
-    <hr class="w3-opacity">
-    <form action="/contact/" method="post">
-        {% csrf_token %}
-      <div class="w3-section">
-        <label>Subject</label>
-        <input class="w3-input w3-border" type="text" name="subject" required>
-      </div>
-      <div class="w3-section">
-        <label>Email</label>
-        <input class="w3-input w3-border" type="text" name="email" required>
-      </div>
-      <div class="w3-section">
-        <label>Message</label>
-        <input class="w3-input w3-border" type="text" name="body" required>
-      </div>
-      <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Send Message</button>
-    </form>
-    <div class="w3-panel w3-large" style="float: right;">
-        <p style="font-size: xx-small;">All rights are reserved to http://rentalforpeople.wordpress.com/<br>
-        Contact Abhishek Dubey at dubeyabhishek933@gmail.com for further details.</p>
-     </div>
-  </div>
-
-    {% endblock %}
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    {% block js%}
-    <script>
-    function clearCart() {
-        cart = JSON.parse(localStorage.getItem('cart'));
-        for (var item in cart) {
-            document.getElementById('div' + item).innerHTML = '<button id="' + item + '" + class="btn btn-primary cart">Add to Cart</button>';
-        }
-        localStorage.clear();
-        cart = {};
-        updateCart(cart);
-    }
-    </script>
-    {% endblock %}
-</body>
-
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/index">Home </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/home">Explore</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About us</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/contact">Contact us <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        {%endblock%}
+        {% block body %} 
+        <div class="w3-container w3-padding-large w3-grey" style="margin-right: 10%; margin-left: 10%; margin-bottom: 2%; margin-top: 2%;">
+            <h4 id="contact"><b>Reach out to us</b></h4>
+            {%if msg%}
+            <p>{{msg}}</p>
+            {%endif%}
+            <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px">
+                <div class="w3-third w3-dark-grey">
+                    <p><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></p>
+                    <p>rentalforpeople@gmail.com</p>
+                </div>
+                <div class="w3-third w3-teal">
+                    <p><i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i></p>
+                    <p>Lucknow, India</p>
+                </div>
+                <div class="w3-third w3-dark-grey">
+                    <p><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></p>
+                    <p>+91 9876543210</p>
+                </div>
+            </div>
+            <hr class="w3-opacity">
+            <form action="/contact/" method="post">
+                {% csrf_token %}
+                <div class="w3-section">
+                    <label>Subject</label>
+                    <input class="w3-input w3-border" type="text" name="subject" required>
+                </div>
+                <div class="w3-section">
+                    <label>Email</label>
+                    <input class="w3-input w3-border" type="text" name="email" required>
+                </div>
+                <div class="w3-section">
+                    <label>Message</label>
+                    <input class="w3-input w3-border" type="text" name="body" required>
+                </div>
+                <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Send Message</button>
+            </form>
+            <div class="w3-panel w3-large" style="float: right;">
+                <p style="font-size: xx-small;">All rights are reserved to http://rentalforpeople.wordpress.com/<br>
+                    Contact Abhishek Dubey at dubeyabhishek933@gmail.com for further details.
+                </p>
+            </div>
+        </div>
+        {% endblock %}
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        {% block js%}
+        <script>
+            function clearCart() {
+                cart = JSON.parse(localStorage.getItem('cart'));
+                for (var item in cart) {
+                    document.getElementById('div' + item).innerHTML = '<button id="' + item + '" + class="btn btn-primary cart">Add to Cart</button>';
+                }
+                localStorage.clear();
+                cart = {};
+                updateCart(cart);
+            }
+        </script>
+        {% endblock %}
+    </body>
 </html>

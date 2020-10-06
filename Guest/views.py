@@ -11,9 +11,6 @@ from datetime import *
 import re
 import os
 
-def no(request):
-	return render(request, 'front.html')
-
 def index(request):
 	template = loader.get_template('index.html')
 	try:
