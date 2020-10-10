@@ -52,12 +52,12 @@ def home(request):
 	context.update({'msg':"Search your query"})
 	return HttpResponse(template.render(context,request))
 
-def  search(request):
+def search(request):
 	template = loader.get_template('home.html')
 	try:
 		email = request.session['member_id']
 	except:
-		email =""
+		email = ""
 	if bool(email):
 		context={'base':'base.html',}
 	else:
@@ -66,6 +66,7 @@ def  search(request):
 		typ = request.GET['type']
 		if bool(typ):
 		 	q = request.GET['q']
+		 	q = q.lower()
 		 	if typ=="House" and ( bool( House.objects.filter(location=q)) or bool( House.objects.filter(city=q))):
 		 		results= House.objects.filter(location=q)
 		 		results= results | House.objects.filter(city=q)
