@@ -23,14 +23,14 @@ It is made using django framework of python.
 
 # Screenshots
 
-![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/main.PNG)
+![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/main.png)
 
-![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/search.PNG)
+![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/search.png)
 
-![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/about.PNG)
+![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/about.png)
 
-![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/contact.PNG)
+![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/contact.png)
 
-![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/profile.PNG)
+![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/profile.png)
 
-![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/desc.PNG)
+![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/desc.png)
