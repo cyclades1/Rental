@@ -39,53 +39,6 @@ def index(request):
 
 
 def home(request):
-	template = loader.get_template('home.html')
-	try:
-		email = request.session['member_id']
-	except:
-		email =""
-	if bool(email):
-		context={'base':'base.html',}
-	else:
-		context={'base':'Gbase.html',}
-	context.update({'result':""})
-	context.update({'msg':"Search your query"})
-	return HttpResponse(template.render(context,request))
-
-def search(request):
-	template = loader.get_template('home.html')
-	try:
-		email = request.session['member_id']
-	except:
-		email = ""
-	if bool(email):
-		context={'base':'base.html',}
-	else:
-		context={'base':'Gbase.html',}
-	if request.method == 'GET':
-		typ = request.GET['type']
-		if bool(typ):
-		 	q = request.GET['q']
-		 	q = q.lower()
-		 	if typ=="House" and ( bool( House.objects.filter(location=q)) or bool( House.objects.filter(city=q))):
-		 		results= House.objects.filter(location=q)
-		 		results= results | House.objects.filter(city=q)
-		 	elif typ!="House" and ( bool( Room.objects.filter(location= q)) or bool( House.objects.filter(city=q))):
-		 		results = Room.objects.filter(location= q)
-		 		results= results | Room.objects.filter(city=q)
-		 	else:
-		 		context.update({'msg':'No result found for matching query'})
-		 		return HttpResponse(template.render(context,request))
-		 	result= [results, len(results)]
-		 	context.update({'result':result})
-		 	context.update({'type':typ})
-		else:
-			context.update({'msg':'Undefined search type'})
-	
-		
-	return HttpResponse(template.render(context,request))
-
-	
     template = loader.get_template('home.html')
     try:
         email = request.session['member_id']
@@ -135,6 +88,7 @@ def search(request):
             context.update({'msg': 'Undefined search type'})
 
     return HttpResponse(template.render(context, request))
+
 
 def about(request):
     template = loader.get_template('about.html')
