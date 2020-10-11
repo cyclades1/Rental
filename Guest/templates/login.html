@@ -1,13 +1,15 @@
-{% extends 'Gbase.html'%}
+{% extends 'base.html' %}
 {%load static%}
+
 {%block button%}
-<a href="/regpage"><button style="margin-left: 50px; margin-right: 50px; color: white; background-color: green" class="btn btn-outline-success my-2 my-sm-0"><strong>Sign Up</strong></button></a> 
+<a class="btn btn-success navbar-signup-btn-sm" href="/register" style="margin-left: 1em;"><strong>Sign Up</strong></a> 
 {%endblock%}
+
 {%block body%}
 <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%;">
     <h2>Log in</h2>
-    {%if msg%}
-    <p>{{msg}}</p>
+    {% if request.msg %}
+        <p>{{ request.msg }}</p>
     {%endif%}
     <form class="modal-content animate" action="/login" method="post">
         {% csrf_token %}
@@ -18,7 +20,7 @@
             <label for="uname"><b>Email</b></label>
             <input type="text" placeholder="Enter Username" name="email" required>
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="pass" required>
+            <input type="password" placeholder="Enter Password" name="password" required>
             <label>
             <input type="checkbox" checked="checked" name="remember"> Remember me
             </label>
