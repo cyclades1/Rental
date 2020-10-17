@@ -17,10 +17,10 @@ from django.urls import include, path, re_path
 from django.contrib import admin
 from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.contrib.auth import login
 from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LogoutView
 
 admin.autodiscover()
 urlpatterns = [
@@ -29,18 +29,16 @@ urlpatterns = [
     path('home/',views.home),
 	path('contact/', views.contact),
     path('about/',views.about),
-    path('regpage/',views.registerpage),
-    path('logpage/', views.loginpage),
 	path('admin/',admin.site.urls),
     path('user/',include('user.urls')),
     path('register', views.register),
-    path('login', views.login),
+    path('login', views.login_view),
     path('profile/',views.profile),
     path('post', views.post),
     path('posth', views.posth),
     path('postedr', views.postedr),
     path('postedh', views.postedh),
-    path('logout', views.logout),
+    path('logout', LogoutView.as_view()),
     path('descr',views.descr),
     path('deleter', views.deleter),
     path('deleteh', views.deleteh),

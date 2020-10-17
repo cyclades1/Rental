@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
@@ -11,17 +13,9 @@ from datetime import *
 import re
 import os
 
-
 def index(request):
     template = loader.get_template('index.html')
-    try:
-        email = request.session['member_id']
-    except:
-        email = ''
-    if bool(email):
-        context = {'base': 'base.html'}
-    else:
-        context = {'base': 'Gbase.html'}
+    context = {}
 
     room = Room.objects.all()
     if bool(room):
@@ -40,14 +34,7 @@ def index(request):
 
 def home(request):
     template = loader.get_template('home.html')
-    try:
-        email = request.session['member_id']
-    except:
-        email = ''
-    if bool(email):
-        context = {'base': 'base.html'}
-    else:
-        context = {'base': 'Gbase.html'}
+    context = {}
     context.update({'result': ''})
     context.update({'msg': 'Search your query'})
     return HttpResponse(template.render(context, request))
@@ -55,14 +42,7 @@ def home(request):
 
 def search(request):
     template = loader.get_template('home.html')
-    try:
-        email = request.session['member_id']
-    except:
-        email = ''
-    if bool(email):
-        context = {'base': 'base.html'}
-    else:
-        context = {'base': 'Gbase.html'}
+    context = {}
     if request.method == 'GET':
         typ = request.GET['type']
         if bool(typ):
@@ -92,14 +72,7 @@ def search(request):
 
 def about(request):
     template = loader.get_template('about.html')
-    try:
-        email = request.session['member_id']
-    except:
-        email = ''
-    if bool(email):
-        context = {'base': 'base.html'}
-    else:
-        context = {'base': 'Gbase.html'}
+    context = {}
 
     room = Room.objects.all()
     if bool(room):
@@ -112,14 +85,7 @@ def about(request):
 
 def contact(request):
     template = loader.get_template('contact.html')
-    try:
-        email = request.session['member_id']
-    except:
-        email = ''
-    if bool(email):
-        context = {'base': 'base.html'}
-    else:
-        context = {'base': 'Gbase.html'}
+    context = {}
 
     if request.method == 'POST':
         subject = request.POST['subject']
@@ -143,14 +109,7 @@ def contact(request):
 
 def descr(request):
     template = loader.get_template('desc.html')
-    try:
-        email = request.session['member_id']
-    except:
-        email = ''
-    if bool(email):
-        context = {'base': 'base.html'}
-    else:
-        context = {'base': 'Gbase.html'}
+    context = {}
     if request.method == 'GET':
         id = request.GET['id']
         try:
@@ -167,15 +126,14 @@ def descr(request):
     return HttpResponse(template.render(context, request))
 
 
-def registerpage(request):
-    return render(request, 'register.html', {'msg': ''})
-
-
 def loginpage(request):
     return render(request, 'login.html', {'msg': ''})
 
 
 def register(request):
+    if request.method == 'GET':
+        return render(request, 'register.html', {'msg': ''})
+
     name = request.POST['name']
     email = request.POST['email']
     location = request.POST['location']
@@ -216,167 +174,104 @@ def register(request):
         password=pas,
         )
     user.save()
-    request.session['member_id'] = email
+    login(request, user)
     template = loader.get_template('profile.html')
     return profile(request)
 
-
-def login(request):
-    email = request.POST['email']
-    pas = request.POST['pass']
-    user = User.objects.filter(email=email, password=pas)
-    if bool(user):
-        request.session['member_id'] = email
-
-            # template = loader.get_template('profile.html')
-            # context={
-            # 'user':user
-            # }
-            # return HttpResponse(template.render(context, request))
-
-        return profile(request)
-    else:
-        template = loader.get_template('login.html')
-        context = {'msg': 'wrong email or password'}
-        return HttpResponse(template.render(context, request))
-
-
+@login_required(login_url='/login')
 def profile(request):
-    email = request.session['member_id']
-    user = User.objects.get(email=email)
-    if bool(user) and user != '':
-        template = loader.get_template('profile.html')
-
-        context = {'user': user}
-
-        report = Contact.objects.filter(email=user.email)
-        context.update({'reportno': len(report)})
-        room = Room.objects.filter(user_email=user)
-        if bool(room):
-            context.update({'room': room})
-        context.update({'roomno': len(room)})
-        house = House.objects.filter(user_email=user)
-        if bool(house):
-            context.update({'house': house})
-        context.update({'houseno': len(house)})
-        return HttpResponse(template.render(context, request))
-    else:
-        del request.session['member_id']
-        return render(request, 'index.html')
+    report = Contact.objects.filter(email=request.user.email)
+    room = Room.objects.filter(user_email=request.user.email)
+    house = House.objects.filter(user_email=request.user.email)
+    context = {
+        'user': request.user,
+        'reportno': len(report),
+        'roomno': len(room),
+        'houseno': len(house)
+    }
+    return render(request, 'profile.html', context=context)
 
 
+@login_required(login_url='/login')
 def post(request):
-    email = request.session['member_id']
-    user = User.objects.get(email=email)
-    if bool(user) and user != '':
-        template = loader.get_template('post.html')
-        context = {'user': user}
-        return HttpResponse(template.render(context, request))
-    else:
-        del request.session['member_id']
-        return render(request, 'index.html')
+    context = {'user': request.user}
+    return render(request, 'post.html', context)
 
 
+@login_required(login_url='/login')
 def posth(request):
-    email = request.session['member_id']
-    user = User.objects.get(email=email)
-    if bool(user) and user != '':
-        template = loader.get_template('posth.html')
-        context = {'user': user}
-        return HttpResponse(template.render(context, request))
-    else:
-        del request.session['member_id']
-        return render(request, 'index.html')
+    context = {'user': request.user}
+    return render(request, 'posth.html', context)
 
 
+@login_required(login_url='/login')
 def postedh(request):
-    email = request.session['member_id']
-    user = User.objects.get(email=email)
-    if bool(user) and user != '':
-        area = request.POST['area']
-        floor = request.POST['floor']
-        location = request.POST['location'].lower()
-        city = request.POST['city'].lower()
-        state = request.POST['state'].lower()
-        cost = request.POST['cost']
-        hall = request.POST['hall'].lower()
-        kitchen = request.POST['kitchen'].lower()
-        balcany = request.POST['balcany'].lower()
-        bedroom = request.POST['bedroom']
-        ac = request.POST['AC'].lower()
-        desc = request.POST['desc'].upper()
-        img = request.FILES['img']
-        house = House(
-            user_email=user,
-            location=location,
-            city=city,
-            state=state,
-            cost=cost,
-            hall=hall,
-            kitchen=kitchen,
-            balcany=balcany,
-            bedrooms=bedroom,
-            area=area,
-            floor=floor,
-            AC=ac,
-            desc=desc,
-            img=img,
-            )
-        house.save()
-        return render(request, 'post.html',
+    area = request.POST['area']
+    floor = request.POST['floor']
+    location = request.POST['location'].lower()
+    city = request.POST['city'].lower()
+    state = request.POST['state'].lower()
+    cost = request.POST['cost']
+    hall = request.POST['hall'].lower()
+    kitchen = request.POST['kitchen'].lower()
+    balcany = request.POST['balcany'].lower()
+    bedroom = request.POST['bedroom']
+    ac = request.POST['AC'].lower()
+    desc = request.POST['desc'].upper()
+    img = request.FILES['img']
+    house = House(
+        user_email=request.user.email,
+        location=location,
+        city=city,
+        state=state,
+        cost=cost,
+        hall=hall,
+        kitchen=kitchen,
+        balcany=balcany,
+        bedrooms=bedroom,
+        area=area,
+        floor=floor,
+        AC=ac,
+        desc=desc,
+        img=img,
+        )
+    house.save()
+    return render(request, 'post.html',
                       {'msg': 'submitted successfully..'})
-    else:
-
-        del request.session['member_id']
-        return render(request, 'index.html')
 
 
+@login_required(login_url='/login')
 def postedr(request):
-    email = request.session['member_id']
-    user = User.objects.get(email=email)
-    if bool(user) and user != '':
-        dimention = request.POST['dimention']
-        location = request.POST['location'].lower()
-        city = request.POST['city'].lower()
-        state = request.POST['state'].lower()
-        cost = request.POST['cost']
-        hall = request.POST['hall'].lower()
-        kitchen = request.POST['kitchen'].lower()
-        balcany = request.POST['balcany'].lower()
-        bedroom = request.POST['bedroom']
-        ac = request.POST['AC'].lower()
-        desc = request.POST['desc'].upper()
-        img = request.FILES['img']
-        room = Room(
-            user_email=user,
-            dimention=dimention,
-            location=location,
-            city=city,
-            state=state,
-            cost=cost,
-            hall=hall,
-            kitchen=kitchen,
-            balcany=balcany,
-            bedrooms=bedroom,
-            AC=ac,
-            desc=desc,
-            img=img,
-            )
-        room.save()
-        return render(request, 'post.html',
-                      {'msg': 'submitted successfully..'})
-    else:
-
-        del request.session['member_id']
-        return render(request, 'index.html')
-
-
-def logout(request):
-    try:
-        del request.session['member_id']
-    except KeyError:
-        pass
-    return index(request)
+    dimention = request.POST['dimention']
+    location = request.POST['location'].lower()
+    city = request.POST['city'].lower()
+    state = request.POST['state'].lower()
+    cost = request.POST['cost']
+    hall = request.POST['hall'].lower()
+    kitchen = request.POST['kitchen'].lower()
+    balcany = request.POST['balcany'].lower()
+    bedroom = request.POST['bedroom']
+    ac = request.POST['AC'].lower()
+    desc = request.POST['desc'].upper()
+    img = request.FILES['img']
+    room = Room(
+        user_email=request.user.email,
+        dimention=dimention,
+        location=location,
+        city=city,
+        state=state,
+        cost=cost,
+        hall=hall,
+        kitchen=kitchen,
+        balcany=balcany,
+        bedrooms=bedroom,
+        AC=ac,
+        desc=desc,
+        img=img,
+        )
+    room.save()
+    return render(request, 'post.html',
+                  {'msg': 'submitted successfully..'})
 
 
 def deleter(request):
@@ -393,3 +288,22 @@ def deleteh(request):
         instance = House.objects.get(house_id=id)
         instance.delete()
     return profile(request)
+
+
+def login_view(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+
+    email = request.POST['email']
+    password = request.POST['password']
+    user = authenticate(request, email=email, password=password)
+
+    if user is not None:
+        login(request, user)
+        return redirect("/")
+    else:
+        template = loader.get_template('login.html')
+        context = {
+            'msg': 'Please enter valid email or password'
+        }
+        return HttpResponse(template.render(context, request))
