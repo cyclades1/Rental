@@ -16,7 +16,8 @@ body {
 /* Full-width input fields */
 
 input[type=text],
-input[type=password] {
+input[type=password],
+input[type=number] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -203,4 +204,15 @@ span.psw {
       display: flex!important;
       justify-content: center;
   }
+}
+
+.w3-panel i {
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+footer {
+  background: #616161!important;
+  padding: 20px;
+  color: #fff;
 }
