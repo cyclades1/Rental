@@ -1,14 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block style %}
+<style>
+    .w3-home-container {
+        margin-top:1%; 
+        margin-left: 5%; 
+        margin-right: 5%; 
+        margin-bottom: 1%;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .w3-home-container {
+            margin: 0!important;
+            padding: 0!important;
+        }
+    }
+</style>
+{% endblock %}
 {%block body%}
 <div>
 <div class="jumbotron text-center" style="margin-bottom:0;" >
     <h1>Rental</h1>
     <p>Live in your dream house</p>
 </div>
-<div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
+<div class="w3-container w3-home-container">
     {% if room %}
-    <h5 class="my-4"> Apartment - Recommended for You.</h5>
+    <h5 class="my-4" style="text-align: center;"> Apartment - Recommended for You.</h5>
     <div class="w3-row-padding">
         <div class="col carousel slide my-3" data-ride="carousel">
             <div class="carousel-inner no-padding">
@@ -45,7 +63,7 @@
     </div>
     {% endif %}
     {% if house %}
-    <h5 class="my-4"> Houses - Recommended for You.</h5>
+    <h5 class="my-4" style="text-align: center;"> Houses - Recommended for You.</h5>
     <div class="w3-row-padding">
         <div class="col carousel slide my-3" data-ride="carousel">
             <div class="carousel-inner no-padding">

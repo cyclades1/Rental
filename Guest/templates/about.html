@@ -1,31 +1,56 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block style %}
+<style>
+    .w3-about-container {
+        margin-top:1%; 
+        margin-left: 5%; 
+        margin-right: 5%; 
+        margin-bottom: 1%;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .w3-about-container {
+            margin: 0!important;
+            padding: 0!important;
+        }
+    }
+
+    .about-text-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+        font-size: 160%;
+    }
+
+    .row {
+        margin-top: 3em!important;
+        margin-bottom: 3em!important;
+    }
+</style>
+{% endblock %}
 
 {% block body %} 
 <div class="jumbotron text-center">
     <h1>About Us</h1>
     <p>Some text about who we are and what we do.</p>
 </div>
-<div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
-    <center>
-        <h2>Our Services</h2>
-    </center>
-    <br>
-    <div style="float: left; width:50%;">
-        <img src="{% static 'assets/roomvala.jpg'%}" style="height: 400px; width: 600px;"> 
+<h2 class="w3-center">Our Services</h2>
+<div class="row w3-about-container">
+    <div class="col-md-6 col-sm-12">
+        <img src="{% static 'assets/roomvala.jpg'%}" style="width: 100%;height: 100%;">
     </div>
-    <div style="float: right; width: 45%; padding: 2%; margin: 2%; font-family: sans-serif; font-size: 150%;">
+    <div class="col-md-6 col-sm-12 about-text-container">
         <p>Our work is to provide houses and Rooms to people, who are new to area and need a place to stay.We also contact owners and people in area, who are searching for roommate or paying guests.</p>
-        <br>
     </div>
 </div>
-<div class="w3-container" style="width: 100;margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
-    <div style=" float: right; width:50%;">
-        <img src="{% static 'assets/hand.jpg'%}" style="height: 400px; width: 600px;"> 
-    </div>
-    <div style="float: left; width: 45%; padding: 2%; margin: 2%; font-family: sans-serif; font-size: 150%;">
+<div class="row w3-about-container">
+    <div class="col-md-6 col-sm-12 about-text-container">
         <p>You can choose rooms from thousands of certified and rated rooms. Our aim is to provide safe and comfortable home.Register as owner or roommate and find a person you want to share the room with.</p>
-        <br>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <img src="{% static 'assets/hand.jpg'%}" style="width: 100%;height: 100%;">
     </div>
 </div>
 {% endblock %}

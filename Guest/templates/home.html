@@ -1,119 +1,117 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block style %}
+<style>
+    .row {
+        padding: 2em;
+    }
 
-{% block body %} 
-<div>
-    <div style="margin-left: 10%; margin-right: 10%; margin-top: 20px">
-        <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-        <!-- !PAGE CONTENT! -->
-        <div class="w3-main">
-            <!-- Header -->
-            <header id="portfolio">
-                <div class="w3-container">
-                    <h1><b>Search</b></h1>
-                    <div class="row searchFilter" >
-                        <div class="col-sm-12" >
-                            <form class="input-group" action="/search">
-                                <input name="q" type="text" class="form-control" aria-label="Text input with segmented button dropdown" >
-                                <select style="background-color: grey; color: white;" class="btn btn-secondary btn-search" name="type">
-                                    <option>
-                                        <center></center>
-                                    </option>
-                                    <option>
-                                        <center>House</center>
-                                    </option>
-                                    <option>
-                                        <center> Apartment</center>
-                                    </option>
-                                </select>
-                                <button id="searchBtn" type="submit" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-section w3-bottombar w3-padding-16">
-                    <span class="w3-margin-right">Filter:</span> 
-                    <button class="w3-button w3-black">ALL</button>
-                    <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Type</button>
-                    <button class="w3-button w3-white w3-hide-small"><i class="fa fa-dollar w3-margin-right"></i>Price</button>
-                    <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Location</button>
-                </div>
+    input[type=text] {
+        margin: unset!important;
+    }
+
+    button[type="submit"] {
+        border-radius: 0;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <h1><b>Search</b></h1>
+    </div>
+    <div class="col-md-12 col-sm-12">
+        <div class="input-group my-group"> 
+            <input type="text" class="form-control" name="text" placeholder="Search here..."/>
+            <select class="col-md-3 col-sm-6 selectpicker form-control" data-live-search="true">
+                <option>House</option>
+                <option>Apartment</option>
+            </select> 
+            <span class="input-group-btn">
+                <button class="btn btn-primary my-group-button" type="submit">GO!</button>
+            </span>
         </div>
-        </header>
-        {% if result %}
-        <h5 class="my-4"> Your search result</h5>
-        <div class="w3-row-padding">
-            <div class="col carousel slide my-3" data-ride="carousel">
-                <div class="carousel-inner no-padding">
-                    <div class="carousel-item active">
-                        {% for i in result.0%}
-                        <div class="w3-third w3-container w3-margin-bottom">
-                            <div class="card" style=" background-color: #e9ecef;">
-                                <img src='{{i.img.url}}' class="w3-hover-opacity" style="height: 250px; width: 100%" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <span id="pricepr{{i.id}}">
-                                            <p>
-                                                <b>
-                                            <h3>₹{{i.cost}}</h3> </b></p>
-                                        </span>
-                                    </h5>
-                                    <p class="card-text">{{i.desc|slice:"0:20"}}...</p>
-                                    <p>{{i.location}}, {{i.city}}, {{i.state}}</p>
-                                    {%if type == 'House' %}
-                                    <form action="/descr"  style="margin-bottom: 5px;">
-                                        <button name="id" value="{{i.house_id}}" style="background-color: grey"> Quick view</button>
-                                    </form>
-                                    {%else%}
-                                    <form action="/descr"  style="margin-bottom: 5px;">
-                                        <button name="id" value="{{i.room_id}}" style="background-color: grey"> Quick view</button>
-                                    </form>
-                                    {%endif%}
-                                </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="w3-section w3-bottombar w3-padding-16">
+            <span class="w3-margin-right">Filter:</span> 
+            <button class="w3-button w3-black">ALL</button>
+            <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Type</button>
+            <button class="w3-button w3-white w3-hide-small"><i class="fa fa-dollar w3-margin-right"></i>Price</button>
+            <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Location</button>
+        </div>
+    </div>
+    {% if result %}
+    <h5 class="my-4"> Your search result</h5>
+    <div class="w3-row-padding">
+        <div class="col carousel slide my-3" data-ride="carousel">
+            <div class="carousel-inner no-padding">
+                <div class="carousel-item active">
+                    {% for i in result.0%}
+                    <div class="w3-third w3-container w3-margin-bottom">
+                        <div class="card" style=" background-color: #e9ecef;">
+                            <img src='{{i.img.url}}' class="w3-hover-opacity" style="height: 250px; width: 100%" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span id="pricepr{{i.id}}">
+                                        <p>
+                                            <b>
+                                        <h3>₹{{i.cost}}</h3> </b></p>
+                                    </span>
+                                </h5>
+                                <p class="card-text">{{i.desc|slice:"0:20"}}...</p>
+                                <p>{{i.location}}, {{i.city}}, {{i.state}}</p>
+                                {%if type == 'House' %}
+                                <form action="/descr"  style="margin-bottom: 5px;">
+                                    <button name="id" value="{{i.house_id}}" style="background-color: grey"> Quick view</button>
+                                </form>
+                                {%else%}
+                                <form action="/descr"  style="margin-bottom: 5px;">
+                                    <button name="id" value="{{i.room_id}}" style="background-color: grey"> Quick view</button>
+                                </form>
+                                {%endif%}
                             </div>
                         </div>
-                        {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and forloop.counter < result.1 %}
                     </div>
-                    <div class="carousel-item">
-                        {% endif %}
-                        {% endfor %}
-                    </div>
+                    {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and forloop.counter < result.1 %}
                 </div>
-            </div>
-            </a>
-        </div>
-        {%else%}
-        {%if msg%}
-        <center>
-            <h1><b>{{msg}}</b></h1>
-        </center>
-        {%endif%}
-        <div class="penguin">
-            <div class="head">
-                <div class="head-inner">
-                    <div class="eye-wrap">
-                        <div class="eye"></div>
-                        <div class="eye"></div>
-                    </div>
-                    <div class="mouth"></div>
-                </div>
-            </div>
-            <div class="body">
-                <div class="arm-wrap">
-                    <div class="arm"></div>
-                    <div class="arm"></div>
-                </div>
-                <div class="foot-wrap">
-                    <div class="foot"></div>
-                    <div class="foot"></div>
+                <div class="carousel-item">
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
-        {%endif%}
-        <!-- Images of Me -->
-        <!-- Contact Section -->
-        <!-- Footer -->
-        <!-- End page content -->
+        </a>
     </div>
+    {%else%}
+    {%if msg%}
+        <h2 style="text-align: center;"><b>{{msg}}</b></h2>
+    {%endif%}
+    <div class="penguin">
+        <div class="head">
+            <div class="head-inner">
+                <div class="eye-wrap">
+                    <div class="eye"></div>
+                    <div class="eye"></div>
+                </div>
+                <div class="mouth"></div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="arm-wrap">
+                <div class="arm"></div>
+                <div class="arm"></div>
+            </div>
+            <div class="foot-wrap">
+                <div class="foot"></div>
+                <div class="foot"></div>
+            </div>
+        </div>
+    </div>
+    {%endif%}
 </div>
 {% endblock %}

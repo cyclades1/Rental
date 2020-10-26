@@ -21,28 +21,29 @@ from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
+from django.views.generic.base import RedirectView
 
 admin.autodiscover()
 urlpatterns = [
-    path('',views.index),
-    path('index/',views.index),
-    path('home/',views.home),
-	path('contact/', views.contact),
-    path('about/',views.about),
-	path('admin/',admin.site.urls),
-    path('user/',include('user.urls')),
-    path('register', views.register),
-    path('login', views.login_view),
-    path('profile/',views.profile),
-    path('post', views.post),
-    path('posth', views.posth),
-    path('postedr', views.postedr),
-    path('postedh', views.postedh),
-    path('logout', LogoutView.as_view()),
-    path('descr',views.descr),
-    path('deleter', views.deleter),
-    path('deleteh', views.deleteh),
-    path('search', views.search)
+    url(r'^$', RedirectView.as_view(url='/index/')),
+    url(r'^index/',views.index),
+    url(r'^home/',views.home),
+	url(r'^contact/', views.contact),
+    url(r'^about/',views.about),
+	url(r'^admin/',admin.site.urls),
+    url(r'^user/',include('user.urls')),
+    url(r'^register', views.register),
+    url(r'^login', views.login_view),
+    url(r'^profile/',views.profile),
+    url(r'^post', views.post),
+    url(r'^posth', views.posth),
+    url(r'^postedr', views.postedr),
+    url(r'^postedh', views.postedh),
+    url(r'^logout', LogoutView.as_view()),
+    url(r'^descr',views.descr),
+    url(r'^deleter', views.deleter),
+    url(r'^deleteh', views.deleteh),
+    url(r'^search', views.search)
 ]
 
 urlpatterns+= staticfiles_urlpatterns()
