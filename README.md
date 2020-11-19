@@ -35,4 +35,5 @@ It is made using django framework of python.
 
 ![Test Image 6](https://github.com/cyclades1/Rental/blob/master/images/desc.png)
 
-# Working live project at cyclades.pythonanywhere.com
+# Working live project:
+  Check the running project over cyclades.pythonanywhere.com
