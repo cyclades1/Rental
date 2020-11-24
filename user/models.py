@@ -6,7 +6,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import UserManager
 
 
-# Create your models here.
+# # Create your models here.
 
 class UserManager(BaseUserManager):
 
@@ -107,8 +107,7 @@ class User(AbstractBaseUser):
 class Room(models.Model):
 
     room_id = models.AutoField(primary_key=True)
-    user_email = models.ForeignKey(User, to_field='email',
-                                   on_delete=models.CASCADE)
+    user_email = models.ForeignKey(User, on_delete=models.CASCADE)
     dimention = models.CharField(max_length=100)
     location = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
@@ -131,8 +130,7 @@ class Room(models.Model):
 class House(models.Model):
 
     house_id = models.AutoField(primary_key=True)
-    user_email = models.ForeignKey(User, to_field='email',
-                                   on_delete=models.CASCADE)
+    user_email = models.ForeignKey(User, on_delete=models.CASCADE)
     area = models.IntegerField()
     floor = models.IntegerField()
     location = models.CharField(max_length=50)

@@ -8,12 +8,14 @@
 {%block body%}
 <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%;">
     <h2>Log in</h2>
-    {% if request.msg %}
-        <p>{{ request.msg }}</p>
-    {%endif%}
+   
     <form class="modal-content animate" action="/login" method="post">
+           
         {% csrf_token %}
         <div class="container">
+            {% if msg %}
+                <p style="color: red">{{ msg }}</p>
+            {%endif%}
             <label for="uname"><b>Email</b></label>
             <input type="text" placeholder="Enter Username" name="email" required>
             <label for="psw"><b>Password</b></label>

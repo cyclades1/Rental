@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
-from .forms import SignUpForm
+# from .forms import SignUpForm
 from django.template import loader
 from user.models import *
 from datetime import *
@@ -126,8 +126,8 @@ def descr(request):
     return HttpResponse(template.render(context, request))
 
 
-def loginpage(request):
-    return render(request, 'login.html', {'msg': ''})
+# def loginpage(request):
+#     return render(request, 'login.html', {'msg': ''})
 
 
 def register(request):
@@ -164,7 +164,8 @@ def register(request):
         template = loader.get_template('register.html')
         context = {'msg': 'email already registered'}
         return HttpResponse(template.render(context, request))
-    user = User(
+    
+    user = User.objects.create_user(
         name=name,
         email=email,
         location=location,
@@ -304,6 +305,6 @@ def login_view(request):
     else:
         template = loader.get_template('login.html')
         context = {
-            'msg': 'Please enter valid email or password'
+            'msg': 'Email and password, you entered, did not matched.'
         }
         return HttpResponse(template.render(context, request))
