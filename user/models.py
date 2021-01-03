@@ -107,7 +107,7 @@ class User(AbstractBaseUser):
 class Room(models.Model):
 
     room_id = models.AutoField(primary_key=True)
-    user_email = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_email = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     dimention = models.CharField(max_length=100)
     location = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
@@ -130,7 +130,7 @@ class Room(models.Model):
 class House(models.Model):
 
     house_id = models.AutoField(primary_key=True)
-    user_email = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_email = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     area = models.IntegerField()
     floor = models.IntegerField()
     location = models.CharField(max_length=50)
