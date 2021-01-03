@@ -2,133 +2,134 @@
 {%load static%}
 {%block body%}
 <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
+
     <h2 style="margin-left:10px; ">Description</h2>
-    <hr>
-    <div style="width: 100%;">
-        <div style="width: 45%; margin: 10px; float: left;">
-            <img src="{{val.img.url}}" width="100%" height="365px;">
+    <div class="row w3-about-container">
+        <div class="col-md-6 col-sm-12">
+           <img src="{{val.img.url}}" width="100%" height="365px;">
         </div>
-        <div style="width: 50%; margin: 10px; float: right;">
-            <h3 class="card-title">
-                <span>
-                    <b>
-                        <h3>₹ {{val.cost}}/-</h3>
-                    </b>
-                </span>
-            </h3>
-            {%if type == 'Apartment'%}
-            <p>{{val.dimention}} ft. Apartment</p>
-            {%else%}
-            <p>{{val.area}} sqr ft. House</p>
-            {%endif%}
-            <p class="card-text">{{val.desc}}</p>
-            <p>{{val.location}}, {{val.city}}, {{val.state}}</p>
-            <hr>
-            <h5 class="card-title">
-                <span>
-                    <p>
+        <div class="col-md-6 col-sm-12 about-text-container">
+             <h3 class="card-title">
+                    <span>
                         <b>
-                    <h3>Posted by</h3> </b></p>
-                </span>
-            </h5>
-            <p>{{user.name}}</p>
-            <p>{{user.location}}, {{user.city}}, {{user.state}}</p>
-            <p style="float: right;"><b>{{val.date}}</b></p>
-            {%if type == 'Apartment'%}
-            <p><b>Ad id <u>{{val.room_id}}</u></b></p>
-            {%else%}
-            <p><b>Ad id <u>{{val.house_id}}</u></b></p>
-            {%endif%}
-            <p style="float: right;"><a href="/contact">report this ad</a></p>
-        </div>
-    </div>
-    <div style="width: 100%; background-color: red">
-        <div style="width: 45%; margin: 10px; float: left;">
-            <h3 class="card-title"><b>Details </b></h3>
-            <br>
-            <table style="width: 90%; margin-right: 5%;">
-                <tr>
-                    <td style="width: 25%; height: 40px;">
-                        Type:
-                    </td>
-                    <td style="width: 30%; height: 40px;">
-                        {{type}}
-                    </td>
-                    <td style="width: 25%; height: 40px;">
-                        Cost:
-                    </td>
-                    <td style="width: 25%; height: 40px;">
-                        ₹ {{val.cost}}/-
-                    </td>
-                </tr>
-                {%if type == 'House'%}
-                <tr>
-                    <td style="width: 25%; height: 40px;">
-                        Area:
-                    </td>
-                    <td style="width: 30%; height: 40px;">
-                        {{val.area}} sq ft.
-                    </td>
-                    <td style="width: 25%; height: 40px;">
-                        Floors:
-                    </td>
-                    <td style="width: 25%; height: 40px;">
-                        {{val.floor}}
-                    </td>
-                </tr>
+                            <h3>₹ {{val.cost}}/-</h3>
+                        </b>
+                    </span>
+                </h3>
+                {%if type == 'Apartment'%}
+                <p>{{val.dimention}} ft. Apartment</p>
+                {%else%}
+                <p>{{val.area}} sqr ft. House</p>
                 {%endif%}
-                <tr>
-                    <td style="width: 25%; height: 40px;">
-                        Bedrooms:
-                    </td>
-                    <td style="width: 30%; height: 40px;">
-                        {{val.bedrooms}}
-                    </td>
-                    <td style="width: 25%; height: 40px;">
-                        Kitchen:
-                    </td>
-                    <td style="width: 25%; height: 40px;">
-                        {{val.kitchen}}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 25%; height: 40px;">
-                        Hall:
-                    </td>
-                    <td style="width: 30%; height: 40px;">
-                        {{val.hall}}
-                    </td>
-                    <td style="width: 25%; height: 40px;">
-                        Balcony:
-                    </td>
-                    <td style="width: 25%; height: 40px;">
-                        {{val.balcany}}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 25%; height: 40px;">
-                        AC:
-                    </td>
-                    <td style="width: 30%; height: 40px;">
-                        {{val.AC}}
-                    </td>
-                    <td style="width: 25%; height: 40px;">
-                        Date posted:
-                    </td>
-                    <td style="width: 25%; height: 40px;">
-                        {{val.date}}
-                    </td>
-                </tr>
-            </table>
+                <p class="card-text">{{val.desc}}</p>
+                <p>{{val.location}}, {{val.city}}, {{val.state}}</p>
+                <hr>
+                <h5 class="card-title">
+                    <span>
+                        <p>
+                            <b>
+                        <h3>Posted by</h3> </b></p>
+                    </span>
+                </h5>
+                <p>{{user.name}}</p>
+                <p>{{user.location}}, {{user.city}}, {{user.state}}</p>
+                <p style="float: right;"><b>{{val.date}}</b></p>
+                {%if type == 'Apartment'%}
+                <p><b>Ad id <u>{{val.room_id}}</u></b></p>
+                {%else%}
+                <p><b>Ad id <u>{{val.house_id}}</u></b></p>
+                {%endif%}
+                <p style="float: right;"><a href="/contact">report this ad</a></p>
+            </div>
         </div>
-        <div style="width: 50%; margin-left: 1%; float: right;">
-            <hr>
+    <hr>
+    <div class="row w3-about-container">
+        <div class="col-md-6 col-sm-12 about-text-container">
+            <h3 class="card-title"><b>Details </b></h3>
+                <br>
+                <table style="width: 90%; margin-right: 5%;">
+                    <tr>
+                        <td style="width: 25%; height: 40px;">
+                            Type:
+                        </td>
+                        <td style="width: 30%; height: 40px;">
+                            {{type}}
+                        </td>
+                        <td style="width: 25%; height: 40px;">
+                            Cost:
+                        </td>
+                        <td style="width: 25%; height: 40px;">
+                            ₹ {{val.cost}}/-
+                        </td>
+                    </tr>
+                    {%if type == 'House'%}
+                    <tr>
+                        <td style="width: 25%; height: 40px;">
+                            Area:
+                        </td>
+                        <td style="width: 30%; height: 40px;">
+                            {{val.area}} sq ft.
+                        </td>
+                        <td style="width: 25%; height: 40px;">
+                            Floors:
+                        </td>
+                        <td style="width: 25%; height: 40px;">
+                            {{val.floor}}
+                        </td>
+                    </tr>
+                    {%endif%}
+                    <tr>
+                        <td style="width: 25%; height: 40px;">
+                            Bedrooms:
+                        </td>
+                        <td style="width: 30%; height: 40px;">
+                            {{val.bedrooms}}
+                        </td>
+                        <td style="width: 25%; height: 40px;">
+                            Kitchen:
+                        </td>
+                        <td style="width: 25%; height: 40px;">
+                            {{val.kitchen}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%; height: 40px;">
+                            Hall:
+                        </td>
+                        <td style="width: 30%; height: 40px;">
+                            {{val.hall}}
+                        </td>
+                        <td style="width: 25%; height: 40px;">
+                            Balcony:
+                        </td>
+                        <td style="width: 25%; height: 40px;">
+                            {{val.balcany}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%; height: 40px;">
+                            AC:
+                        </td>
+                        <td style="width: 30%; height: 40px;">
+                            {{val.AC}}
+                        </td>
+                        <td style="width: 25%; height: 40px;">
+                            Date posted:
+                        </td>
+                        <td style="width: 25%; height: 40px;">
+                            {{val.date}}
+                        </td>
+                    </tr>
+                </table>
+        </div>
+        <div class="col-md-6 col-sm-12">
             <h3 class="card-title"><b>Author's info </b></h3>
-            <p>{{user.name}}</p>
-            <p>{{user.location}}, {{user.city}}, {{user.state}}</p>
-            <p>{{user.email}}</p>
-            <p>Contact no. {{user.number}}</p>
+                <p>{{user.name}}</p>
+                <p>{{user.location}}, {{user.city}}, {{user.state}}</p>
+                <p>{{user.email}}</p>
+                <p>Contact no. {{user.number}}</p>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}

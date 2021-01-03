@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
-from .forms import SignUpForm
+# from .forms import SignUpForm
 from django.template import loader
 from user.models import *
 from datetime import *
@@ -126,8 +126,8 @@ def descr(request):
     return HttpResponse(template.render(context, request))
 
 
-def loginpage(request):
-    return render(request, 'login.html', {'msg': ''})
+# def loginpage(request):
+#     return render(request, 'login.html', {'msg': ''})
 
 
 def register(request):
@@ -164,7 +164,8 @@ def register(request):
         template = loader.get_template('register.html')
         context = {'msg': 'email already registered'}
         return HttpResponse(template.render(context, request))
-    user = User(
+    
+    user = User.objects.create_user(
         name=name,
         email=email,
         location=location,
@@ -175,104 +176,118 @@ def register(request):
         )
     user.save()
     login(request, user)
-    template = loader.get_template('profile.html')
-    return profile(request)
+    return redirect("/profile/")
 
 @login_required(login_url='/login')
 def profile(request):
     report = Contact.objects.filter(email=request.user.email)
-    room = Room.objects.filter(user_email=request.user.email)
-    house = House.objects.filter(user_email=request.user.email)
+    room = Room.objects.filter(user_email=request.user)
+    house = House.objects.filter(user_email=request.user)
+    
+    print()
+    # print(roomno)
+    print()
     context = {
         'user': request.user,
-        'reportno': len(report),
-        'roomno': len(room),
-        'houseno': len(house)
+        'report': report,
+        'reportno': report.count(),
+        'roomno': room.count(),
+        'houseno': house.count(),
+        'room': room,
+        'house': house,
     }
     return render(request, 'profile.html', context=context)
 
 
 @login_required(login_url='/login')
 def post(request):
-    context = {'user': request.user}
-    return render(request, 'post.html', context)
+    if request.method == "GET":
+        context = {'user': request.user}
+        return render(request, 'post.html', context)
+    elif request.method == "POST":
+        try:
+            dimention = request.POST['dimention']
+            location = request.POST['location'].lower()
+            city = request.POST['city'].lower()
+            state = request.POST['state'].lower()
+            cost = request.POST['cost']
+            hall = request.POST['hall'].lower()
+            kitchen = request.POST['kitchen'].lower()
+            balcany = request.POST['balcany'].lower()
+            bedroom = request.POST['bedroom']
+            ac = request.POST['AC'].lower()
+            desc = request.POST['desc'].upper()
+            img = request.FILES['img']
+            user_obj = User.objects.filter(email=request.user.email)[0]
+            bedroom = int(bedroom)
+            cost = int(cost)
+            room = Room.objects.create(
+                user_email=user_obj,
+                dimention=dimention,
+                location=location,
+                city=city,
+                state=state,
+                cost=cost,
+                hall=hall,
+                kitchen=kitchen,
+                balcany=balcany,
+                bedrooms=bedroom,
+                AC=ac,
+                desc=desc,
+                img=img,
+            )
+            return render(request, 'post.html',
+                        {'msg': 'submitted successfully..'})
+        except Exception as e:
+            return HttpResponse(status=500)
 
 
 @login_required(login_url='/login')
 def posth(request):
-    context = {'user': request.user}
-    return render(request, 'posth.html', context)
-
-
-@login_required(login_url='/login')
-def postedh(request):
-    area = request.POST['area']
-    floor = request.POST['floor']
-    location = request.POST['location'].lower()
-    city = request.POST['city'].lower()
-    state = request.POST['state'].lower()
-    cost = request.POST['cost']
-    hall = request.POST['hall'].lower()
-    kitchen = request.POST['kitchen'].lower()
-    balcany = request.POST['balcany'].lower()
-    bedroom = request.POST['bedroom']
-    ac = request.POST['AC'].lower()
-    desc = request.POST['desc'].upper()
-    img = request.FILES['img']
-    house = House(
-        user_email=request.user.email,
-        location=location,
-        city=city,
-        state=state,
-        cost=cost,
-        hall=hall,
-        kitchen=kitchen,
-        balcany=balcany,
-        bedrooms=bedroom,
-        area=area,
-        floor=floor,
-        AC=ac,
-        desc=desc,
-        img=img,
-        )
-    house.save()
-    return render(request, 'post.html',
-                      {'msg': 'submitted successfully..'})
-
-
-@login_required(login_url='/login')
-def postedr(request):
-    dimention = request.POST['dimention']
-    location = request.POST['location'].lower()
-    city = request.POST['city'].lower()
-    state = request.POST['state'].lower()
-    cost = request.POST['cost']
-    hall = request.POST['hall'].lower()
-    kitchen = request.POST['kitchen'].lower()
-    balcany = request.POST['balcany'].lower()
-    bedroom = request.POST['bedroom']
-    ac = request.POST['AC'].lower()
-    desc = request.POST['desc'].upper()
-    img = request.FILES['img']
-    room = Room(
-        user_email=request.user.email,
-        dimention=dimention,
-        location=location,
-        city=city,
-        state=state,
-        cost=cost,
-        hall=hall,
-        kitchen=kitchen,
-        balcany=balcany,
-        bedrooms=bedroom,
-        AC=ac,
-        desc=desc,
-        img=img,
-        )
-    room.save()
-    return render(request, 'post.html',
-                  {'msg': 'submitted successfully..'})
-
+    if request.method == "GET":
+        context = {'user': request.user}
+        return render(request, 'posth.html', context)
+    else:
+        try:
+            area = request.POST['area']
+            floor = request.POST['floor']
+            location = request.POST['location'].lower()
+            city = request.POST['city'].lower()
+            state = request.POST['state'].lower()
+            cost = request.POST['cost']
+            hall = request.POST['hall'].lower()
+            kitchen = request.POST['kitchen'].lower()
+            balcany = request.POST['balcany'].lower()
+            bedroom = request.POST['bedroom']
+            ac = request.POST['AC'].lower()
+            desc = request.POST['desc'].upper()
+            img = request.FILES['img']
+            bedroom = int(bedroom)
+            cost = int(cost)
+            user_obj = User.objects.filter(email=request.user.email)[0]
+            house = House.objects.create(
+                user_email=user_obj,
+                location=location,
+                city=city,
+                state=state,
+                cost=cost,
+                hall=hall,
+                kitchen=kitchen,
+                balcany=balcany,
+                bedrooms=bedroom,
+                area=area,
+                floor=floor,
+                AC=ac,
+                desc=desc,
+                img=img,
+            )
+            return render(request, 'posth.html',
+                            {'msg': 'submitted successfully..'})
+        except Exception as e:
+            print()
+            print(e)
+            print()
+            return HttpResponse(status=500)
 
 def deleter(request):
     if request.method == 'GET':
@@ -304,6 +319,6 @@ def login_view(request):
     else:
         template = loader.get_template('login.html')
         context = {
-            'msg': 'Please enter valid email or password'
+            'msg': 'Email and password, you entered, did not matched.'
         }
         return HttpResponse(template.render(context, request))

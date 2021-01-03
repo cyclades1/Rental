@@ -19,10 +19,10 @@
     {%if msg%}
     <p>{{msg}}</p>
     {%endif%}
-    <a href="/posth"><button style="float: right;" type="submit" class="btn btn-success btn-sm">Post ad for House</button></a>
+    <a href="/posth/"><button style="float: right;" type="submit" class="btn btn-success btn-sm">Post ad for House</button></a>
     <br>
     <div id = "id1">
-        <form action="/postedr" method="post" enctype="multipart/form-data">
+        <form action="/post/" method="post" enctype="multipart/form-data">
             <div class="container">
                 {% csrf_token %}
                 <label for="name"><b>Location</b></label>
