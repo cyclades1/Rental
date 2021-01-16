@@ -184,19 +184,27 @@ def profile(request):
     report = Contact.objects.filter(email=request.user.email)
     room = Room.objects.filter(user_email=request.user)
     house = House.objects.filter(user_email=request.user)
-    
-    # print()
-    # # print(roomno)
-    # print()
+    roomcnt = room.count()
+    housecnt = house.count()
+    reportcnt = report.count()
+    if bool(room):
+        n = len(room)
+        nslide = n // 3 + (n % 3 > 0)
+        rooms = [room, range(1, nslide), n]
+    if bool(house):
+        n = len(house)
+        nslide = n // 3 + (n % 3 > 0)
+        houses = [house, range(1, nslide), n]
+        
     context = {
         'user': request.user,
         'report': report,
-        'reportno': report.count(),
-        'roomno': room.count(),
-        'houseno': house.count(),
-        'room': room,
-        'house': house,
+        'reportno': reportcnt,
+        'roomno': roomcnt,
+        'houseno': housecnt
     }
+    context.update({'room': rooms})
+    context.update({'house': houses})    
     return render(request, 'profile.html', context=context)
 
 
@@ -295,7 +303,8 @@ def deleter(request):
         id = request.GET['id']
         instance = Room.objects.get(room_id=id)
         instance.delete()
-    return render(request, 'profile.html')
+        messages.success(request, 'Appartment details deleted successfully..')
+    return redirect('/profile')
 
 
 def deleteh(request):
@@ -303,7 +312,8 @@ def deleteh(request):
         id = request.GET['id']
         instance = House.objects.get(house_id=id)
         instance.delete()
-    return render(request, 'profile.html')
+        messages.success(request, 'House details deleted successfully..')
+    return redirect('/profile')
 
 
 def login_view(request):

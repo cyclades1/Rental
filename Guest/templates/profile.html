@@ -200,14 +200,13 @@
     <div class="row profile">
         <div class="col-md-3">
             <div class="profile-sidebar">
-                <!-- SIDEBAR USERPIC -->
+              
                 <div class="profile-userpic">
                     <center>
-                        <img src="{%static 'assets/user.png'%}" alt="">\
+                        <img src="{%static 'assets/user.png'%}" alt="">
                     </center>
                 </div>
-                <!-- END SIDEBAR USERPIC -->
-                <!-- SIDEBAR USER TITLE -->
+               
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
                         {{user.name}}
@@ -216,10 +215,7 @@
                         Rental user
                     </div>
                 </div>
-                <!-- END SIDEBAR USER TITLE -->
-                <!-- SIDEBAR BUTTONS -->
-                <!-- END SIDEBAR BUTTONS -->
-                <!-- SIDEBAR MENU -->
+                
                 <div class="profile-usermenu">
                     <ul class="nav">
                         <li class="active">
@@ -244,7 +240,7 @@
                         </li>
                     </ul>
                 </div>
-                <!-- END MENU -->
+               
                 <div class="portlet light bordered">
                     <div class="row list-separated profile-stat">
                         <div class="col-md-4 col-sm-4 col-xs-6">
@@ -260,7 +256,7 @@
                             <div class="uppercase profile-stat-text"> Reports </div>
                         </div>
                     </div>
-                    <!-- END STAT -->
+                   
                     <div>
                         <h4 class="profile-desc-title">About {{user.name}}</h4>
                         <span class="profile-desc-text">Authenticated user of the Rental.
@@ -284,14 +280,98 @@
         </div>
         <div class="col-md-9">
             <div class="profile-content">
-                <div class="profile-userbuttons">
+
+                 {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                          <strong>{{ message }}</strong> 
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                
+
+
+                {% if room %}
+                <h5 class="my-4" style="text-align: center;"> Apartment - Posted for You.</h5>
+                <div class="w3-row-padding">
+                    <div class="col carousel slide my-3" data-ride="carousel">
+                        <div class="carousel-inner no-padding">
+                            <div class="carousel-item active">
+                                {% for i in room.0%}
+                                <div class="w3-third w3-container w3-margin-bottom ">
+                                    <div class="card" style=" background-color: #e9ecef;">
+                                        <img src='{{i.img.url}}' class="w3-hover-opacity" style="height: 250px; width: 100%" alt="...">
+                                        <div class="card-body">
+                                            <p>{{i.room_id}}</p>
+                                            <p>{{i.cost}}</p>
+                                            <p>{{i.location}}</p>
+                                            <form action="/deleter">
+                                                <button name="id" value="{{i.room_id}}"  type="submit" class="btn btn-sm w3-dark-grey">Delete</button>
+                                            </form>
+                                            <form action="/descr"  style="margin-bottom: 5px;">
+                                                <button name="id" value="{{i.room_id}}" class="btn btn-sm w3-blue"> Quick view</button>
+                                            </form> 
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and forloop.counter < room.2 %}
+                            </div>
+                            <div class="carousel-item">
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                {% endif %}
+
+                 <div class="profile-userbuttons">
                     <a href="/post/"><button type="submit" class="btn btn-success btn-sm">Post ad for Apartment</button>
                     </a>
                 </div>
+
+                {% if house %}
+                <h5 class="my-4" style="text-align: center;"> Houses - Posted for You.</h5>
+                <div class="w3-row-padding">
+                    <div class="col carousel slide my-3" data-ride="carousel">
+                        <div class="carousel-inner no-padding">
+                            <div class="carousel-item active">
+                                {% for i in house.0%}
+                                <div class="w3-third w3-container w3-margin-bottom">
+                                    <div class="card" style=" background-color: #e9ecef;">
+                                        <img src='{{i.img.url}}' class="w3-hover-opacity" style="height: 250px; width: 100%" alt="...">
+                                        <div class="card-body">
+                                            <p>{{i.house_id}}</p>
+                                            <p>{{i.cost}}</p>
+                                            <p>{{i.location}}</p>
+                                            <form action="/deleteh" >
+                                                <button name="id" value="{{i.house_id}}"  type="submit" class="btn btn-sm w3-dark-grey">Delete</button>
+                                            </form>
+                                            <form action="/descr"  style="margin-bottom: 5px;">
+                                                <button name="id" value="{{i.house_id}}" class="btn  btn-sm w3-blue"> Quick view</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and forloop.counter < house.2 %}
+                            </div>
+                            <div class="carousel-item">
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+
+
                 <div class="profile-userbuttons">
                     <a href="/posth/"><button type="submit" class="btn btn-success btn-sm">Post ad for House</button></a>
                 </div>
-                {% if room%}
+                <!-- {% if room%}
                 <br>
                 <hr>
                 <br>
@@ -343,7 +423,7 @@
                     <center>
                         <h3 class="profile-desc-title">no House posted..</h3>
                     </center>
-                    {%endif%}
+                    {%endif%} -->
                 </div>
             </div>
         </div>
