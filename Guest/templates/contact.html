@@ -16,10 +16,12 @@
 </style>
 {% block body %} 
 <div class="w3-container w3-padding-large" style="margin-right: 5%; margin-left: 5%; margin-bottom: 1%; margin-top: 1%;">
-    
     {%if msg%}
-        <p>{{msg}}</p>
+    <div class="alert alert-info" role="alert">
+       {{msg}}
+    </div>
     {%endif%}
+   
     
     <h2 style="margin-left:10px;">Contact us</h2>
 
@@ -56,8 +58,8 @@
     </div>
     <div class="w3-panel w3-large w3-center">
         <p style="font-size: x-small;">
-            All rights are reserved to http://rentalforpeople.wordpress.com
-            Contact Abhishek Dubey at dubeyabhishek933@gmail.com for further details.
+            Images and info in the app are dummy, the idea from http://rentalforpeople.wordpress.com
+            Contact Abhishek Dubey at dubeyabhishek933@gmail.com.
         </p>
     </div>
 </div>

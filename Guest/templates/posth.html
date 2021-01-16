@@ -16,9 +16,16 @@
 </script>
 <div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
     <h2 style="text-align: center;"><b>Post ad for House</b></h2>
-    {%if msg%}
-    <p>{{msg}}</p>
-    {%endif%}
+
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <strong>{{ message }}</strong> 
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <a href="/post/"><button style="float: right;" type="submit" class="btn btn-success btn-sm">Post ad for Apartment</button></a>
     <br>
     <div id = "id1">

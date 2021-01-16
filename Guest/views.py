@@ -12,6 +12,7 @@ from user.models import *
 from datetime import *
 import re
 import os
+from django.contrib import messages
 
 def index(request):
     template = loader.get_template('index.html')
@@ -184,9 +185,9 @@ def profile(request):
     room = Room.objects.filter(user_email=request.user)
     house = House.objects.filter(user_email=request.user)
     
-    print()
-    # print(roomno)
-    print()
+    # print()
+    # # print(roomno)
+    # print()
     context = {
         'user': request.user,
         'report': report,
@@ -236,8 +237,8 @@ def post(request):
                 desc=desc,
                 img=img,
             )
-            return render(request, 'post.html',
-                        {'msg': 'submitted successfully..'})
+            messages.success(request, 'submitted successfully..')
+            return render(request, 'post.html')
         except Exception as e:
             return HttpResponse(status=500)
 
@@ -281,8 +282,8 @@ def posth(request):
                 desc=desc,
                 img=img,
             )
-            return render(request, 'posth.html',
-                            {'msg': 'submitted successfully..'})
+            messages.success(request, 'submitted successfully..')
+            return render(request, 'posth.html')
         except Exception as e:
             print()
             print(e)
@@ -294,7 +295,7 @@ def deleter(request):
         id = request.GET['id']
         instance = Room.objects.get(room_id=id)
         instance.delete()
-    return profile(request)
+    return render(request, 'profile.html')
 
 
 def deleteh(request):
@@ -302,7 +303,7 @@ def deleteh(request):
         id = request.GET['id']
         instance = House.objects.get(house_id=id)
         instance.delete()
-    return profile(request)
+    return render(request, 'profile.html')
 
 
 def login_view(request):
