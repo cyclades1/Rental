@@ -23,6 +23,11 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
 from django.views.generic.base import RedirectView
 
+
+admin.site.site_header = "Rental Admin"
+admin.site.site_title = "Rental Admin Portal"
+admin.site.index_title = "Welcome to Rental Admin Portal"
+
 admin.autodiscover()
 urlpatterns = [
     url(r'^$', RedirectView.as_view(url='/index/')),
