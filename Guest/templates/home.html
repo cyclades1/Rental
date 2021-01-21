@@ -17,7 +17,7 @@
 {% endblock %}
 
 {% block body %}
-<div class="w3-container w3-home-container">
+<div class="w3-container">
     <div class="row">
         <div class="col-md-12 col-sm-12">
             <h1><b>Search</b></h1>
@@ -30,16 +30,16 @@
             {% endif %}
         </div>
 
-        <div class="col-md-12 col-sm-12">
-            <div class="input-group my-group"> 
-                <form method="GET" action="/search">
-                    <input type="text" class="form-control" name="q" placeholder="Search here..." {%if q%}value="{{q}}"{%endif%} />
-                    <select name="type" class="col-md-3 col-sm-6 selectpicker form-control" data-live-search="true">
+        <div class="col-md-12 col-sm-12" >
+            <div class="input-group my-group"   > 
+                <form class="form-inline" style="width: 100%;"  method="GET" action="/search" >
+                    <input type="text" class="form-control " style="width: 55%;"   name="q" placeholder="Search here..." {%if q%}value="{{q}}"{%endif%} />
+                    <select name="type"  style="width: 30%;" class=" col-md-3 col-sm-6 selectpicker form-control" data-live-search="true">
                         <option value="House">House</option>
                         <option value="Apartment">Apartment</option>
                     </select> 
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary my-group-button" type="submit">GO!</button>
+                    <span class="input-group-btn" style="width: 15%;">
+                        <button style="width: 100%;border-radius: 4px;" class="btn btn-primary" type="submit">GO!</button>
                     </span>
                 </form>
             </div>
@@ -57,11 +57,12 @@
             </div>
         </div>
     {% if result.0 %}
-    <h5 class="my-4"> Your search result</h5>
-    <div class="w3-row-padding">
+   
+    <div class="w3-container w3-home-container" style="width: 100%">
+         <h5 class="my-4"> Your search result</h5>
         <div class="col carousel slide my-3" data-ride="carousel">
-           <!--  <div class="carousel-inner no-padding">
-                <div class="carousel-item active"> -->
+            <div class="carousel-inner no-padding">
+                <div class="carousel-item active">
                     {% for i in result.0%}
                     <div class="w3-third w3-container w3-margin-bottom">
                         <div class="card" style=" background-color: #e9ecef;">
@@ -89,12 +90,12 @@
                         </div>
                     </div>
                     {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and forloop.counter < result.1 %}
-               <!--  </div>
-                <div class="carousel-item"> -->
+                </div>
+                <div class="carousel-item">
                     {% endif %}
                     {% endfor %}
-               <!--  </div>
-            </div> -->
+                </div>
+            </div>
             <center>
                 
                 <a href="#">1...{{result.1}}</a>
