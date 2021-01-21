@@ -18,40 +18,50 @@
 
 {% block body %}
 <div class="w3-container w3-home-container">
-<div class="row">
-    <div class="col-md-12 col-sm-12">
-        <h1><b>Search</b></h1>
-    </div>
-    <div class="col-md-12 col-sm-12">
-        <div class="input-group my-group"> 
-            <input type="text" class="form-control" name="text" placeholder="Search here..."/>
-            <select class="col-md-3 col-sm-6 selectpicker form-control" data-live-search="true">
-                <option>House</option>
-                <option>Apartment</option>
-            </select> 
-            <span class="input-group-btn">
-                <button class="btn btn-primary my-group-button" type="submit">GO!</button>
-            </span>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h1><b>Search</b></h1>
+             {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                      <strong>{{ message }}</strong> 
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-md-12 col-sm-12">
-        <div class="w3-section w3-bottombar w3-padding-16">
-            <span class="w3-margin-right">Filter:</span> 
-            <button class="w3-button w3-black">ALL</button>
-            <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Type</button>
-            <button class="w3-button w3-white w3-hide-small"><i class="fa fa-dollar w3-margin-right"></i>Price</button>
-            <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Location</button>
+        <div class="col-md-12 col-sm-12">
+            <div class="input-group my-group"> 
+                <form method="GET" action="/search">
+                    <input type="text" class="form-control" name="q" placeholder="Search here..." {%if q%}value="{{q}}"{%endif%} />
+                    <select name="type" class="col-md-3 col-sm-6 selectpicker form-control" data-live-search="true">
+                        <option value="House">House</option>
+                        <option value="Apartment">Apartment</option>
+                    </select> 
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary my-group-button" type="submit">GO!</button>
+                    </span>
+                </form>
+            </div>
         </div>
     </div>
-    {% if result %}
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="w3-section w3-bottombar w3-padding-16">
+                <span class="w3-margin-right">Filter:</span> 
+                <button class="w3-button w3-black">ALL</button>
+                <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Type</button>
+                <button class="w3-button w3-white w3-hide-small"><i class="fa fa-dollar w3-margin-right"></i>Price</button>
+                <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Location</button>
+            </div>
+        </div>
+    {% if result.0 %}
     <h5 class="my-4"> Your search result</h5>
     <div class="w3-row-padding">
         <div class="col carousel slide my-3" data-ride="carousel">
-            <div class="carousel-inner no-padding">
-                <div class="carousel-item active">
+           <!--  <div class="carousel-inner no-padding">
+                <div class="carousel-item active"> -->
                     {% for i in result.0%}
                     <div class="w3-third w3-container w3-margin-bottom">
                         <div class="card" style=" background-color: #e9ecef;">
@@ -79,40 +89,23 @@
                         </div>
                     </div>
                     {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and forloop.counter < result.1 %}
-                </div>
-                <div class="carousel-item">
+               <!--  </div>
+                <div class="carousel-item"> -->
                     {% endif %}
                     {% endfor %}
-                </div>
-            </div>
+               <!--  </div>
+            </div> -->
+            <center>
+                
+                <a href="#">1...{{result.1}}</a>
+                
+            </center>
         </div>
-        </a>
+        
     </div>
     {%else%}
-    {%if msg%}
-        <h2 style="text-align: center;"><b>{{msg}}</b></h2>
-    {%endif%}
-    <div class="penguin">
-        <div class="head">
-            <div class="head-inner">
-                <div class="eye-wrap">
-                    <div class="eye"></div>
-                    <div class="eye"></div>
-                </div>
-                <div class="mouth"></div>
-            </div>
-        </div>
-        <div class="body">
-            <div class="arm-wrap">
-                <div class="arm"></div>
-                <div class="arm"></div>
-            </div>
-            <div class="foot-wrap">
-                <div class="foot"></div>
-                <div class="foot"></div>
-            </div>
-        </div>
-    </div>
+        <h3>Search your query</h3>
+       
     {%endif%}
 </div>
 </div>

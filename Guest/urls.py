@@ -43,10 +43,10 @@ urlpatterns = [
     url(r'^post/$', views.post),
     url(r'^posth/$', views.posth),
     url(r'^logout', LogoutView.as_view()),
-    url(r'^descr',views.descr),
+    url(r'^descr/',views.descr),
     url(r'^deleter', views.deleter),
     url(r'^deleteh', views.deleteh),
-    url(r'^search', views.search)
+    url(r'^search/', views.search)
 ]
 
 urlpatterns+= staticfiles_urlpatterns()

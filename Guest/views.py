@@ -46,27 +46,24 @@ def search(request):
     context = {}
     if request.method == 'GET':
         typ = request.GET['type']
-        if bool(typ):
-            q = request.GET['q']
-            if typ == 'House' \
-                and (bool(House.objects.filter(location=q))
-                     or bool(House.objects.filter(city=q))):
-                results = House.objects.filter(location=q)
-                results = results | House.objects.filter(city=q)
-            elif typ != 'House' \
-                and (bool(Room.objects.filter(location=q))
-                     or bool(House.objects.filter(city=q))):
-                results = Room.objects.filter(location=q)
-                results = results | Room.objects.filter(city=q)
-            else:
-                context.update({'msg': 'No result found for matching query'
-                               })
-                return HttpResponse(template.render(context, request))
-            result = [results, len(results)]
-            context.update({'result': result})
-            context.update({'type': typ})
-        else:
-            context.update({'msg': 'Undefined search type'})
+        q = request.GET['q']
+        context.update({'type': typ})
+        context.update({'q':q})
+        results={}
+        if typ == 'House' and (bool(House.objects.filter(location=q)) or bool(House.objects.filter(city=q))):
+            results = House.objects.filter(location=q)
+            results = results | House.objects.filter(city=q)
+        elif typ == 'Apartment'  and (bool(Room.objects.filter(location=q)) or bool(House.objects.filter(city=q))):
+            results = Room.objects.filter(location=q)
+            results = results | Room.objects.filter(city=q)
+
+        
+        if bool(results)== False:
+            print("messages")
+            messages.success(request, "No matching results for your query..")
+
+        result = [results, len(results)]
+        context.update({'result': result})
 
     return HttpResponse(template.render(context, request))
 
