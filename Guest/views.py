@@ -21,7 +21,7 @@ def index(request):
     room = Room.objects.all()
     if bool(room):
         n = len(room)
-        nslide = n // 3 + (n % 3 > 0)
+        nslide = n // 4 + (n % 3 > 0)
         rooms = [room, range(1, nslide), n]
         context.update({'room': rooms})
     house = House.objects.all()

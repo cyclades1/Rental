@@ -17,7 +17,7 @@ from django.urls import include, path, re_path
 from django.contrib import admin
 from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.conf.urls import url
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
@@ -30,23 +30,23 @@ admin.site.index_title = "Welcome to Rental Admin Portal"
 
 admin.autodiscover()
 urlpatterns = [
-    url(r'^$', RedirectView.as_view(url='/index/')),
-    url(r'^index/',views.index),
-    url(r'^home/',views.home),
-	url(r'^contact/', views.contact),
-    url(r'^about/',views.about),
-	url(r'^admin/',admin.site.urls),
-    url(r'^user/',include('user.urls')),
-    url(r'^register', views.register),
-    url(r'^login', views.login_view),
-    url(r'^profile/',views.profile),
-    url(r'^post/$', views.post),
-    url(r'^posth/$', views.posth),
-    url(r'^logout', LogoutView.as_view()),
-    url(r'^descr/',views.descr),
-    url(r'^deleter', views.deleter),
-    url(r'^deleteh', views.deleteh),
-    url(r'^search/', views.search)
+    path(r'', RedirectView.as_view(url='/index/')),
+    path(r'index/',views.index),
+    path(r'home/',views.home),
+	path(r'contact/', views.contact),
+    path(r'about/',views.about),
+	path(r'admin/',admin.site.urls),
+    path(r'user/',include('user.urls')),
+    path(r'register', views.register),
+    path(r'login', views.login_view),
+    path(r'profile/',views.profile),
+    path(r'post/', views.post),
+    path(r'posth/', views.posth),
+    path(r'logout', LogoutView.as_view()),
+    path(r'descr/',views.descr),
+    path(r'deleter', views.deleter),
+    path(r'deleteh', views.deleteh),
+    path(r'search/', views.search)
 ]
 
 urlpatterns+= staticfiles_urlpatterns()
