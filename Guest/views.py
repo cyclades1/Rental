@@ -184,6 +184,8 @@ def profile(request):
     roomcnt = room.count()
     housecnt = house.count()
     reportcnt = report.count()
+    rooms = []
+    houses = []
     if bool(room):
         n = len(room)
         nslide = n // 3 + (n % 3 > 0)

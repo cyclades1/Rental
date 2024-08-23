@@ -54,7 +54,10 @@
                 {% block button %}
                 {% if request.user.is_authenticated %}
                 <a class="btn btn-outline-success navbar-profile-btn" href="/profile" style="color: white;"><strong>Profile</strong></a>
-                <a class="btn btn-danger navbar-logout-btn" href="/logout" style="margin-left: 1em;"><strong>Logout</strong></a>
+                <form action="/logout" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger navbar-logout-btn" style="margin-left: 1em;"><strong>Logout</strong></button>
+                </form>
                 {% else %}
                 <a class="btn btn-outline-success navbar-login-btn-sm" href="/login" style="color: white;"><strong>Login</strong></a>
                 <a class="btn btn-success navbar-signup-btn-sm" href="/register" style="margin-left: 1em;"><strong>Sign Up</strong></a>
